@@ -11,17 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(
-            'users',
-            function (Blueprint $table) {
-                $table->id();
-                $table->string('username')->unique();
-                $table->enum('role', ['admin', 'user'])->default('user');
-                $table->string('password');
-                $table->rememberToken();
-                $table->timestamps();
-            }
-        );
+        // Membuat tabel users
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('username')->unique();
+            $table->enum('role', ['admin', 'user'])->default('user');
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        // Membuat tabel sessions
+        Schema::create('sessions', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->text('payload');
+            $table->integer('last_activity');
+        });
     }
 
     /**
@@ -29,6 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('users');
     }
 };

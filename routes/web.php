@@ -11,6 +11,11 @@ use App\Http\Controllers\UserController;
 //     return view('welcome');
 // });
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [SesiController::class, 'index']);
+    Route::post('/', [SesiController::class, 'login']);
+});
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/allDashboard', function () {
