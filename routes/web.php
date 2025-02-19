@@ -7,9 +7,9 @@ use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UserController;
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [SesiController::class, 'index']);
