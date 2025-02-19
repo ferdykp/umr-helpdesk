@@ -7,9 +7,9 @@ use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware(['auth'])->group(function () {
 
@@ -20,17 +20,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         // $role = Auth::check() && Auth::user()->role == 'sm';
         $role = Auth::check() ? Auth::user()->role : null;
-        if ($role === 'sm') {
+        if ($role === 'admin') {
             return redirect()->route('adminDashboard');
-        } elseif ($role === 'supplier') {
-            return redirect()->route('supplierDashboard');
         } else {
             return redirect()->route('userDashboard');
         }
     })->name('dashboard');
 
     // Users Management (Admin Only)
-    Route::middleware([AdminMiddleware::class . ':sm'])->group(function () {
+    Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
         Route::resource('users', UserController::class);
         // Route::get('userlist', [UserController::class, 'index'])->name('users.list');
     });
