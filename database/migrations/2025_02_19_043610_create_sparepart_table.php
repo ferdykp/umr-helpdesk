@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('sparepart', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_sparepart');
+            $table->string('kategori');
+            $table->integer('stok');
+            $table->dateTime('update_stok');
+            $table->string('lokasi_penyimpanan');
+            $table->string('status');
+            $table->string('catatan');
             $table->timestamps();
         });
     }
