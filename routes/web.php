@@ -10,6 +10,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ManualBookController;
 use App\Http\Controllers\SparePartController;
+use Illuminate\Support\Facades\Storage;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -46,11 +48,22 @@ use App\Http\Controllers\SparePartController;
 //     Route::post('/logout', [SesiController::class, 'logout'])->name('logout');
 // });
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/login/auth', [AuthController::class, 'loginAuth'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Route::resource('manualbook', ManualBookController::class);
-// Route::get('manualbook/{id}/preview', [ManualBookController::class, 'preview'])->name('manualbook.preview');
+Route::resource('manualbook', ManualBookController::class);
+Route::get('manualbook/{id}/preview', [ManualBookController::class, 'preview'])->name('manualbook.preview');
+Route::post('manualbook/import', [ManualBookController::class, 'import'])->name('manualbook.import');
+Route::get('/testupload', [ManualBookController::class, 'index'])->name('testupload');
+Route::get('/manualbook/view/{filename}', function ($filename) {
+    $path = storage_path('app/public/uploads/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('filename', '.*');
