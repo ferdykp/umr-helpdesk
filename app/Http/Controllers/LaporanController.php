@@ -98,8 +98,28 @@ class LaporanController extends Controller
 
     public function export()
     {
+
         return Excel::download(new LaporanExport, 'laporan.xlsx');
     }
+
+    // public function import(Request $request)
+    // {
+    //     try {
+    //         // Validasi file Excel yang diupload
+    //         $request->validate([
+    //             'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
+    //         ]);
+
+    //         // Import file Excel
+    //         Excel::import(new LaporanImport, $request->file('file'));
+
+    //         // Redirect kembali ke dashboard dengan pesan sukses
+    //         return redirect()->route('lainnya')->with(['success' => 'Data Lain berhasil diimport!']);
+    //     } catch (\Exception $e) {
+    //         // Redirect ke halaman error khusus
+    //         return view('dashboard.error', ['error_message' => $e->getMessage()]);
+    //     }
+    // }
 
     // public function search(Request $request)
     // {
