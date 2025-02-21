@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Core CSS -->
+<link id="pagestyle" href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 <link id="pagestyle" href="{{ asset('assets/css/tailwind.css') }}" rel="stylesheet">
 <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css') }}" rel="stylesheet">
 
