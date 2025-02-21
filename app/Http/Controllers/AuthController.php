@@ -8,18 +8,21 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->title = 'D-Bridge';
     }
-    
-    public function login() {
+
+    public function login()
+    {
         // return view('auth.login', ['title' => $this->title]);
         return view('auth.login');
     }
 
-    public function loginAuth(Request $request){
+    public function loginAuth(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-            'email'     => 'required|email',
+            'username'     => 'required|username',
             'password'  => 'required|min:6',
         ]);
 
@@ -28,7 +31,7 @@ class AuthController extends Controller
         }
 
         $data = [
-            'email'     => $request->email,
+            'username'     => $request->username,
             'password'  => $request->password,
         ];
 
@@ -37,7 +40,7 @@ class AuthController extends Controller
                 return redirect()->route('dashboard')->with('success', 'SignIn Berhasil');
             }
         } else {
-            return redirect()->back()->withErrors('Email atau Password salah')->withInput();
+            return redirect()->back()->withErrors('username atau Password salah')->withInput();
         }
     }
 
