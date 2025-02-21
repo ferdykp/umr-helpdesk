@@ -42,7 +42,7 @@
 
     <main class="main-content position-relative border-radius-lg ">
 
-        @include('components.navbar')
+        @include('componentss.navbar')
         @yield('content')
     </main>
     @include('components.script')

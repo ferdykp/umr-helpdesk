@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('layouts.head')
     @stack('head')
@@ -14,6 +15,7 @@
         }
     </style>
 </head>
+
 <body>
     @yield('content')
 
@@ -21,4 +23,5 @@
     @include('layouts.script')
     @include('components.toast')
 </body>
+
 </html>
