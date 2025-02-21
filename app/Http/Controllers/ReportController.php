@@ -9,15 +9,15 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanExport;
 use Illuminate\Support\Facades\Schema;
 
-class LaporanController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $laporan = Laporan::all()->paginate(10);
-        return view('dashboard');
+        // $laporan = Laporan::all()->paginate(10);
+        return view('dashboard.report');
     }
 
     /**
@@ -25,7 +25,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        return view('create-laporan');
+        // return view('create-laporan');
     }
 
     /**
@@ -53,7 +53,7 @@ class LaporanController extends Controller
     public function show(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        return view('show-laporan', compact('laporan'));
+        // return view('show-laporan', compact('laporan'));
     }
 
     /**
@@ -62,7 +62,7 @@ class LaporanController extends Controller
     public function edit(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        return view('edit-laporan', compact('laporan'));
+        // return view('edit-laporan', compact('laporan'));
     }
 
     /**
@@ -99,7 +99,7 @@ class LaporanController extends Controller
     public function export()
     {
 
-        return Excel::download(new LaporanExport, 'laporan.xlsx');
+        // return Excel::download(new LaporanExport, 'laporan.xlsx');
     }
 
     // public function import(Request $request)

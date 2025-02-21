@@ -28,8 +28,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="">
+                <a class="nav-link {{ request()->is('report') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('report') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-file-circle-exclamation text-dark text-sm"></i>
@@ -54,24 +54,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="">
+                <a class="nav-link {{ request()->is('machine') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('machine') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-warehouse text-dark text-sm"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Kategori Mesin</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-warehouse text-dark text-sm"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Lokasi Mesin</span>
+                    <span class="nav-link-text ms-1">Mesin</span>
                 </a>
             </li>
 
