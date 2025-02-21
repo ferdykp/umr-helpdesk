@@ -7,7 +7,9 @@ use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ManualBookController;
+use App\Http\Controllers\SparePartController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -49,3 +51,6 @@ Route::post('/login/auth', [AuthController::class, 'loginAuth'])->name('auth.log
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Route::resource('manualbook', ManualBookController::class);
+// Route::get('manualbook/{id}/preview', [ManualBookController::class, 'preview'])->name('manualbook.preview');
