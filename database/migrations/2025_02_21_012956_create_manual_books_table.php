@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('manual_books', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('file_path');
+            $table->string('document_name');
+            $table->string('document_path');
             $table->timestamps();
         });
     }

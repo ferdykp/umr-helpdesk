@@ -9,5 +9,5 @@ class ManualBook extends Model
 {
     use HasFactory;
     protected $table = 'manual_books';
-    protected $fillable = ['title', 'file_path'];
+    protected $fillable = ['document_name', 'document_path'];
 }
