@@ -7,13 +7,18 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    {{-- <div class="min-height-300 position-absolute w-100"
+    <div class="min-height-300 position-absolute w-100"
         style="background-image: url('/assets/img/mining3.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.8;">
-    </div> --}}
-    @include('layouts.aside')
-    @include('layouts.navbar')
+    </div>
 
-    @yield('content')
+    @include('layouts.aside')
+    
+    <main class="main-content position-relative border-radius-lg ">
+        @include('layouts.navbar')
+
+        @yield('content')
+
+    </main>
 
     @include('layouts.footer')
     @include('layouts.script')
