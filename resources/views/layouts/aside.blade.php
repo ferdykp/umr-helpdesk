@@ -1,11 +1,12 @@
-<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+    id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 {{ request()->is('dashboard*') ? 'bg-primary text-white' : '' }}"
             href="{{ route('dashboard') }}">
             <img src="{{ asset('assets/img/logo-mining.png') }}" width="40px" height="40px"
-                class="navbar-brand-img h-100 inline"  alt="main_logo">
+                class="navbar-brand-img h-100 inline" alt="main_logo">
             <span class="ms-1 font-weight-bold">D-Bridge Tim</span>
         </a>
     </div>
@@ -39,8 +40,18 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="">
+                <a class="nav-link {{ request()->is('manualbook') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('manualbook') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-sharp fa-solid fa-book text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Manual Book</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('') ? 'bg-primary text-white rounded-lg' : '' }}" href="">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-gear text-dark text-sm"></i>

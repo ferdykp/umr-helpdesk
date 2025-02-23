@@ -64,7 +64,7 @@ Route::get('/machine', [MachineController::class, 'index'])->name('machine');
 Route::resource('manualbook', ManualBookController::class);
 Route::get('manualbook/{id}/preview', [ManualBookController::class, 'preview'])->name('manualbook.preview');
 Route::post('manualbook/import', [ManualBookController::class, 'import'])->name('manualbook.import');
-Route::get('/testupload', [ManualBookController::class, 'index'])->name('testupload');
+Route::get('/manualbook', [ManualBookController::class, 'index'])->name('manualbook');
 Route::get('/manualbook/view/{filename}', function ($filename) {
     $path = storage_path('app/public/uploads/' . $filename);
 
@@ -74,3 +74,12 @@ Route::get('/manualbook/view/{filename}', function ($filename) {
 
     return response()->file($path);
 })->where('filename', '.*');
+Route::get('/manualbook/download/{filename}', function ($filename) {
+    $path = storage_path('app/public/uploads/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->download($path);
+})->where('filename', '.*')->name('manualbook.download');
