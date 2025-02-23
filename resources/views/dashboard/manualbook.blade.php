@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <!-- Script Modal UPload -->
+        <!-- Script Modal -->
         <script>
             function openModal(id) {
                 let modal = document.getElementById(id);
@@ -146,18 +146,6 @@
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
                 }
-            }
-        </script>
-        {{-- Script Modal Preview --}}
-        <script>
-            function openModal(id) {
-                document.getElementById(id).classList.remove('hidden');
-                document.getElementById(id).classList.add('flex');
-            }
-
-            function closeModal(id) {
-                document.getElementById(id).classList.add('hidden');
-                document.getElementById(id).classList.remove('flex');
             }
         </script>
     @endsection
