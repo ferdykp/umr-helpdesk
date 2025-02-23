@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\ManualBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 
 class ManualBookController extends Controller
 {
     public function index()
     {
         $data = ManualBook::paginate(10);
-        return view('testupload', compact('data'));
+        return view('dashboard.manualbook', compact('data'));
     }
     public function import(Request $request)
     {
@@ -53,10 +55,21 @@ class ManualBookController extends Controller
         $data->update($request->all());
         return redirect()->route('manualbook.index')->with('success', 'Data berhasil diperbarui.');
     }
+    
     public function destroy($id)
     {
         $data = ManualBook::findOrFail($id);
         $data->delete();
-        return redirect()->route('manualbook.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('dashboard.manualbook')->with('success', 'Manual Book berhasil dihapus.');
     }
+
+public function download($filename)
+{
+    $documen_path = 'app/public/uploads/' . $filename; // Sesuaikan dengan path penyimpanan
+    if (Storage::exists($documen_path)) {
+        return Storage::download($documen_path);
+    } else {
+        return response()->json(['error' => 'File not found!'], 404);
+    }
+}
 }
