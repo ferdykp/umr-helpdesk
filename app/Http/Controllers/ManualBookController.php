@@ -55,7 +55,7 @@ class ManualBookController extends Controller
         $data->update($request->all());
         return redirect()->route('manualbook.index')->with('success', 'Data berhasil diperbarui.');
     }
-    
+
     public function destroy($id)
     {
         $data = ManualBook::findOrFail($id);
@@ -63,13 +63,13 @@ class ManualBookController extends Controller
         return redirect()->route('dashboard.manualbook')->with('success', 'Manual Book berhasil dihapus.');
     }
 
-public function download($filename)
-{
-    $documen_path = 'app/public/uploads/' . $filename; // Sesuaikan dengan path penyimpanan
-    if (Storage::exists($documen_path)) {
-        return Storage::download($documen_path);
-    } else {
-        return response()->json(['error' => 'File not found!'], 404);
+    public function download($filename)
+    {
+        $documen_path = 'app/public/uploads/' . $filename; // Sesuaikan dengan path penyimpanan
+        if (Storage::exists($documen_path)) {
+            return Storage::download($documen_path);
+        } else {
+            return response()->json(['error' => 'File not found!'], 404);
+        }
     }
-}
 }
