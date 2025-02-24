@@ -52,5 +52,10 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::resource('laporan', LaporanController::class);
+Route::get('/components/tableLaporan', [LaporanController::class, 'search'])->name('laporan.search');
+Route::get('laporan-export', [LaporanController::class, 'export'])->name('laporan.export');
+
+
 // Route::resource('manualbook', ManualBookController::class);
 // Route::get('manualbook/{id}/preview', [ManualBookController::class, 'preview'])->name('manualbook.preview');

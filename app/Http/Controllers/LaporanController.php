@@ -16,16 +16,18 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Laporan::all()->paginate(10);
-        return view('dashboard');
+        $type = 'laporan';
+        $laporan = Laporan::paginate(10); // Tidak perlu all()
+        return view('dashboard.laporan', compact('laporan'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('create-laporan');
+        return view('dashboard.addLaporan.create');
     }
 
     /**
@@ -44,7 +46,7 @@ class LaporanController extends Controller
             'status' => 'required'
         ]);
         Laporan::create($request->all());
-        return redirect()->route('dashboard')->with('success', 'Laporan berhasil ditambahkan.');
+        return redirect()->route('laporan.index')->with('success', 'Laporan berhasil ditambahkan.');
     }
 
     /**
@@ -53,7 +55,7 @@ class LaporanController extends Controller
     public function show(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        return view('show-laporan', compact('laporan'));
+        return view('laporan.show', compact('laporan'));
     }
 
     /**
@@ -62,7 +64,7 @@ class LaporanController extends Controller
     public function edit(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        return view('edit-laporan', compact('laporan'));
+        return view('laporan.edit', compact('laporan'));
     }
 
     /**
@@ -82,7 +84,7 @@ class LaporanController extends Controller
         ]);
         $laporan = Laporan::findOrFail($id);
         $laporan->update($request->all());
-        return redirect()->route('dashboard')->with('success', 'Laporan berhasil diperbarui.');
+        return redirect()->route('laporan.index')->with('success', 'Laporan berhasil diperbarui.');
     }
 
     /**
@@ -93,7 +95,7 @@ class LaporanController extends Controller
         $laporan = Laporan::findOrFail($id);
         $laporan->delete();
 
-        return redirect('dashboard')->with('success', 'Laporan berhasil dihapus.');
+        return redirect('laporan.index')->with('success', 'Laporan berhasil dihapus.');
     }
 
     public function export()
