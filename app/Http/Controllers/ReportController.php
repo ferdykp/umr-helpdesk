@@ -16,8 +16,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        // $laporan = Laporan::all()->paginate(10);
-        return view('dashboard.report');
+        $laporan = Laporan::paginate(10);
+        return view('dashboard.report', compact('laporan'));
     }
 
     /**
@@ -41,6 +41,8 @@ class ReportController extends Controller
             'shift' => 'required',
             'lokasi_mesin' => 'required',
             'kategori_mesin' => 'required',
+            'waktu_perbaikan' => 'nullable',
+            'metode_perbaikan' => 'nullable',
             'status' => 'required'
         ]);
         Laporan::create($request->all());

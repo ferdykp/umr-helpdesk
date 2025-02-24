@@ -18,6 +18,9 @@ class Laporan extends Model
         'shift',
         'lokasi_mesin',
         'kategori_mesin',
+        'metode_perbaikan',
+        'tanggal_perbaikan',
+        'catatan',
         'status'
     ];
 }
