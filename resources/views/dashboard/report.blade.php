@@ -69,7 +69,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    @include('components.reportTable', [
+                                    @include('partials.reportTable', [
                                         'data' => $laporan,
                                         'routePrefix' => 'report',
                                     ])
