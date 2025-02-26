@@ -12,37 +12,46 @@
                         </div>
                         <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import WR</button>
                     </form> --}}
-                    </div>
-                    <div
-                        class="card-header pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                        <div class="w-100 w-md-auto mb-2 mb-md-0">
-                            <div class="d-flex flex-column flex-sm-row">
-                                <a href="{{ route('report.create') }}" class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
-                                    Laporan</a>
-                                <a href="{{ route('report.export') }}" class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
-                                    <i class="fa fa-download"></i> Export Data in Excel
-                                </a>
-                                <button class="btn btn-danger me-2 mb-2 mb-sm-0 d-none" id="delete_selected">Delete
-                                    Selected</button>
-                            </div>
+                        <div class="w-100 w-md-auto ">
+                            <h4 class="">List Laporan Kerusakan</h4>
+                            <hr class="bg-danger border-2 border-top border-danger" />
                         </div>
-                    </div>
 
-                    <div
-                        class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                        <div class="w-100 w-md-auto mb-2 mb-md-0">
-                            <h6 class="mb-0">List Laporan Kerusakan</h6>
-                        </div>
-                        <div class="w-100 w-md-25"> <!-- Adjust the width as needed -->
-                            <input type="text" id="search" data-route="" name="search" placeholder="Search WR Code"
-                                autocomplete="off" class="form-control">
-                        </div>
                     </div>
                     <div class="card-body p-4">
-                        <div class="table-responsive p-0 rounded-lg">
+                        <div
+                            class="pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                            <div class="w-100 w-md-auto mb-2 mb-md-0">
+                                <div class="d-flex flex-column flex-sm-row">
+                                    <a href="{{ route('report.create') }}"
+                                        class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
+                                        Laporan</a>
+                                    <a href="{{ route('report.export') }}" class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
+                                        <i class="fa fa-download"></i> Export Data in Excel
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center my-3">
+                            <!-- Left section with Delete Selected button -->
+                            <div class="mb-3 mb-md-0">
+                                <button class="btn btn-danger" id="delete_selected">Delete Selected</button>
+                            </div>
+
+                            <!-- Right section with search input -->
+                            <div class="w-100 w-md-auto" style="max-width: 300px;">
+                                <input type="text" id="search" data-route="" name="search"
+                                    placeholder="Search Report" autocomplete="off" class="form-control">
+                            </div>
+                        </div>
+                        <div class="table-responsive p-0 rounded-lg my-3">
                             <table id="datatable" class="table align-items-center mb-0" data-type="report">
                                 <thead class="table-light">
                                     <tr>
+                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                                name="select_all" id="select_all_id"></th>
                                         <th style="white-space: nowrap;" class="text-center">No</th>
                                         <th style="white-space: nowrap;" class="text-center">Keterangan Kerusakan</th>
                                         <th style="white-space: nowrap;" class="text-center">Penyebab Kerusakan</th>
@@ -60,55 +69,20 @@
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    <tr>
-                                        @forelse ($laporan as $index => $item)
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $index + 1 + ($laporan->currentPage() - 1) * $laporan->perPage() }}
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $item->keterangan_kerusakan }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $item->penyebab_kerusakan }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $item->tanggal_kerusakan }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">{{ $item->shift }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">{{ $item->nama_teknisi }}
-                                            </td>
-                                            <td style="white-space: nowrap;" class="text-center"> {{ $item->lokasi_mesin }}
-                                            </td>
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $item->kategori_mesin }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $item->tanggal_perbaikan }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">{{ $item->status }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">
-                                                {{ $item->metode_perbaikan }}</td>
-                                            <td style="white-space: nowrap;" class="text-center">{{ $item->catatan }}</td>
-                                            <td style="white-space: nowrap;" class="d-flex justify-content-center">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </td>
-
-                                        @empty
-                                            <td colspan="50">
-                                                <div class="alert alert-danger text-center">
-
-                                                    Belum ada Laporan
-                                                </div>
-                                            </td>
-                                    </tr>
+                                    @include('components.reportTable', [
+                                        'data' => $laporan,
+                                        'routePrefix' => 'report',
+                                    ])
                                 </tbody>
                             </table>
-                            @endforelse
                         </div>
-                        {{-- <div class="card-footer d-flex justify-content-between">
-                            <div>
-                                iki?
-                            </div>
-                            <div class="d-flex justify-content-center mt-4">
-                                IKI opo
-                            </div>
-                        </div> --}}
+                        <div class="card-footer d-flex justify-content-between">
+                            Showing {{ $laporan->firstItem() }} to {{ $laporan->lastItem() }} of
+                            {{ $laporan->total() }} entries
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            {{ $laporan->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>
