@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ManualBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 
@@ -18,7 +19,7 @@ class ManualBookController extends Controller
     {
         $request->validate([
             'file' => 'required|mimes:pdf|max:10240',
-            'document_name' => 'required|string'
+            'document_name' => 'required|string',
         ]);
 
         $file = $request->file('file');
@@ -42,6 +43,12 @@ class ManualBookController extends Controller
         } else {
             return redirect()->back()->with('error', 'No file selected!');
         }
+    }
+
+    public function show($id)
+    {
+        $data = ManualBook::findOrFail($id);
+        return view('show', compact('data'));
     }
 
     public function edit($id)
@@ -72,4 +79,32 @@ class ManualBookController extends Controller
             return response()->json(['error' => 'File not found!'], 404);
         }
     }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('search');
+
+    //     if ($request->ajax()) {
+    //         $data = ManualBook::where('document_name', 'LIKE', "%{$query}%")
+    //             ->paginate(10);
+
+    //         return view('partials.manualbookList', compact('data'))->render();
+    //     }
+    // }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('search');
+
+    //     $data = ManualBook::where(function ($q) use ($query) {
+    //         foreach (Schema::getColumnListing('manual_books') as $column) {
+    //             $q->orWhere('document_name', 'LIKE', "%{$query}%");
+    //         }
+    //     })
+    //         ->paginate(10);
+
+    //     return view('partials.manualbookList', [
+    //         'data' => $data
+    //     ]);
+    // }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ManualBookController;
 use App\Http\Controllers\SparePartController;
+use App\Models\ManualBook;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
@@ -84,3 +85,10 @@ Route::get('/manualbook/download/{filename}', function ($filename) {
 
     return response()->download($path);
 })->where('filename', '.*')->name('manualbook.download');
+
+// Route::get('/{type}/search', function ($type) {
+//     if ($type == 'manualbook') {
+//         $controller = app(ManualBookController::class);
+//         return $controller->search(request());
+//     }
+// })->name('manualbook.search');

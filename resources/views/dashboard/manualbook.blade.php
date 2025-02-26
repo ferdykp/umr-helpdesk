@@ -14,14 +14,15 @@
                     <div class="card-body p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
-                                <button class="btn btn-primary w-100 w-lg-auto mb-3 mb-md-0"
-                                    onclick="openModal('uploadModal')">
+                                <button class="btn btn-primary w-lg-auto mb-3 mb-md-0" onclick="openModal('uploadModal')">
                                     Upload Manual Book
                                 </button>
 
                                 <div class="w-100 w-md-25 ms-md-3">
-                                    <input type="text" id="search" data-route="" name="search"
-                                        placeholder="Search Manual Book" autocomplete="off" class="form-control">
+                                    <input type="text" id="search"
+                                        data-route="{{ route('manualbook.search', ['type' => 'manualbook']) }}"
+                                        name="search" placeholder="Search Manual Book" autocomplete="off"
+                                        class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -72,67 +73,17 @@
                             </div>
                         </div>
 
-                        <div class="space-y-4">
-                            @forelse ($data as $item)
-                                <div class="border rounded-md p-4 mb-2 flex justify-between items-center">
-                                    <button onclick="openModal('modal-{{ $loop->index }}')"
-                                        class="text-left font-semibold flex-1">
-                                        {{ $item->document_name }}
-                                    </button>
-
-                                    <form action="{{ route('manualbook.destroy', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus PDF ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </div>
-
-                                <!-- Modal -->
-                                <div id="modal-{{ $loop->index }}"
-                                    class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4">
-                                    <div
-                                        class="bg-white rounded-lg p-6 w-full max-w-4xl h-100 flex flex-col shadow-lg relative">
-                                        <!-- Close Button -->
-                                        <button onclick="closeModal('modal-{{ $loop->index }}')"
-                                            class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-1xl p-3 rounded-full hover:bg-gray-200">
-                                            ✕
-                                        </button>
-
-                                        <!-- Modal Header -->
-                                        <div class="flex justify-between items-center mb-4">
-                                            <h2 class="text-xl font-semibold">{{ $item->document_name }}</h2>
-                                            <div class="flex gap-2">
-                                                <a href="{{ route('manualbook.download', basename($item->document_path)) }}"
-                                                    class="px-3 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 me-3">
-                                                    Download PDF
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Modal Content (PDF Preview) -->
-                                        <div class="flex-1">
-                                            <iframe src="{{ url('/manualbook/view/' . basename($item->document_path)) }}"
-                                                class="w-full h-full border rounded-md" frameborder="0"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            @empty
-                                <h1 class="text-center text-gray-500">No data</h1>
-                            @endforelse
+                        <div class="space-y-4" id="manualbookList">
+                            @include('partials.manualbookList', ['data' => $data])
                         </div>
                     </div>
-
-
-
                     <div class="card-footer d-flex justify-content-between">
                         <div>
+                            Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of
+                            {{ $data->total() }} entries
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-
+                            {{ $data->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>
@@ -147,6 +98,7 @@
             if (modal) {
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Prevent body scrolling when modal is open
             }
         }
 
@@ -155,7 +107,23 @@
             if (modal) {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
+                document.body.style.overflow = ''; // Restore body scrolling
             }
         }
+    </script>
+
+    {{-- Search Script --}}
+    <script>
+        document.getElementById('search').addEventListener('keyup', function() {
+            let query = this.value;
+            let currentRoute = document.getElementById('search').dataset.route; // Ambil route dari data attribute
+            if (!currentRoute) return;
+
+            fetch(`${currentRoute}?search=${query}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('manualbookList').innerHTML = data;
+                });
+        });
     </script>
 @endsection
