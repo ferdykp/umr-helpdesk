@@ -92,19 +92,19 @@ class ManualBookController extends Controller
     //     }
     // }
 
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('search');
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
 
-    //     $data = ManualBook::where(function ($q) use ($query) {
-    //         foreach (Schema::getColumnListing('manual_books') as $column) {
-    //             $q->orWhere('document_name', 'LIKE', "%{$query}%");
-    //         }
-    //     })
-    //         ->paginate(10);
+        $data = ManualBook::where(function ($q) use ($query) {
+            foreach (Schema::getColumnListing('manual_books') as $column) {
+                $q->orWhere('$column', 'LIKE', "%{$query}%");
+            }
+        })
+            ->paginate(10);
 
-    //     return view('partials.manualbookList', [
-    //         'data' => $data
-    //     ]);
-    // }
+        return view('partials.manualbookList', [
+            'data' => $data
+        ]);
+    }
 }

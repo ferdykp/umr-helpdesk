@@ -19,8 +19,7 @@
                                 </button>
 
                                 <div class="w-100 w-md-25 ms-md-3">
-                                    <input type="text" id="search"
-                                        data-route="{{ route('manualbook.search', ['type' => 'manualbook']) }}"
+                                    <input type="text" id="search" data-route="{{ route('manualbook.search') }}"
                                         name="search" placeholder="Search Manual Book" autocomplete="off"
                                         class="form-control">
                                 </div>
@@ -114,16 +113,32 @@
 
     {{-- Search Script --}}
     <script>
-        document.getElementById('search').addEventListener('keyup', function() {
-            let query = this.value;
-            let currentRoute = document.getElementById('search').dataset.route; // Ambil route dari data attribute
-            if (!currentRoute) return;
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const searchRoute = searchInput.getAttribute('data-route');
+            const resultsContainer = document.querySelector('.space-y-4');
 
-            fetch(`${currentRoute}?search=${query}`)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('manualbookList').innerHTML = data;
-                });
+            let debounceTimer;
+
+            searchInput.addEventListener('keyup', function() {
+                clearTimeout(debounceTimer);
+
+                debounceTimer = setTimeout(() => {
+                    const searchTerm = this.value.trim();
+
+                    // Make AJAX request
+                    fetch(`${searchRoute}?search=${encodeURIComponent(searchTerm)}`, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => response.text())
+                        .then(html => {
+                            resultsContainer.innerHTML = html;
+                        })
+                        .catch(error => console.error('Search error:', error));
+                }, 300); // 300ms debounce delay
+            });
         });
     </script>
 @endsection
