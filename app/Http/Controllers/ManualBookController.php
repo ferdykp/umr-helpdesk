@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
+use App\Http\Controllers\redirect;
+use Illuminate\Support\Facades\Log;
+
 
 class ManualBookController extends Controller
 {
@@ -94,17 +97,22 @@ class ManualBookController extends Controller
 
     public function search(Request $request)
     {
+        Log::info("Menerima pencarian: " . $request->input('search'));
+
         $query = $request->input('search');
 
-        $data = ManualBook::where(function ($q) use ($query) {
-            foreach (Schema::getColumnListing('manual_books') as $column) {
-                $q->orWhere('$column', 'LIKE', "%{$query}%");
-            }
-        })
-            ->paginate(10);
+        if (empty($query)) {
+            return response()->json(['html' => '<div class="alert alert-warning">Masukkan kata kunci pencarian.</div>']);
+        }
 
-        return view('partials.manualbookList', [
-            'data' => $data
-        ]);
+        $data = ManualBook::where('document_name', 'LIKE', "%{$query}%")->get();
+
+        Log::info("Hasil query: ", ['data' => $data]);
+
+        if ($data->isEmpty()) {
+            return response()->json(['html' => '<div class="alert alert-info">No results found.</div>']);
+        }
+
+        return response()->json(['data' => $data]);
     }
 }

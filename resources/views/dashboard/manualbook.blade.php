@@ -17,7 +17,6 @@
                                 <button class="btn btn-primary w-lg-auto mb-3 mb-md-0" onclick="openModal('uploadModal')">
                                     Upload Manual Book
                                 </button>
-
                                 <div class="w-100 w-md-25 ms-md-3">
                                     <input type="text" id="search" data-route="{{ route('manualbook.search') }}"
                                         name="search" placeholder="Search Manual Book" autocomplete="off"
@@ -75,6 +74,9 @@
                         <div class="space-y-4" id="manualbookList">
                             @include('partials.manualbookList', ['data' => $data])
                         </div>
+                        <div id="search-results" class="space-y-4">
+                            <!-- Initial content or empty -->
+                        </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
@@ -110,35 +112,58 @@
             }
         }
     </script>
-
-    {{-- Search Script --}}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search');
-            const searchRoute = searchInput.getAttribute('data-route');
-            const resultsContainer = document.querySelector('.space-y-4');
+        $(document).ready(function() {
+            let timer = null;
 
-            let debounceTimer;
+            $('#search').on('input', function() {
+                clearTimeout(timer);
+                let query = $(this).val().trim(); // Trim untuk hapus spasi di awal/akhir
 
-            searchInput.addEventListener('keyup', function() {
-                clearTimeout(debounceTimer);
-
-                debounceTimer = setTimeout(() => {
-                    const searchTerm = this.value.trim();
-
-                    // Make AJAX request
-                    fetch(`${searchRoute}?search=${encodeURIComponent(searchTerm)}`, {
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest'
-                            }
-                        })
-                        .then(response => response.text())
-                        .then(html => {
-                            resultsContainer.innerHTML = html;
-                        })
-                        .catch(error => console.error('Search error:', error));
-                }, 300); // 300ms debounce delay
+                timer = setTimeout(() => {
+                    performSearch(query);
+                }, 300); // Debounce 300ms untuk mengurangi request berlebih
             });
+
+            function performSearch(query) {
+                if (query === '') {
+                    $('#manualbookList').html(
+                        '<div class="alert alert-warning">Masukkan kata kunci pencarian</div>');
+                    return;
+                }
+
+                $.ajax({
+                    url: "/manualbook/search",
+                    type: "GET",
+                    data: {
+                        search: encodeURIComponent(query)
+                    }, // Encode query untuk mencegah error
+                    dataType: "json",
+                    beforeSend: function() {
+                        $('#manualbookList').html(
+                            '<div class="text-center"><i class="fa fa-spinner fa-spin"></i> Searching...</div>'
+                        );
+                    },
+                    success: function(response) {
+                        if (response.html) {
+                            $('#manualbookList').html(response.html);
+                        } else {
+                            $('#manualbookList').html(
+                                '<div class="alert alert-info">No results found.</div>');
+                        }
+                    },
+                    error: function(xhr) {
+                        let errorMsg =
+                            '<div class="alert alert-danger">Terjadi kesalahan. Silakan coba lagi.</div>';
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMsg =
+                                `<div class="alert alert-danger">${xhr.responseJSON.message}</div>`;
+                        }
+                        $('#manualbookList').html(errorMsg);
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
         });
     </script>
 @endsection
