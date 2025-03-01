@@ -85,4 +85,4 @@ Route::get('/manualbook/download/{filename}', function ($filename) {
 
     return response()->download($path);
 })->where('filename', '.*')->name('manualbook.download');
-Route::get('/manualbook/search', [ManualBookController::class, 'search'])->name('manualbook.search');
+Route::get('/manualbook-search', [ManualBookController::class, 'search'])->name('manualbook.search');

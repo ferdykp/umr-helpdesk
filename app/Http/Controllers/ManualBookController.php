@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use App\Http\Controllers\redirect;
-use Illuminate\Support\Facades\Log;
 
 
 class ManualBookController extends Controller
@@ -83,22 +82,9 @@ class ManualBookController extends Controller
         }
     }
 
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('search');
-
-    //     if ($request->ajax()) {
-    //         $data = ManualBook::where('document_name', 'LIKE', "%{$query}%")
-    //             ->paginate(10);
-
-    //         return view('partials.manualbookList', compact('data'))->render();
-    //     }
-    // }
 
     public function search(Request $request)
     {
-        Log::info("Menerima pencarian: " . $request->input('search'));
-
         $query = $request->input('search');
 
         if (empty($query)) {
@@ -107,12 +93,16 @@ class ManualBookController extends Controller
 
         $data = ManualBook::where('document_name', 'LIKE', "%{$query}%")->get();
 
-        Log::info("Hasil query: ", ['data' => $data]);
-
         if ($data->isEmpty()) {
             return response()->json(['html' => '<div class="alert alert-info">No results found.</div>']);
         }
 
-        return response()->json(['data' => $data]);
+        // Add a unique prefix for search results to avoid ID conflicts
+        $searchPrefix = 'search-' . time() . '-';
+
+        // Render the partial view with the search results and prefix
+        $html = view('partials.manualbookList', compact('data', 'searchPrefix'))->render();
+
+        return response()->json(['html' => $html]);
     }
 }

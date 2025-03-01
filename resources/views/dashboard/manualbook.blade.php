@@ -112,17 +112,18 @@
             }
         }
     </script>
+    {{-- Script Search --}}
     <script>
         $(document).ready(function() {
             let timer = null;
 
             $('#search').on('input', function() {
                 clearTimeout(timer);
-                let query = $(this).val().trim(); // Trim untuk hapus spasi di awal/akhir
+                let query = $(this).val().trim();
 
                 timer = setTimeout(() => {
                     performSearch(query);
-                }, 300); // Debounce 300ms untuk mengurangi request berlebih
+                }, 300);
             });
 
             function performSearch(query) {
@@ -133,11 +134,11 @@
                 }
 
                 $.ajax({
-                    url: "/manualbook/search",
+                    url: "/manualbook-search",
                     type: "GET",
                     data: {
                         search: encodeURIComponent(query)
-                    }, // Encode query untuk mencegah error
+                    },
                     dataType: "json",
                     beforeSend: function() {
                         $('#manualbookList').html(
@@ -147,6 +148,8 @@
                     success: function(response) {
                         if (response.html) {
                             $('#manualbookList').html(response.html);
+                            // Make sure modals work for dynamically added content
+                            ensureModalFunctionsAreGlobal();
                         } else {
                             $('#manualbookList').html(
                                 '<div class="alert alert-info">No results found.</div>');
@@ -163,6 +166,16 @@
                         console.error(xhr.responseText);
                     }
                 });
+            }
+
+            function ensureModalFunctionsAreGlobal() {
+                // This ensures the openModal and closeModal functions are in the global scope
+                if (typeof window.openModal !== 'function') {
+                    window.openModal = openModal;
+                }
+                if (typeof window.closeModal !== 'function') {
+                    window.closeModal = closeModal;
+                }
             }
         });
     </script>

@@ -1,6 +1,11 @@
 @forelse ($data as $item)
+    @php
+        // Use the search prefix if provided, otherwise use normal prefix
+        $modalPrefix = isset($searchPrefix) ? $searchPrefix : '';
+        $modalId = $modalPrefix . 'modal-' . $loop->index;
+    @endphp
     <div class="border rounded-md p-4 mb-2 flex justify-between items-center">
-        <button onclick="openModal('modal-{{ $loop->index }}')" class="text-left font-semibold flex-1">
+        <button onclick="openModal('{{ $modalId }}')" class="text-left font-semibold flex-1">
             {{ $item->document_name }}
         </button>
 
@@ -15,12 +20,12 @@
     </div>
 
     <!-- Modal Pdf Preview -->
-    <div id="modal-{{ $loop->index }}"
+    <div id="{{ $modalId }}"
         class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-lg p-4 md:p-6 w-full max-w-4xl mx-auto my-4 flex flex-col shadow-lg relative"
             style="height: 85vh; max-height: 800px;">
             <!-- Close Button -->
-            <button onclick="closeModal('modal-{{ $loop->index }}')"
+            <button onclick="closeModal('{{ $modalId }}')"
                 class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 p-2 rounded-full hover:bg-gray-200 z-10">
                 ✕
             </button>
