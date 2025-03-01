@@ -24,28 +24,31 @@
         class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-lg p-4 md:p-6 w-full max-w-4xl mx-auto my-4 flex flex-col shadow-lg relative"
             style="height: 85vh; max-height: 800px;">
-            <!-- Close Button -->
-            <button onclick="closeModal('{{ $modalId }}')"
-                class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 p-2 rounded-full hover:bg-gray-200 z-10">
-                ✕
-            </button>
+
 
             <!-- Modal Header -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 pr-8">
                 <h2 class="text-xl font-semibold truncate max-w-full md:max-w-xs lg:max-w-sm">{{ $item->document_name }}
                 </h2>
-                <div class="flex gap-2 mt-2 md:mt-0">
-                    <a href="{{ route('manualbook.download', basename($item->document_path)) }}"
-                        class="px-3 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 whitespace-nowrap">
-                        Download PDF
-                    </a>
-                </div>
             </div>
 
             <!-- Modal Content (PDF Preview) -->
             <div class="flex-1 w-full overflow-hidden">
                 <iframe src="{{ url('/manualbook/view/' . basename($item->document_path)) }}"
                     class="w-full h-full border rounded-md" frameborder="0"></iframe>
+            </div>
+
+            {{-- Footer --}}
+            <div class="flex flex-col sm:flex-row justify-end sm:space-x-2 space-y-2 sm:space-y-0 mt-2">
+                <button type="button"
+                    class="w-full sm:w-auto bg-red-400 text-white px-4 py-2 rounded-md text-center hover:bg-red-500"
+                    onclick="closeModal('{{ $modalId }}')">
+                    Close
+                </button>
+                <a href="{{ route('manualbook.download', basename($item->document_path)) }}"
+                    class="px-3 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 whitespace-nowrap text-center">
+                    Download PDF
+                </a>
             </div>
         </div>
     </div>
