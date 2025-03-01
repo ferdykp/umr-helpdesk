@@ -116,23 +116,22 @@
     <script>
         $(document).ready(function() {
             let timer = null;
+            let originalContent = $('#manualbookList').html();
 
             $('#search').on('input', function() {
                 clearTimeout(timer);
                 let query = $(this).val().trim();
 
                 timer = setTimeout(() => {
-                    performSearch(query);
+                    if (query === '') {
+                        $('#manualbookList').html(originalContent);
+                    } else {
+                        performSearch(query);
+                    }
                 }, 300);
             });
 
             function performSearch(query) {
-                if (query === '') {
-                    $('#manualbookList').html(
-                        '<div class="alert alert-warning">Masukkan kata kunci pencarian</div>');
-                    return;
-                }
-
                 $.ajax({
                     url: "/manualbook-search",
                     type: "GET",
@@ -148,8 +147,6 @@
                     success: function(response) {
                         if (response.html) {
                             $('#manualbookList').html(response.html);
-                            // Make sure modals work for dynamically added content
-                            ensureModalFunctionsAreGlobal();
                         } else {
                             $('#manualbookList').html(
                                 '<div class="alert alert-info">No results found.</div>');
@@ -166,16 +163,6 @@
                         console.error(xhr.responseText);
                     }
                 });
-            }
-
-            function ensureModalFunctionsAreGlobal() {
-                // This ensures the openModal and closeModal functions are in the global scope
-                if (typeof window.openModal !== 'function') {
-                    window.openModal = openModal;
-                }
-                if (typeof window.closeModal !== 'function') {
-                    window.closeModal = closeModal;
-                }
             }
         });
     </script>
