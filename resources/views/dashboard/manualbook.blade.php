@@ -34,7 +34,7 @@
                                     <h2 class="text-lg font-semibold">Upload Manual Book</h2>
                                     <button onclick="closeModal('uploadModal')"
                                         class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl p-3 rounded-full hover:bg-gray-200">
-                                        ✕
+
                                     </button>
                                 </div>
 
