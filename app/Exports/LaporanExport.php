@@ -14,28 +14,36 @@ class LaporanExport implements FromCollection
     public function collection()
     {
         return Laporan::select(
-            "nama_teknisi",
             "keterangan_kerusakan",
             "penyebab_kerusakan",
             "tanggal_kerusakan",
             "shift",
+            "nama_teknisi",
             "lokasi_mesin",
             "kategori_mesin",
-            "status"
+            "tanggal_kerusakan",
+            "waktu_perbaikan",
+            "status",
+            "metode_perbaikan",
+            "catatan"
         )->get();
     }
 
     public function headings(): array
     {
         return [
-            'Nama Teknisi',
             'Keterangan Kerusakan',
             'Penyebab Kerusakan',
             'Tanggal Kerusakan',
             'Shift',
+            'Nama Teknisi',
             'Lokasi Mesin',
             'Kategori Mesin',
+            'Tanggal Kerusakan',
+            'Waktu Perbaikan',
             'Status',
+            'Metode Perbaikan',
+            'Catatan'
         ];
     }
 }

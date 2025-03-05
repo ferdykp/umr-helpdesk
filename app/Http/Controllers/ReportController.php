@@ -98,7 +98,7 @@ class ReportController extends Controller
         return redirect('dashboard')->with('success', 'Laporan berhasil dihapus.');
     }
 
-        public function bulkDelete(Request $request)
+    public function bulkDelete(Request $request)
     {
         try {
             $ids = $request->input('ids', []);
