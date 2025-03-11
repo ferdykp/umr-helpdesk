@@ -7,7 +7,7 @@
             href="{{ route('dashboard') }}">
             <img src="{{ asset('assets/img/logo-mining.png') }}" width="40px" height="40px"
                 class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">D-Bridge Tim</span>
+            <span class="ms-1 font-weight-bold">Master Label Helpdesk</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -37,8 +37,8 @@
                         <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Outstanding WR @if (Auth::user()->role == 'supplier')
-                            UT
-                        @endif
+                        UT
+                    @endif
                     </span>
                 </a>
             </li>
@@ -63,8 +63,8 @@
                         <i class="ni ni-books text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">BCS @if (Auth::user()->role == 'supplier')
-                            UT
-                        @endif
+                        UT
+                    @endif
                     </span>
                 </a>
             </li>
@@ -76,8 +76,8 @@
                         <i class="ni ni-bag-17 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Midlife @if (Auth::user()->role == 'supplier')
-                            UT
-                        @endif
+                        UT
+                    @endif
                     </span>
                 </a>
             </li>
@@ -89,8 +89,8 @@
                         <i class="ni ni-box-2 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Overhaul @if (Auth::user()->role == 'supplier')
-                            UT
-                        @endif
+                        UT
+                    @endif
                     </span>
                 </a>
             </li>
@@ -102,8 +102,8 @@
                         <i class="ni ni-ruler-pencil text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Periodic Service @if (Auth::user()->role == 'supplier')
-                            UT
-                        @endif
+                        UT
+                    @endif
                     </span>
                 </a>
             </li>
@@ -116,8 +116,8 @@
                         <i class="ni ni-bullet-list-67 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Lainnya @if (Auth::user()->role == 'supplier')
-                            UT
-                        @endif
+                        UT
+                    @endif
                     </span>
                 </a>
             </li>
@@ -146,26 +146,26 @@
                 </a>
             </li> --}}
             {{-- @if (Auth::user()->role == 'sm')
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('users.create') ? 'bg-primary text-white' : '' }}"
-                        href="{{ route('users.create') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Create Users</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('users.index', 1) ? 'bg-primary text-white' : '' }}"
-                        href="{{ route('users.index', 1) }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Show Users</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('users.create') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('users.create') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Create Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('users.index', 1) ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('users.index', 1) }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Show Users</span>
+                </a>
+            </li>
             @endif --}}
         </ul>
     </div>

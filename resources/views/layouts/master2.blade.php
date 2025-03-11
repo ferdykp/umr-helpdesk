@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-mining-bg.jpg') }}">
     <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.1.0') }}" rel="stylesheet">
     <title>
-        D-Bridge
+        Master Label Helpdesk
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

@@ -7,7 +7,7 @@
             href="{{ route('dashboard') }}">
             <img src="{{ asset('assets/img/logo-mining.png') }}" width="40px" height="40px"
                 class="navbar-brand-img h-100 inline" alt="main_logo">
-            <span class="ms-1 font-weight-bold">D-Bridge Tim</span>
+            <span class="ms-1 font-weight-bold">Master Label Helpdesk</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">

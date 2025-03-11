@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->title = 'D-Bridge';
+        $this->title = 'Master Label Helpdesk';
     }
 
     public function login()
