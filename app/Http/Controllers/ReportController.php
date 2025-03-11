@@ -25,7 +25,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        // return view('create-laporan');
+        return view('createlaporan');
     }
 
     /**
@@ -43,6 +43,7 @@ class ReportController extends Controller
             'kategori_mesin' => 'required',
             'waktu_perbaikan' => 'nullable',
             'metode_perbaikan' => 'nullable',
+            'foto' => 'nullable',
             'status' => 'required'
         ]);
         Laporan::create($request->all());
@@ -80,6 +81,7 @@ class ReportController extends Controller
             'shift' => 'required',
             'lokasi_mesin' => 'required',
             'kategori_mesin' => 'required',
+            'foto' => 'nullable',
             'status' => 'required'
         ]);
         $laporan = Laporan::findOrFail($id);

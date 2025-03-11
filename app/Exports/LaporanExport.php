@@ -25,6 +25,7 @@ class LaporanExport implements FromCollection
             "waktu_perbaikan",
             "status",
             "metode_perbaikan",
+            "foto",
             "catatan"
         )->get();
     }
@@ -43,6 +44,7 @@ class LaporanExport implements FromCollection
             'Waktu Perbaikan',
             'Status',
             'Metode Perbaikan',
+            'Foto Kerusakan',
             'Catatan'
         ];
     }
