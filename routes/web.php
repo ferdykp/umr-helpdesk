@@ -55,7 +55,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::resource('report', ReportController::class);
 Route::get('/report', [ReportController::class, 'index'])->name('report');
+/*Route::get('/report', [ReportController::class, 'index'])->name('report');*/
 Route::get('/report/create', [ReportController::class, 'create'])->name('report.create');
 Route::get('/report/export', [ReportController::class, 'export'])->name('report.export');
 Route::post('/report/bulk-delete', [ReportController::class, 'bulkDelete'])->name('report.bulk-delete');

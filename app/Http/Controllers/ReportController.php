@@ -25,7 +25,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('createlaporan');
+        return view('createreport');
     }
 
     /**
