@@ -20,6 +20,7 @@ class Laporan extends Model
         'kategori_mesin',
         'metode_perbaikan',
         'tanggal_perbaikan',
+        'foto',
         'catatan',
         'status'
     ];
