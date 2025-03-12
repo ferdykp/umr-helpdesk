@@ -166,14 +166,29 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="tanggal_perbaikan" class="col-md-4 col-form-label text-md-right">Tanggal
+                                Perbaikan</label>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control @error('tanggal_perbaikan') is-invalid @enderror"
+                                    name="tanggal_perbaikan" value="{{ old('tanggal_perbaikan') }}" required
+                                    autocomplete="tanggal_perbaikan" autofocus>
+                                @error('tanggal_perbaikan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
 
                         <div class="form-group row">
                             <label for="foto" class="col-md-4 col-form-label text-md-right">Foto Kerusakan</label>
                             <div class="col-md-6">
-                                <input type="file" class="form-control @error('foto') is-invalid @enderror"
-                                    name="foto_kerusakan" value="{{ old('foto') }}" required autocomplete="foto"
-                                    autofocus>
-                                @error('foto')
+                                <input type="file" class="form-control @error('foto_kerusakan') is-invalid @enderror"
+                                    name="foto_kerusakan" accept="image/*" required>
+                                @error('foto_kerusakan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -200,6 +215,38 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="metode_perbaikan" class="col-md-4 col-form-label text-md-right">Metode
+                                Perbaikan</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('metode_perbaikan') is-invalid @enderror"
+                                    name="metode_perbaikan" value="{{ old('metode_perbaikan') }}" required
+                                    autocomplete="metode_perbaikan" autofocus>
+                                @error('metode_perbaikan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="catatan" class="col-md-4 col-form-label text-md-right">Catatan</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('catatan') is-invalid @enderror"
+                                    name="catatan" value="{{ old('catatan') }}" required autocomplete="catatan"
+                                    autofocus>
+                                @error('catatan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
