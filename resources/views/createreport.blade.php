@@ -135,6 +135,25 @@
                                     name="kategori_mesin" value="{{ old('kategori_mesin') }}" required
                                     autocomplete="kategori_mesin" autofocus>
                                     <option value="" disabled selected hidden>--- Pilih Kategori Mesin ---</option>
+                                    <option value="Gallus 1" data-color="red">Gallus 1</option>
+                                    <option value="Gallus 2" data-color="yellow">Gallus 2</option>
+                                    <option value="Gallus 3" data-color="green">Gallus 3</option>
+                                    <option value="Gallus 4" data-color="red">Gallus 4</option>
+                                    <option value="Gallus 5" data-color="yellow">Gallus 5</option>
+                                    <option value="Gallus 6" data-color="green">Gallus 6</option>
+                                    <option value="Gallus 7" data-color="yellow">Gallus 7</option>
+                                    <option value="Gallus 8" data-color="green">Gallus 8</option>
+                                    <option value="Gallus 9" data-color="yellow">Gallus 9</option>
+                                    <option value="Gallus 10" data-color="green">Gallus 10</option>
+                                    <option value="Gallus 11" data-color="yellow">Gallus 11</option>
+                                    <option value="Rhyguan Sliting" data-color="green">Rhyguan Sliting</option>
+                                    <option value="Rhyguan 2" data-color="green">Rhyguan 2</option>
+                                    <option value="Nilpeter 1" data-color="green">Nilpeter 1</option>
+                                    <option value="Nilpeter 2" data-color="green">Nilpeter 2</option>
+                                    <option value="ROTO 5" data-color="green">ROTO 5</option>
+                                    <option value="Digital" data-color="green">Digital</option>
+                                    <option value="All" data-color="green">All</option>
+
                                     {{--@foreach ($kmesin as $kmesin)--}}
                                     {{-- <option value="{{ $kmesin->kmesin }}">{{ $kmesin->kmesin }}</option>--}}
                                     {{--@endforeach--}}
