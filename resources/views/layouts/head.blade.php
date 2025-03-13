@@ -36,7 +36,8 @@
 
     <!-- Vendors CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    
     <!-- Helpers -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush

@@ -23,6 +23,7 @@
     @include('layouts.footer')
     @include('layouts.script')
     @include('components.toast')
+    @stack('customScript')
 </body>
 
 </html>
