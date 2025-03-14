@@ -10,7 +10,6 @@
                         <h4 class="">Buat Laporan Kerusakan</h4>
                         <hr class="bg-danger border-2 border-top border-danger" />
                     </div>
-
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('report.store') }}" enctype="multipart/form-data">
@@ -25,9 +24,9 @@
                                     value="{{ old('nama_teknisi') }}" required autocomplete="nama_teknisi" autofocus>
 
                                 @error('nama_teknisi')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -42,9 +41,9 @@
                                     name="keterangan_kerusakan" value="{{ old('keterangan_kerusakan') }}" required
                                     autocomplete="keterangan_kerusakan" autofocus>
                                 @error('keterangan_kerusakan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -58,9 +57,9 @@
                                     name="penyebab_kerusakan" value="{{ old('penyebab_kerusakan') }}" required
                                     autocomplete="penyebab_kerusakan" autofocus>
                                 @error('penyebab_kerusakan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -73,9 +72,9 @@
                                     name="tanggal_kerusakan" value="{{ old('tanggal_kerusakan') }}" required
                                     autocomplete="tanggal_kerusakan" autofocus>
                                 @error('tanggal_kerusakan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -92,15 +91,11 @@
                                     <option value="SHIFT 2">SHIFT 2</option>
                                     <option value="SHIFT BU">SHIFT BU</option>
                                     <option value="Long Shift">Long Shift</option>
-
-                                    {{--@foreach ($shifts as $shift)--}}
-                                    {{-- <option value="{{ $shift->shift }}">{{ $shift->shift }}</option>--}}
-                                    {{--@endforeach--}}
                                 </select>
                                 @error('shift')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -115,14 +110,11 @@
                                     <option value="280">280</option>
                                     <option value="410">410</option>
                                     <option value="INDIGO">INDIGO</option>
-                                    {{--@foreach ($mesin as $mesin)--}}
-                                    {{-- <option value="{{ $mesin->mesin }}">{{ $mesin->mesin }}</option>--}}
-                                    {{--@endforeach--}}
                                 </select>
                                 @error('lokasi_mesin')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -159,39 +151,24 @@
                                     {{--@endforeach--}}
                                 </select>
                                 @error('kategori_mesin')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="tanggal_perbaikan" class="col-md-4 col-form-label text-md-right">Tanggal
-                                Perbaikan</label>
-                            <div class="col-md-6">
-                                <input type="date" class="form-control @error('tanggal_perbaikan') is-invalid @enderror"
-                                    name="tanggal_perbaikan" value="{{ old('tanggal_perbaikan') }}" required
-                                    autocomplete="tanggal_perbaikan" autofocus>
-                                @error('tanggal_perbaikan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
 
 
                         <div class="form-group row">
                             <label for="foto" class="col-md-4 col-form-label text-md-right">Foto Kerusakan</label>
                             <div class="col-md-6">
-                                <input type="file" class="form-control @error('foto_kerusakan') is-invalid @enderror"
-                                    name="foto_kerusakan" accept="image/*" required>
-                                @error('foto_kerusakan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                    name="foto_kerusakan" value="{{ old('foto') }}" required autocomplete="foto"
+                                    autofocus>
+                                @error('foto')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -208,45 +185,13 @@
                                         <option value="Selesai" data-color="green">Selesai</option>
                                     </select>
                                     @error('status')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="metode_perbaikan" class="col-md-4 col-form-label text-md-right">Metode
-                                Perbaikan</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control @error('metode_perbaikan') is-invalid @enderror"
-                                    name="metode_perbaikan" value="{{ old('metode_perbaikan') }}" required
-                                    autocomplete="metode_perbaikan" autofocus>
-                                @error('metode_perbaikan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="catatan" class="col-md-4 col-form-label text-md-right">Catatan</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control @error('catatan') is-invalid @enderror"
-                                    name="catatan" value="{{ old('catatan') }}" required autocomplete="catatan"
-                                    autofocus>
-                                @error('catatan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -255,5 +200,9 @@
                                 </button>
                             </div>
                         </div>
-
-                        @endsection
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
