@@ -43,11 +43,12 @@ class ReportController extends Controller
             'kategori_mesin' => 'required',
             'waktu_perbaikan' => 'nullable',
             'metode_perbaikan' => 'nullable',
+            'catatan' => 'nullable',
             'foto' => 'nullable',
             'status' => 'required'
         ]);
         Laporan::create($request->all());
-        return redirect()->route('dashboard')->with('success', 'Laporan berhasil ditambahkan.');
+        return redirect()->route('report')->with('success', 'Laporan berhasil ditambahkan.');
     }
 
     /**
@@ -81,12 +82,13 @@ class ReportController extends Controller
             'shift' => 'required',
             'lokasi_mesin' => 'required',
             'kategori_mesin' => 'required',
+            'catatan' => 'required',
             'foto' => 'nullable',
             'status' => 'required'
         ]);
         $laporan = Laporan::findOrFail($id);
         $laporan->update($request->all());
-        return redirect()->route('dashboard')->with('success', 'Laporan berhasil diperbarui.');
+        return redirect()->route('report')->with('success', 'Laporan berhasil diperbarui.');
     }
 
     /**
