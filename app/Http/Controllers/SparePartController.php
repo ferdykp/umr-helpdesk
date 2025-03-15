@@ -15,8 +15,8 @@ class SparePartController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::all()->paginate(10);
-        return view('dashboard', compact('sparepart'));
+        $sparepart = Sparepart::paginate(10);
+        return view('dashboard.sparepart', compact('sparepart'));
     }
 
     /**
@@ -24,7 +24,7 @@ class SparePartController extends Controller
      */
     public function create()
     {
-        return view('create-sparepart');
+        return view('createsparepart');
     }
 
     /**

@@ -51,7 +51,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('') ? 'bg-primary text-white rounded-lg' : '' }}" href="">
+                <a class="nav-link {{ request()->is('sparepart') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="sparepart">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-gear text-dark text-sm"></i>

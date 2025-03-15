@@ -63,6 +63,14 @@ Route::get('/report/create', [ReportController::class, 'create'])->name('report.
 Route::get('/report/export', [ReportController::class, 'export'])->name('report.export');
 Route::post('/report/bulk-delete', [ReportController::class, 'bulkDelete'])->name('report.bulk-delete');
 
+Route::resource('sparepart', SparePartController::class);
+Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart');
+/*Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart');*/
+Route::get('/sparepart/create', [SparePartController::class, 'create'])->name('sparepart.create');
+Route::get('/sparepart/export', [SparePartController::class, 'export'])->name('sparepart.export');
+Route::post('/sparepart/bulk-delete', [SparePartController::class, 'bulkDelete'])->name('sparepart.bulk-delete');
+
+
 
 Route::get('/machine', [MachineController::class, 'index'])->name('machine');
 Route::get('/machine/data', [MachineController::class, 'data'])->name('machine.data');
