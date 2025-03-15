@@ -60,7 +60,7 @@ Route::resource('report', ReportController::class);
 Route::get('/report', [ReportController::class, 'index'])->name('report');
 /*Route::get('/report', [ReportController::class, 'index'])->name('report');*/
 Route::get('/report/create', [ReportController::class, 'create'])->name('report.create');
-Route::get('/report/export', [ReportController::class, 'export'])->name('report.export');
+Route::get('/report-export', [ReportController::class, 'export'])->name('report.export');
 Route::post('/report/bulk-delete', [ReportController::class, 'bulkDelete'])->name('report.bulk-delete');
 
 Route::resource('sparepart', SparePartController::class);

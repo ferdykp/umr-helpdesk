@@ -120,7 +120,7 @@ class ReportController extends Controller
     public function export()
     {
 
-        // return Excel::download(new LaporanExport, 'laporan.xlsx');
+        return Excel::download(new LaporanExport, 'laporan.xlsx');
     }
 
     // public function import(Request $request)

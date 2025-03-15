@@ -6,7 +6,7 @@ use App\Models\Laporan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class LaporanExport implements FromCollection
+class LaporanExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -14,38 +14,36 @@ class LaporanExport implements FromCollection
     public function collection()
     {
         return Laporan::select(
-            "keterangan_kerusakan",
-            "penyebab_kerusakan",
-            "tanggal_kerusakan",
-            "shift",
-            "nama_teknisi",
-            "lokasi_mesin",
-            "kategori_mesin",
-            "tanggal_kerusakan",
-            "waktu_perbaikan",
-            "status",
-            "metode_perbaikan",
-            "foto",
-            "catatan"
+            'nama_teknisi',
+            'keterangan_kerusakan',
+            'penyebab_kerusakan',
+            'tanggal_kerusakan',
+            'shift',
+            'lokasi_mesin',
+            'kategori_mesin',
+            'metode_perbaikan',
+            'tanggal_perbaikan',
+            'foto',
+            'catatan',
+            'status'
         )->get();
     }
 
     public function headings(): array
     {
         return [
+            'Nama Teknisi',
             'Keterangan Kerusakan',
             'Penyebab Kerusakan',
             'Tanggal Kerusakan',
             'Shift',
-            'Nama Teknisi',
             'Lokasi Mesin',
             'Kategori Mesin',
-            'Tanggal Kerusakan',
-            'Waktu Perbaikan',
-            'Status',
             'Metode Perbaikan',
-            'Foto Kerusakan',
-            'Catatan'
+            'Tanggal Perbaikan',
+            'Foto',
+            'Catatan',
+            'Status'
         ];
     }
 }
