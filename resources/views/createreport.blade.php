@@ -186,9 +186,9 @@
                         <div class="form-group row">
                             <label for="foto" class="col-md-4 col-form-label text-md-right">Foto Kerusakan</label>
                             <div class="col-md-6">
-                                <input type="file" class="form-control @error('foto_kerusakan') is-invalid @enderror"
-                                    name="foto_kerusakan" accept="image/*" required>
-                                @error('foto_kerusakan')
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto"
+                                    accept="image/*">
+                                @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -31,6 +31,26 @@ class ReportController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'nama_teknisi' => 'required',
+    //         'keterangan_kerusakan' => 'required',
+    //         'penyebab_kerusakan' => 'nullable',
+    //         'tanggal_kerusakan' => 'required',
+    //         'shift' => 'required',
+    //         'lokasi_mesin' => 'required',
+    //         'kategori_mesin' => 'required',
+    //         'waktu_perbaikan' => 'nullable',
+    //         'metode_perbaikan' => 'nullable',
+    //         'catatan' => 'nullable',
+    //         'foto' => 'nullable',
+    //         'status' => 'required'
+    //     ]);
+    //     Laporan::create($request->all());
+    //     return redirect()->route('report')->with('success', 'Laporan berhasil ditambahkan.');
+    // }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,10 +64,20 @@ class ReportController extends Controller
             'waktu_perbaikan' => 'nullable',
             'metode_perbaikan' => 'nullable',
             'catatan' => 'nullable',
-            'foto' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Tambahkan validasi gambar
             'status' => 'required'
         ]);
-        Laporan::create($request->all());
+
+        $laporan = new Laporan($request->except('foto'));
+
+        // Simpan file foto jika ada
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('laporan_foto', 'public');
+            $laporan->foto = $fotoPath;
+        }
+
+        $laporan->save();
+
         return redirect()->route('report')->with('success', 'Laporan berhasil ditambahkan.');
     }
 
@@ -83,13 +113,48 @@ class ReportController extends Controller
             'lokasi_mesin' => 'required',
             'kategori_mesin' => 'required',
             'catatan' => 'required',
-            'foto' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Tambahkan validasi gambar
             'status' => 'required'
         ]);
+
         $laporan = Laporan::findOrFail($id);
-        $laporan->update($request->all());
+        $laporan->fill($request->except('foto'));
+
+        // Simpan file foto jika ada
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($laporan->foto) {
+                \Storage::delete('public/' . $laporan->foto);
+            }
+
+            $fotoPath = $request->file('foto')->store('laporan_foto', 'public');
+            $laporan->foto = $fotoPath;
+        }
+
+        $laporan->save();
+
         return redirect()->route('report')->with('success', 'Laporan berhasil diperbarui.');
     }
+
+
+    // public function update(Request $request, string $id)
+    // {
+    //     $request->validate([
+    //         'nama_teknisi' => 'required',
+    //         'keterangan_kerusakan' => 'required',
+    //         'penyebab_kerusakan' => 'nullable',
+    //         'tanggal_kerusakan' => 'required',
+    //         'shift' => 'required',
+    //         'lokasi_mesin' => 'required',
+    //         'kategori_mesin' => 'required',
+    //         'catatan' => 'required',
+    //         'foto' => 'nullable',
+    //         'status' => 'required'
+    //     ]);
+    //     $laporan = Laporan::findOrFail($id);
+    //     $laporan->update($request->all());
+    //     return redirect()->route('report')->with('success', 'Laporan berhasil diperbarui.');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -122,25 +187,6 @@ class ReportController extends Controller
 
         return Excel::download(new LaporanExport, 'laporan.xlsx');
     }
-
-    // public function import(Request $request)
-    // {
-    //     try {
-    //         // Validasi file Excel yang diupload
-    //         $request->validate([
-    //             'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
-    //         ]);
-
-    //         // Import file Excel
-    //         Excel::import(new LaporanImport, $request->file('file'));
-
-    //         // Redirect kembali ke report dengan pesan sukses
-    //         return redirect()->route('lainnya')->with(['success' => 'Data Lain berhasil diimport!']);
-    //     } catch (\Exception $e) {
-    //         // Redirect ke halaman error khusus
-    //         return view('dashboard.error', ['error_message' => $e->getMessage()]);
-    //     }
-    // }
 
     // public function search(Request $request)
     // {
