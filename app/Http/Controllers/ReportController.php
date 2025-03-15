@@ -47,7 +47,7 @@ class ReportController extends Controller
             'status' => 'required'
         ]);
         Laporan::create($request->all());
-        return redirect()->route('dashboard')->with('success', 'Laporan berhasil ditambahkan.');
+        return redirect()->route('report')->with('success', 'Laporan berhasil ditambahkan.');
     }
 
     /**
@@ -65,7 +65,7 @@ class ReportController extends Controller
     public function edit(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        // return view('edit-laporan', compact('laporan'));
+        return view('partials.reportEdit', compact('laporan'));
     }
 
     /**
@@ -86,7 +86,7 @@ class ReportController extends Controller
         ]);
         $laporan = Laporan::findOrFail($id);
         $laporan->update($request->all());
-        return redirect()->route('dashboard')->with('success', 'Laporan berhasil diperbarui.');
+        return redirect()->route('report')->with('success', 'Laporan berhasil diperbarui.');
     }
 
     /**
@@ -97,7 +97,7 @@ class ReportController extends Controller
         $laporan = Laporan::findOrFail($id);
         $laporan->delete();
 
-        return redirect('dashboard')->with('success', 'Laporan berhasil dihapus.');
+        return redirect('report')->with('success', 'Laporan berhasil dihapus.');
     }
 
     public function bulkDelete(Request $request)
@@ -132,7 +132,7 @@ class ReportController extends Controller
     //         // Import file Excel
     //         Excel::import(new LaporanImport, $request->file('file'));
 
-    //         // Redirect kembali ke dashboard dengan pesan sukses
+    //         // Redirect kembali ke report dengan pesan sukses
     //         return redirect()->route('lainnya')->with(['success' => 'Data Lain berhasil diimport!']);
     //     } catch (\Exception $e) {
     //         // Redirect ke halaman error khusus
