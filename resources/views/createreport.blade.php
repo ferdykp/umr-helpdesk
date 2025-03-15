@@ -200,12 +200,9 @@
                                 </button>
                             </div>
                         </div>
-                        <<<<<<< HEAD </form>
-                            =======
-                            >>>>>>> 8db8a8abd1a2a0af7285898dd90a85a3e757e732
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<<<<<<< HEAD @endsection=======@endsection>>>>>>> 8db8a8abd1a2a0af7285898dd90a85a3e757e732
