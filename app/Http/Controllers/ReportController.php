@@ -115,13 +115,14 @@ class ReportController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
-    }
-
     public function export()
     {
 
         return Excel::download(new LaporanExport, 'laporan.xlsx');
     }
+    }
+
+
 
     // public function import(Request $request)
     // {

@@ -67,7 +67,7 @@ Route::resource('sparepart', SparePartController::class);
 Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart');
 /*Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart');*/
 Route::get('/sparepart/create', [SparePartController::class, 'create'])->name('sparepart.create');
-Route::get('/sparepart/export', [SparePartController::class, 'export'])->name('sparepart.export');
+Route::get('/sparepart-export', [SparePartController::class, 'export'])->name('sparepart.export');
 Route::post('/sparepart/bulk-delete', [SparePartController::class, 'bulkDelete'])->name('sparepart.bulk-delete');
 
 

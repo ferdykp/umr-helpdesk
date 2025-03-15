@@ -6,7 +6,7 @@ use App\Models\SparePart;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class SparePartExport implements FromCollection
+class SparePartExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection

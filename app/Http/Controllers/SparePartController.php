@@ -91,4 +91,10 @@ class SparePartController extends Controller
         $sparepart->delete();
         return redirect()->route('sparepart')->with('success', 'Sparepart berhasil dihapus.');
     }
+
+    public function export()
+    {
+
+        return Excel::download(new SparePartExport, 'sparepart.xlsx');
+    }
 }
