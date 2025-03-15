@@ -43,6 +43,7 @@ class ReportController extends Controller
             'kategori_mesin' => 'required',
             'waktu_perbaikan' => 'nullable',
             'metode_perbaikan' => 'nullable',
+            'catatan' => 'nullable',
             'foto' => 'nullable',
             'status' => 'required'
         ]);
@@ -81,6 +82,7 @@ class ReportController extends Controller
             'shift' => 'required',
             'lokasi_mesin' => 'required',
             'kategori_mesin' => 'required',
+            'catatan' => 'required',
             'foto' => 'nullable',
             'status' => 'required'
         ]);

@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('keterangan_kerusakan')->nullable();
             $table->string('penyebab_kerusakan')->nullable();
             $table->dateTime('tanggal_kerusakan');
-            $table->enum('shift', ['Shift 1', 'Shift 2', 'Shift BU', 'Long Shift'])->charset('utf8mb4');
+            $table->enum('shift', ['SHIFT 1', 'SHIFT 2', 'SHIFT BU', 'Long Shift'])->charset('utf8mb4');
             $table->enum('lokasi_mesin', ['410', '280', 'INDIGO']);
             $table->string('kategori_mesin'); // Engkok atek master
             $table->dateTime('tanggal_perbaikan')->nullable();
             $table->string('metode_perbaikan')->nullable();
-            $table->string('catatan');
+            $table->string('catatan')->nullable();
             $table->enum('status', ['Belum Mulai', 'Dalam Proses', 'Selesai']);
             $table->string('foto')->nullable();
             $table->timestamps();

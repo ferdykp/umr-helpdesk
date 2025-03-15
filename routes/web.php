@@ -10,6 +10,7 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ManualBookController;
 use App\Http\Controllers\SparePartController;
+use App\Http\Controllers\TestingController;
 use App\Models\ManualBook;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
@@ -64,6 +65,7 @@ Route::post('/report/bulk-delete', [ReportController::class, 'bulkDelete'])->nam
 
 
 Route::get('/machine', [MachineController::class, 'index'])->name('machine');
+Route::get('/machine/data', [MachineController::class, 'data'])->name('machine.data');
 
 Route::resource('manualbook', ManualBookController::class);
 Route::get('manualbook/{id}/preview', [ManualBookController::class, 'preview'])->name('manualbook.preview');
@@ -88,3 +90,6 @@ Route::get('/manualbook/download/{filename}', function ($filename) {
     return response()->download($path);
 })->where('filename', '.*')->name('manualbook.download');
 Route::get('/manualbook-search', [ManualBookController::class, 'search'])->name('manualbook.search');
+
+
+Route::get('/testing', [TestingController::class, 'index'])->name('testing');
