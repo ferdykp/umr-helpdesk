@@ -47,19 +47,19 @@
         <td style="white-space: nowrap;" class="text-center">
             {{ $item->catatan }}
         </td>
-        <td class="d-flex justify-content-center">
+
+        <td class="d-flex justify-content-center gap-2">
+            <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
+                Detail
+            </button>
+            <a href="{{ route('report.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+
             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('report.destroy', $item->id) }}"
-                method="POST" class="d-flex gap-2">
-                <a href="{{ route('report.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
             </form>
-            <button
-                class="btn-report-detail bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 d-flex gap-2 me-2"
-                data-id="{{ $item->id }}">
-                Detail
-            </button>
         </td>
     </tr>
 @empty
