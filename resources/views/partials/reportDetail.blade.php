@@ -14,7 +14,8 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="space-y-2">
             <div class="font-medium text-gray-700">Tanggal Kerusakan</div>
-            <div class="text-gray-900">{{ $laporan->tanggal_kerusakan }}</div>
+            <div class="text-gray-900">{{ \Carbon\Carbon::parse($laporan->tanggal_kerusakan)->format('d/m/Y') }}</div>
+
         </div>
 
         <div class="space-y-2">
@@ -43,7 +44,9 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="space-y-2">
             <div class="font-medium text-gray-700">Tanggal Perbaikan</div>
-            <div class="text-gray-900">{{ $laporan->tanggal_perbaikan ?: 'Belum diperbaiki' }}</div>
+            <!--<div class="text-gray-900">{{ $laporan->tanggal_perbaikan ?: 'Belum diperbaiki' }}</div>-->
+            <div class="text-gray-900">
+                {{ \Carbon\Carbon::parse($laporan->tanggal_perbaikan)->format('d/m/Y') ?: 'Belum diperbaiki' }}</div>
         </div>
 
         <div class="space-y-2">
