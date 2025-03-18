@@ -5,7 +5,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 {{ request()->is('dashboard*') ? 'bg-primary text-white' : '' }}"
             href="{{ route('dashboard') }}">
-            <img src="{{ asset('assets/img/logo-mining.png') }}" width="40px" height="40px"
+            <img src="{{ asset('assets/img/logo-master.png') }}" width="40px" height="40px"
                 class="navbar-brand-img h-100 inline" alt="main_logo">
             <span class="ms-1 font-weight-bold">Master Label Helpdesk</span>
         </a>

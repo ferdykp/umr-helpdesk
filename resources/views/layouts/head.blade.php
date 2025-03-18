@@ -16,8 +16,8 @@
 
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/logo-mining-bg.jpg') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-mining-bg.jpg') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/logo-master.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-master.png') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -37,7 +37,7 @@
     <!-- Vendors CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
-    
+
     <!-- Helpers -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
