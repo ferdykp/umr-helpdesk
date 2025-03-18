@@ -5,13 +5,16 @@
             <div class="col-12">
                 <div class="card mb-4 ">
                     <div class="card-header">
-                        {{-- <form action="" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
-                        <input type="hidden" name="_token" value="5ZuDDdIre04lGxByoxgyeuLplvtuuBo4bTj5qXf1" autocomplete="off">                            <div class="form-group me-md-2 w-100 w-md-25">
-                            <label for="file">Upload WR File in Excel</label>
-                            <input type="file" name="file" class="form-control" required="">
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import WR</button>
-                    </form> --}}
+                        {{-- <form action="" method="POST" enctype="multipart/form-data"
+                            class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                            <input type="hidden" name="_token" value="5ZuDDdIre04lGxByoxgyeuLplvtuuBo4bTj5qXf1"
+                                autocomplete="off">
+                            <div class="form-group me-md-2 w-100 w-md-25">
+                                <label for="file">Upload WR File in Excel</label>
+                                <input type="file" name="file" class="form-control" required="">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import WR</button>
+                        </form> --}}
                         <div class="w-100 w-md-auto ">
                             <h4 class="">List Laporan Kerusakan</h4>
                             <hr class="bg-danger border-2 border-top border-danger" />
@@ -29,6 +32,9 @@
                                     <a href="{{ route('report.export') }}" class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
                                         <i class="fa fa-download"></i> Export Data in Excel
                                     </a>
+                                    <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
+                                        Selected</button>
+
                                 </div>
                             </div>
                         </div>
@@ -36,14 +42,14 @@
                         <div
                             class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center my-3">
                             <!-- Left section with Delete Selected button -->
-                            <div class="mb-3 mb-md-0">
+                            {{-- <div class="mb-3 mb-md-0">
                                 <button class="btn btn-danger" id="delete_selected">Delete Selected</button>
-                            </div>
+                            </div> --}}
 
                             <!-- Right section with search input -->
-                            <div class="w-100 w-md-auto" style="max-width: 300px;">
-                                <input type="text" id="search" data-route="" name="search"
-                                    placeholder="Search Report" autocomplete="off" class="form-control">
+                            <div class="w-100 w-md-auto" style="max-width: 100%;">
+                                <input type="text" id="search" data-route="" name="search" placeholder="Search Report"
+                                    autocomplete="off" class="form-control">
                             </div>
                         </div>
                         <div class="table-responsive p-0 rounded-lg my-3">
@@ -69,11 +75,9 @@
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    @include('partials.reportTable', [
-                                        'data' => $laporan,
-                                        'routePrefix' => 'report',
-                                    ])
+                                    @include('partials.reportTable', ['data' => $laporan, 'routePrefix' => 'report',])
                                 </tbody>
+
                             </table>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
@@ -87,5 +91,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
