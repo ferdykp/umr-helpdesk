@@ -86,7 +86,7 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        $report = Laporan::findOrFail($id);
+        $laporan = Laporan::findOrFail($id);
 
         return view('partials.reportDetail', compact('laporan'));
 
