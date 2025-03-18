@@ -199,7 +199,7 @@
                                     <span style="color: red;">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <button type="submit" class="mt-3 btn btn-primary">Update User</button>
+                            <button type="submit" class="mt-3 btn btn-primary">Update Laporan</button>
                         </form>
                     </div>
                 </div>
