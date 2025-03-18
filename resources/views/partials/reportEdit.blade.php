@@ -13,7 +13,8 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('report.update', $laporan->id) }}" method="POST">
+                        <form action="{{ route('report.update', $laporan->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -48,10 +49,18 @@
                             <div class="form-group">
                                 <label for="foto" class="form-control-label">Foto</label>
                                 <input type="file" class="form-control" id="foto" name="foto"
-                                    value="{{ old('foto', $laporan->foto) }}" required>
+                                    onchange="previewImage(event)">
                                 @error('foto')
                                     <span style="color: red;">{{ $message }}</span>
                                 @enderror
+
+                                <div class="mt-3">
+                                    <label>Preview Foto:</label>
+                                    <br>
+                                    <img id="preview"
+                                        src="{{ $laporan->foto ? asset('storage/' . $laporan->foto) : 'https://via.placeholder.com/150' }}"
+                                        alt="Preview Foto" class="img-thumbnail" width="200">
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -197,4 +206,14 @@
             </div>
         </div>
     </div>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('preview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 @endsection

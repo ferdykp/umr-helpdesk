@@ -66,4 +66,14 @@
         <div class="font-medium text-gray-700">Catatan</div>
         <div class="text-gray-900">{{ $laporan->catatan ?: 'Tidak ada catatan' }}</div>
     </div>
+
+    <div class="space-y-2">
+        <div class="font-medium text-gray-700">Foto Kerusakan</div>
+        @if ($laporan->foto)
+            <img src="{{ asset('storage/' . $laporan->foto) }}" alt="Foto Kerusakan"
+                class="w-64 h-64 object-cover rounded-lg shadow-md">
+        @else
+            <p class="text-gray-500">Tidak ada foto tersedia.</p>
+        @endif
+    </div>
 </div>
