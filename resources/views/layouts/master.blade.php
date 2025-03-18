@@ -12,7 +12,7 @@
     </div>
 
     @include('layouts.aside')
-    
+
     <main class="main-content position-relative border-radius-lg ">
         @include('layouts.navbar')
 
