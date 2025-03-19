@@ -2,9 +2,9 @@
     data-scroll="false">
     <div class="container-fluid py-1 px-1">
         @php
-$segments = request()->segments();
-$lastSegment = end($segments);
-$breadcrumb = ucfirst(str_replace('-', ' ', $lastSegment));
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $breadcrumb = ucfirst(str_replace('-', ' ', $lastSegment));
         @endphp
 
         <div class="p-2 rounded-xl bg-primary">
@@ -14,19 +14,19 @@ $breadcrumb = ucfirst(str_replace('-', ' ', $lastSegment));
                         <a class="opacity-15 text-white" href="{{ url('/') }}">Home</a>
                     </li>
                     @foreach ($segments as $index => $segment)
-                                        @php
-    $url = url(implode('/', array_slice($segments, 0, $index + 1)));
-    $isLast = $loop->last;
-                                        @endphp
-                                        <li class="breadcrumb-item text-sm {{ $isLast ? 'text-white active' : '' }}"
-                                            aria-current="{{ $isLast ? 'page' : '' }}">
-                                            @if ($isLast)
-                                                {{ ucfirst(str_replace('-', ' ', $segment)) }}
-                                            @else
-                                                <a class="opacity-75 text-white"
-                                                    href="{{ $url }}">{{ ucfirst(str_replace('-', ' ', $segment)) }}</a>
-                                            @endif
-                                        </li>
+                        @php
+                            $url = url(implode('/', array_slice($segments, 0, $index + 1)));
+                            $isLast = $loop->last;
+                        @endphp
+                        <li class="breadcrumb-item text-sm {{ $isLast ? 'text-white active' : '' }}"
+                            aria-current="{{ $isLast ? 'page' : '' }}">
+                            @if ($isLast)
+                                {{ ucfirst(str_replace('-', ' ', $segment)) }}
+                            @else
+                                <a class="opacity-75 text-white"
+                                    href="{{ $url }}">{{ ucfirst(str_replace('-', ' ', $segment)) }}</a>
+                            @endif
+                        </li>
                     @endforeach
                 </ol>
             </nav>
@@ -39,7 +39,8 @@ $breadcrumb = ucfirst(str_replace('-', ' ', $lastSegment));
                 <div class="bg-primary rounded-lg px-2">
                     <li class="nav-item dropdown d-flex align-items-center">
                         <a class="nav-link dropdown-toggle text-white font-weight-bold px-0" id="navbarDropdown"
-                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            aria-haspopup="true">
                             <i class="ni ni-single-02 text-sm opacity-10"></i>
                             <span class="d-sm-inline d-none ms-2">Halo, {{ auth()->user()->name }}</span>
                         </a>
@@ -48,10 +49,10 @@ $breadcrumb = ucfirst(str_replace('-', ' ', $lastSegment));
                             aria-labelledby="navbarDropdown">
                             <li>
                                 <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
-                                    <i class="ni ni-curved-next text-dark text-sm opacity-10"></i> Profile
+                                    <i class="ni ni-circle-08 text-dark text-sm opacity-10 me-2"></i> Profile
                                 </a>
                                 <a class="dropdown-item" href="{{ route('auth.logout') }}">
-                                    <i class="ni ni-curved-next text-dark text-sm opacity-10"></i> Logout
+                                    <i class="ni ni-curved-next text-dark text-sm opacity-10 me-2"></i> Logout
                                 </a>
                             </li>
                         </ul>
