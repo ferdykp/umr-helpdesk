@@ -16,7 +16,7 @@
             {{ $item->tanggal_kerusakan }}
         </td> --}}
         <td style="white-space: nowrap;" class="text-center">
-            {{ \Carbon\Carbon::parse($item->tanggal_kerusakan)->format('m/d/Y') }}
+            {{ \Carbon\Carbon::parse($item->tanggal_kerusakan)->format('d/m/Y') }}
 
         </td>
         <td style="white-space: nowrap;" class="text-center">
@@ -32,7 +32,7 @@
             {{ $item->kategori_mesin }}
         </td>
         <td style="white-space: nowrap;" class="text-center">
-            {{ \Carbon\Carbon::parse($item->tanggal_perbaikan)->format('d-m-Y') }}
+            {{ \Carbon\Carbon::parse($item->tanggal_perbaikan)->format('d/m/Y') }}
         </td>
 
         <!-- Bagian Status dengan warna -->
@@ -47,11 +47,15 @@
         <td style="white-space: nowrap;" class="text-center">
             {{ $item->catatan }}
         </td>
-        <td class="d-flex justify-content-center">
-        <td class="d-flex justify-content-center">
+
+        <td class="d-flex justify-content-center gap-2">
+            <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
+                Detail
+            </button>
+            <a href="{{ route('report.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+
             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('report.destroy', $item->id) }}"
-                method="POST" class="d-flex gap-2">
-                <a href="{{ route('report.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>

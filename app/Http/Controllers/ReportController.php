@@ -84,11 +84,37 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $laporan = Laporan::findOrFail($id);
-        // return view('show-laporan', compact('laporan'));
+
+        return view('partials.reportDetail', compact('laporan'));
+
     }
+
+    # Show Debug
+    /*public function show($id)*/
+    /*{*/
+    /*    try {*/
+    /*        $report = Laporan::findOrFail($id);*/
+    /**/
+    /*        if (request()->ajax()) {*/
+    /*            return view('partials.reportDetail', compact('laporan'));*/
+    /*        }*/
+    /**/
+    /*        return view('reports.show', compact('laporan'));*/
+    /*    } catch (\Exception $e) {*/
+    /*        // Log the error*/
+    /*        \Log::error('Error fetching report: ' . $e->getMessage());*/
+    /**/
+    /*        if (request()->ajax()) {*/
+    /*            return response($e->getMessage(), 500);*/
+    /*        }*/
+    /**/
+    /*        return back()->with('error', 'Failed to retrieve report: ' . $e->getMessage());*/
+    /*    }*/
+    /*}*/
+
 
     /**
      * Show the form for editing the specified resource.
