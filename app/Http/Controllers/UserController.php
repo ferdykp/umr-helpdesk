@@ -25,14 +25,18 @@ class UserController extends Controller
     {
         // Validasi input
         $request->validate([
+            'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
             'password' => 'required|min:6|confirmed',
             'role' => 'required|in:admin,user',
         ]);
 
         // Simpan data user baru
         User::create([
+            'name' => $request->name,
             'username' => $request->username,
+            'email' => $request->email,
             'password' => Hash::make($request->password), // Enkripsi password
             'role' => $request->role,
         ]);
@@ -72,13 +76,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
             'username' => 'required|string|max:255' . $user->id,
+            'email' => 'required|string|max:255' . $user->id,
             'role' => 'required|in:admin,user',
             'password' => 'nullable|min:5|confirmed', // Password bisa kosong
         ]);
 
         // Update data user
+        $user->name = $validatedData['name'];
         $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
         $user->role = $validatedData['role'];
 
         // Jika password diisi, baru diupdate
