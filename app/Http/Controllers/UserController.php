@@ -27,7 +27,7 @@ class UserController extends Controller
         $request->validate([
             'username' => 'required|string|max:255',
             'password' => 'required|min:6|confirmed',
-            'role' => 'required|in:sm,user,supplier',
+            'role' => 'required|in:admin,user',
         ]);
 
         // Simpan data user baru
@@ -73,7 +73,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'username' => 'required|string|max:255' . $user->id,
-            'role' => 'required|in:sm,user,supplier',
+            'role' => 'required|in:admin,user',
             'password' => 'nullable|min:5|confirmed', // Password bisa kosong
         ]);
 
