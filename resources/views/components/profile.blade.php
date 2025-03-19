@@ -7,8 +7,7 @@
                 <div class="row gx-4">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../assets/img/profile.png" alt="profile_image"
-                                class="w-100 border-radius-lg shadow-sm">
+                            <img src="../assets/img/profile.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
                     <div class="col-auto my-auto">
@@ -17,7 +16,7 @@
                                 {{ auth()->user()->name }}
                             </h5>
                             <p class="mb-0 font-weight-bold text-sm">
-                                {{ str_replace('_', ' ', auth()->user()->role) ?? 'Marketing Administrator' }}
+                                {{ str_replace('_', ' ', auth()->user()->role) }}
                             </p>
                         </div>
                     </div>
