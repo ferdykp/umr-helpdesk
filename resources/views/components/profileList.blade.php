@@ -8,14 +8,14 @@
                     <div class="card">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <div>
-                                <a href="{{ route('users.create') }}" class="btn btn-md btn-success">Add User</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-md btn-success">Tambahkan User</a>
                             </div>
                         </div>
 
                         <div class="card-header">
-                            <h1>
-                                Registered Users
-                            </h1>
+                            <h4>
+                                List Pengguna
+                            </h4>
                         </div>
                         <div class="card-body">
                             <div class="card-body px-0 pt-0 pb-4">
@@ -23,23 +23,25 @@
                                     <table id="datatable" class="table align-items-center mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th style="white-space: nowrap;">No</th>
-                                                <th style="white-space: nowrap;">Name</th>
-                                                <th style="white-space: nowrap;">email</th>
-                                                <th style="white-space: nowrap;">role</th>
-                                                <th style="white-space: nowrap;">Action</th>
+                                                <th style="white-space: nowrap;" class="text-center">No</th>
+                                                <th style="white-space: nowrap;" class="text-center">Username</th>
+                                                <th style="white-space: nowrap;" class="text-center">Name</th>
+                                                <th style="white-space: nowrap;" class="text-center">email</th>
+                                                <th style="white-space: nowrap;" class="text-center">role</th>
+                                                <th style="white-space: nowrap;" class="text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($users as $index => $user)
                                                 <tr>
-                                                    <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->role }}</td>
-                                                    <td>
-                                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                                            onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                    <td class="text-center">{{ $index + 1 }}</td>
+                                                    <td class="text-center">{{ $user->username }}</td>
+                                                    <td class="text-center">{{ $user->name }}</td>
+                                                    <td class="text-center">{{ $user->email }}</td>
+                                                    <td class="text-center">{{ $user->role }}</td>
+                                                    <td class="d-flex justify-content-center gap-2">
+                                                        <form action="{{ route('users.destroy', $user->id) }}"
+                                                            method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                             class="d-flex gap-2">
                                                             <a href="{{ route('users.edit', $user->id) }}"
                                                                 class="btn btn-primary">Edit</a>
@@ -62,34 +64,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <script
-                                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-                                <script>
-                                    //message with sweetalert
-                                    @if (session('success'))
-                                        Swal.fire({
-                                            icon: "success",
-                                            title: "BERHASIL",
-                                            text: "{{ session('success') }}",
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        });
-                                    @elseif (session('error'))
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "GAGAL!",
-                                            text: "{{ session('error') }}",
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        });
-                                    @endif
-                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-@endsection
+    @endsection
