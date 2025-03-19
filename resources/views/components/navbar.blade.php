@@ -53,7 +53,7 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            @if (Auth::user()->role == 'sm')
+                            @if (Auth::user()->role == 'admin')
                                 <li>
                                     <a class="dropdown-item {{ request()->routeIs('users.show', 1) ? 'bg-primary text-white' : '' }}"
                                         href="{{ route('users.show', 1) }}">
