@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    public $title; // Tambahkan deklarasi properti
+
     public function __construct()
     {
         $this->title = 'Master Label Helpdesk';

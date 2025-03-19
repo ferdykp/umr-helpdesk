@@ -50,6 +50,7 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 //     Route::post('/logout', [SesiController::class, 'logout'])->name('logout');
 // });
 
+
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/login/auth', [AuthController::class, 'loginAuth'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -99,5 +100,9 @@ Route::get('/manualbook/download/{filename}', function ($filename) {
 })->where('filename', '.*')->name('manualbook.download');
 Route::get('/manualbook-search', [ManualBookController::class, 'search'])->name('manualbook.search');
 
+Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
+    Route::resource('users', UserController::class);
+    // Route::get('userlist', [UserController::class, 'index'])->name('users.list');
+});
 
 Route::get('/testing', [TestingController::class, 'index'])->name('testing');

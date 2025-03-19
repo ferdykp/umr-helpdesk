@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('userlist', compact('users'));
+        return view('components.profileList', compact('users'));
     }
 
     // Menampilkan form tambah user
@@ -48,7 +48,7 @@ class UserController extends Controller
 
         // Tampilkan view dengan data user
         // return view('users.profile', compact('data', 'profileImage'));
-        return view('profile', compact('user'));
+        return view('components.profile', compact('user'));
     }
 
     // public function list()
@@ -60,7 +60,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('userEdit', compact('user'));
+        return view('components.profileEdit', compact('user'));
     }
 
     // public function update(Request $request, $id)
