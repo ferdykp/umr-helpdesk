@@ -11,6 +11,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ManualBookController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\TestingController;
+use App\Http\Controllers\MaintenanceController;
+
 use App\Models\ManualBook;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
@@ -104,5 +106,11 @@ Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
     Route::resource('users', UserController::class);
     // Route::get('userlist', [UserController::class, 'index'])->name('users.list');
 });
+
+Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance');
+Route::post('/maintenance/add-note', [MaintenanceController::class, 'store']);
+
+Route::get('/dashboard', [MaintenanceController::class, 'dashboard'])->name('dashboard');
+
 
 Route::get('/testing', [TestingController::class, 'index'])->name('testing');

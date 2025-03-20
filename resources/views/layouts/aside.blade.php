@@ -51,15 +51,67 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link {{ request()->is('maintenance') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('maintenance') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-sharp fa-solid fa-book text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Jadwal Maintenance</span>
+                </a>
+            </li>
+
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('sparepart') ? 'bg-primary text-white rounded-lg' : '' }}"
                     href="sparepart">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-gear text-dark text-sm"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Sparepart</span>
+                    <span class="nav-link-text ms-1">Inventory Sparepart</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('sparepart') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="sparepart">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-gear text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Tracking Sparepart</span>
+                </a>
+            </li> --}}
+
+            <li class="nav-item">
+                <a class="nav-link d-flex align-items-center {{ request()->is('sparepart*') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="#" id="sparepartDropdown" role="button" data-bs-toggle="collapse"
+                    data-bs-target="#sparepartMenu" aria-expanded="false">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-gear text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Sparepart</span>
+                    {{-- <i class="fa-solid fa-chevron-down ms-auto"></i> --}}
+                </a>
+                <div class="collapse {{ request()->is('sparepart*') ? 'show' : '' }}" id="sparepartMenu">
+                    <ul class="nav flex-column ms-3 my-2">
+                        <li class="nav-item">
+                            <a class="nav-link p-2 {{ request()->is('sparepart') ? 'active bg-light rounded' : '' }}"
+                                href="sparepart">
+                                Inventory Sparepart
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2 {{ request()->is('sparepart/tracking') ? 'active bg-light rounded' : '' }}"
+                                href="sparepart">
+                                Tracking Sparepart
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
 
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Master</h6>
