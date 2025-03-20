@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @section('content')
     <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4">
+        <div class="row mt-9">
+            <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4 ">
                 <div class="card">
-                    <div class="card-body p-3">
+                    <div class="card-body p-3 ">
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Data WR</h4>
+                                    <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Laporan Kerusakan</h4>
                                     <h5 class="font-weight-bolder">
                                         {{-- {{ $wrCount }} --}}
                                     </h5>
