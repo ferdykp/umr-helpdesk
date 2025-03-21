@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_sparepart');
             $table->string('kategori');
             $table->integer('stok');
-            $table->dateTime('update_stok');
+            $table->date('update_stok');
             $table->string('lokasi_penyimpanan');
             $table->string('status');
             $table->string('catatan');
