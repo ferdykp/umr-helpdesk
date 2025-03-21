@@ -7,7 +7,7 @@
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
         <td style="white-space: nowrap;" class="text-center">
-            {{ $item->tanggal_update }}
+            {{ \Carbon\Carbon::parse($item->tanggal_update)->format('d/m/Y') }}
         </td>
         <td style="white-space: nowrap;" class="text-center">
             {{ $item->nama_sparepart }}
@@ -73,7 +73,7 @@
 
     }
 
-    .selesai_servis {
+    .selesai-servis {
         background-color: lightgreen;
     }
 
@@ -81,11 +81,11 @@
         background-color: red;
     }
 
-    .masuk_inventory {
+    .masuk-inventory {
         background-color: green;
     }
 
-    .sudah_datang {
+    .sudah-datang {
         background-color: blue;
     }
 </style>
