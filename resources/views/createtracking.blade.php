@@ -102,15 +102,15 @@
                                         <select class="form-control @error('status') is-invalid @enderror status-dropdown"
                                             name="status" required autocomplete="status" autofocus id="status">
                                             <option value="" disabled selected hidden>--- Pilih Status ---</option>
-                                            <option value="dipesan" data-color="yellow">
+                                            <option value="Dipesan" data-color="yellow">
                                                 Dipesan
                                             </option>
-                                            <option value="selesai_servis" data-color="lightgreen">
+                                            <option value="Selesai Servis" data-color="lightgreen">
                                                 Selesai Servis
                                             </option>
-                                            <option value="servis" data-color="red">Servis</option>
-                                            <option value="masuk_inventory" data-color="green">Masuk Inventory</option>
-                                            <option value="sudah_datang" data-color="blue">Sudah Datang</option>
+                                            <option value="Servis" data-color="red">Servis</option>
+                                            <option value="Masuk Inventory" data-color="green">Masuk Inventory</option>
+                                            <option value="Sudah Datang" data-color="blue">Sudah Datang</option>
                                         </select>
                                         @error('status')
                                             <span class="invalid-feedback" role="alert">

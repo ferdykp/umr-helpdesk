@@ -66,18 +66,18 @@
                                 <label for="status" class="form-control-label">Status:</label>
                                 <select id="status" class="form-control mb-3" name="status" required>
                                     <option value="" disabled hidden>--- Select shift ---</option>
-                                    <option value="dipesan" {{ $trackings->status == 'dipesan' ? 'selected' : '' }}>Dipesan
+                                    <option value="Dipesan" {{ $trackings->status == 'Dipesan' ? 'selected' : '' }}>Dipesan
                                     </option>
-                                    <option value="selesai_servis"
-                                        {{ $trackings->status == 'selesai_servis' ? 'selected' : '' }}>Selesai Servis
+                                    <option value="Selesai Servis"
+                                        {{ $trackings->status == 'Selsai Servis' ? 'selected' : '' }}>Selesai Servis
                                     </option>
-                                    <option value="servis" {{ $trackings->status == 'servis' ? 'selected' : '' }}>Servis
+                                    <option value="Servis" {{ $trackings->status == 'Servis' ? 'selected' : '' }}>Servis
                                     </option>
-                                    <option value="masuk_inventory"
-                                        {{ $trackings->status == 'masuk_inventory' ? 'selected' : '' }}>Masuk Inventory
+                                    <option value="Masuk Inventory"
+                                        {{ $trackings->status == 'Masuk Inventory' ? 'selected' : '' }}>Masuk Inventory
                                     </option>
-                                    <option value="sudah_datang"
-                                        {{ $trackings->status == 'sudah_datang' ? 'selected' : '' }}>Sudah Datang
+                                    <option value="Sudah Datang"
+                                        {{ $trackings->status == 'Sudah Datang' ? 'selected' : '' }}>Sudah Datang
                                     </option>
                                 </select>
                                 @error('status')
