@@ -12,7 +12,7 @@
               </div>
               <div class="mb-3">
                   <label for="note" class="form-label">Catatan:</label>
-                  <input type="text" name="note" class="form-control" required>
+                  <textarea name="note" class="form-control" required></textarea>
               </div>
               <button type="submit" class="btn btn-success">Tambahkan Catatan</button>
           </form>
