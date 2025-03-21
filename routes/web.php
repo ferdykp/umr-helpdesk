@@ -10,6 +10,7 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ManualBookController;
 use App\Http\Controllers\SparePartController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\MaintenanceController;
 
@@ -73,6 +74,11 @@ Route::get('/sparepart/create', [SparePartController::class, 'create'])->name('s
 Route::get('/sparepart-export', [SparePartController::class, 'export'])->name('sparepart.export');
 Route::post('/sparepart/bulk-delete', [SparePartController::class, 'bulkDelete'])->name('sparepart.bulk-delete');
 
+Route::resource('tracking', TrackingController::class);
+Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
+Route::get('/tracking/create', [TrackingController::class, 'create'])->name('tracking.create');
+Route::post('/tracking/bulk-delete', [TrackingController::class, 'bulkDelete'])->name('tracking.bulk-delete');
+Route::get('/tracking-export', [TrackingController::class, 'export'])->name('tracking.export');
 
 
 Route::get('/machine', [MachineController::class, 'index'])->name('machine');

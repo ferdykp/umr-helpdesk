@@ -13,7 +13,7 @@
                             <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import WR</button>
                         </form> --}}
                         <div class="w-100 w-md-auto ">
-                            <h4 class="">List Sparepart</h4>
+                            <h4 class="">Tracking Sparepart</h4>
                             <hr class="bg-danger border-2 border-top border-danger" />
                         </div>
 
@@ -23,10 +23,10 @@
                             class="pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                             <div class="w-100 w-md-auto mb-2 mb-md-0">
                                 <div class="d-flex flex-column flex-sm-row">
-                                    <a href="{{ route('sparepart.create') }}"
-                                        class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
+                                    <a href="{{ route('tracking.create') }}"
+                                        class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah Tracking
                                         Sparepart</a>
-                                    <a href="{{ route('sparepart.export') }}"
+                                    <a href="{{ route('tracking.export') }}"
                                         class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
                                         <i class="fa fa-download"></i> Export Data in Excel
                                     </a>
@@ -56,31 +56,33 @@
                                         <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
                                                 name="select_all" id="select_all_id"></th>
                                         <th style="white-space: nowrap;" class="text-center">No</th>
+                                        <th style="white-space: nowrap;" class="text-center">Tanggal Update</th>
                                         <th style="white-space: nowrap;" class="text-center">Nama Sparepart</th>
-                                        <th style="white-space: nowrap;" class="text-center">Kategori</th>
-                                        <th style="white-space: nowrap;" class="text-center">Stock</th>
-                                        <th style="white-space: nowrap;" class="text-center">Update Stock</th>
-                                        <th style="white-space: nowrap;" class="text-center">Lokasi Penyimpanan</th>
-                                        <th style="white-space: nowrap;" class="text-center">Status</th>
+                                        <th style="white-space: nowrap;" class="text-center">status</th>
+                                        <th style="white-space: nowrap;" class="text-center">Jumlah Barang</th>
+                                        <th style="white-space: nowrap;" class="text-center">Satuan</th>
+                                        <th style="white-space: nowrap;" class="text-center">Kategori Barang</th>
+                                        <th style="white-space: nowrap;" class="text-center">Vendor Teknisi</th>
+                                        <th style="white-space: nowrap;" class="text-center">PIC</th>
                                         <th style="white-space: nowrap;" class="text-center">Catatan</th>
                                         <th style="white-space: nowrap;" class="text-center">Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    @include('partials.sparepartTable', [
-                                        'data' => $sparepart,
-                                        'routePrefix' => 'report',
+                                    @include('partials.trackingTable', [
+                                        'data' => $trackings,
+                                        'routePrefix' => 'tracking',
                                     ])
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            Showing {{ $sparepart->firstItem() }} to {{ $sparepart->lastItem() }} of
-                            {{ $sparepart->total() }} entries
+                            Showing {{ $trackings->firstItem() }} to {{ $trackings->lastItem() }} of
+                            {{ $trackings->total() }} entries
                         </div>
                         <div class="d-flex justify-content-center mt-3">
-                            {{ $sparepart->links('pagination::bootstrap-4') }}
+                            {{ $trackings->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>
