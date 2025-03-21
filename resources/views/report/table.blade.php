@@ -6,45 +6,45 @@
         <td class="text-center">
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->keterangan_kerusakan }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->penyebab_kerusakan }}
         </td>
-        {{-- <td style="white-space: nowrap;" class="text-center">
+        {{-- <td class="whitespace-nowrap text-center">
             {{ $item->tanggal_kerusakan }}
         </td> --}}
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ \Carbon\Carbon::parse($item->tanggal_kerusakan)->format('d/m/Y') }}
 
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->shift }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->nama_teknisi }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->lokasi_mesin }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->kategori_mesin }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ \Carbon\Carbon::parse($item->tanggal_perbaikan)->format('d/m/Y') }}
         </td>
 
         <!-- Bagian Status dengan warna -->
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             <span class="status-badge {{ strtolower(str_replace(' ', '-', $item->status)) }}">
                 {{ $item->status }}
             </span>
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->metode_perbaikan }}
         </td>
-        <td style="white-space: nowrap;" class="text-center">
+        <td class="whitespace-nowrap text-center">
             {{ $item->catatan }}
         </td>
 

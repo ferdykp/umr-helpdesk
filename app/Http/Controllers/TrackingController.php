@@ -10,11 +10,11 @@ class TrackingController extends Controller
     public function index()
     {
         $trackings = Tracking::paginate(10);
-        return view('dashboard.sparepartTracking', compact('trackings'));
+        return view('tracking.index', compact('trackings'));
     }
     public function create()
     {
-        return view('createtracking');
+        return view('tracking.create');
     }
     public function store(Request $request)
     {
@@ -35,7 +35,7 @@ class TrackingController extends Controller
     public function edit(string $id)
     {
         $trackings = Tracking::findOrFail($id);
-        return view('partials.trackingEdit', compact('trackings'));
+        return view('tracking.edit', compact('trackings'));
     }
     public function update(Request $request, string $id)
     {

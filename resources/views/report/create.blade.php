@@ -84,18 +84,7 @@
                             <label for="shift" class="col-md-4 col-form-label text-md-right">Shift</label>
                             <div class="col-md-6">
                                 <select class="form-control @error('shift') is-invalid @enderror" name="shift"
-                                    value="{{ old('shift') }}" required autocomplete="shift" autofocus>
-                                    <option value="" disabled selected hidden>--- Pilih Shift ---</option>
-                                    Process ---
-                                    </option>
-                                    <option value="SHIFT 1">SHIFT 1</option>
-                                    <option value="SHIFT 2">SHIFT 2</option>
-                                    <option value="SHIFT BU">SHIFT BU</option>
-                                    <option value="Long Shift">Long Shift</option>
-
-                                    {{--@foreach ($shifts as $shift)--}}
-                                    {{-- <option value="{{ $shift->shift }}">{{ $shift->shift }}</option>--}}
-                                    {{--@endforeach--}}
+                                    value="{{ old('shift') }}" id="shift-select" required autocomplete="shift" autofocus>
                                 </select>
                                 @error('shift')
                                     <span class="invalid-feedback" role="alert">
@@ -109,15 +98,8 @@
                             <label for="lokasi_mesin" class="col-md-4 col-form-label text-md-right">Lokasi Mesin</label>
                             <div class="col-md-6">
                                 <select class="form-control @error('lokasi_mesin') is-invalid @enderror"
-                                    name="lokasi_mesin" value="{{ old('lokasi_mesin') }}" required
+                                    name="lokasi_mesin" id="location-select" value="{{ old('lokasi_mesin') }}" required
                                     autocomplete="lokasi_mesin" autofocus>
-                                    <option value="" disabled selected hidden>--- Pilih Lokasi Mesin ---</option>
-                                    <option value="280">280</option>
-                                    <option value="410">410</option>
-                                    <option value="INDIGO">INDIGO</option>
-                                    {{--@foreach ($mesin as $mesin)--}}
-                                    {{-- <option value="{{ $mesin->mesin }}">{{ $mesin->mesin }}</option>--}}
-                                    {{--@endforeach--}}
                                 </select>
                                 @error('lokasi_mesin')
                                     <span class="invalid-feedback" role="alert">
@@ -132,31 +114,8 @@
                                 Mesin</label>
                             <div class="col-md-6">
                                 <select class="form-control @error('kategori_mesin') is-invalid @enderror"
-                                    name="kategori_mesin" value="{{ old('kategori_mesin') }}" required
+                                    name="kategori_mesin" id="machine-select" value="{{ old('kategori_mesin') }}" required
                                     autocomplete="kategori_mesin" autofocus>
-                                    <option value="" disabled selected hidden>--- Pilih Kategori Mesin ---</option>
-                                    <option value="Gallus 1" data-color="red">Gallus 1</option>
-                                    <option value="Gallus 2" data-color="yellow">Gallus 2</option>
-                                    <option value="Gallus 3" data-color="green">Gallus 3</option>
-                                    <option value="Gallus 4" data-color="red">Gallus 4</option>
-                                    <option value="Gallus 5" data-color="yellow">Gallus 5</option>
-                                    <option value="Gallus 6" data-color="green">Gallus 6</option>
-                                    <option value="Gallus 7" data-color="yellow">Gallus 7</option>
-                                    <option value="Gallus 8" data-color="green">Gallus 8</option>
-                                    <option value="Gallus 9" data-color="yellow">Gallus 9</option>
-                                    <option value="Gallus 10" data-color="green">Gallus 10</option>
-                                    <option value="Gallus 11" data-color="yellow">Gallus 11</option>
-                                    <option value="Rhyguan Sliting" data-color="green">Rhyguan Sliting</option>
-                                    <option value="Rhyguan 2" data-color="green">Rhyguan 2</option>
-                                    <option value="Nilpeter 1" data-color="green">Nilpeter 1</option>
-                                    <option value="Nilpeter 2" data-color="green">Nilpeter 2</option>
-                                    <option value="ROTO 5" data-color="green">ROTO 5</option>
-                                    <option value="Digital" data-color="green">Digital</option>
-                                    <option value="All" data-color="green">All</option>
-
-                                    {{--@foreach ($kmesin as $kmesin)--}}
-                                    {{-- <option value="{{ $kmesin->kmesin }}">{{ $kmesin->kmesin }}</option>--}}
-                                    {{--@endforeach--}}
                                 </select>
                                 @error('kategori_mesin')
                                     <span class="invalid-feedback" role="alert">
@@ -263,3 +222,67 @@
 </div>
 
 @endsection
+
+@push('customScript')
+    <script>
+        $('#machine-select').select2({
+            theme: "bootstrap-5",
+            placeholder: '~~~ Pilih Mesin ~~~',
+            ajax: {
+                url: '{{ route('data.machines') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term // Meneruskan term pencarian
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data // Mengembalikan hasil
+                    };
+                }
+            }
+        });
+
+        $('#location-select').select2({
+            theme: "bootstrap-5",
+            placeholder: '~~~ Pilih Lokasi ~~~',
+            ajax: {
+                url: '{{ route('data.locations') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term // Meneruskan term pencarian
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data // Mengembalikan hasil
+                    };
+                }
+            }
+        });
+
+        $('#shift-select').select2({
+            theme: "bootstrap-5",
+            placeholder: '~~~ Pilih Shift ~~~',
+            ajax: {
+                url: '{{ route('data.shifts') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term // Meneruskan term pencarian
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data // Mengembalikan hasil
+                    };
+                }
+            }
+        });
+    </script>
+@endpush

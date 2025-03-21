@@ -17,7 +17,7 @@ class ReportController extends Controller
     public function index()
     {
         $laporan = Laporan::paginate(10);
-        return view('dashboard.report', compact('laporan'));
+        return view('report.index', compact('laporan'));
     }
 
     /**
@@ -25,31 +25,8 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('createreport');
+        return view('report.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'nama_teknisi' => 'required',
-    //         'keterangan_kerusakan' => 'required',
-    //         'penyebab_kerusakan' => 'nullable',
-    //         'tanggal_kerusakan' => 'required',
-    //         'shift' => 'required',
-    //         'lokasi_mesin' => 'required',
-    //         'kategori_mesin' => 'required',
-    //         'waktu_perbaikan' => 'nullable',
-    //         'metode_perbaikan' => 'nullable',
-    //         'catatan' => 'nullable',
-    //         'foto' => 'nullable',
-    //         'status' => 'required'
-    //     ]);
-    //     Laporan::create($request->all());
-    //     return redirect()->route('report')->with('success', 'Laporan berhasil ditambahkan.');
-    // }
 
     public function store(Request $request)
     {
@@ -88,33 +65,8 @@ class ReportController extends Controller
     {
         $laporan = Laporan::findOrFail($id);
 
-        return view('partials.reportDetail', compact('laporan'));
-
+        return view('report.detail', compact('laporan'));
     }
-
-    # Show Debug
-    /*public function show($id)*/
-    /*{*/
-    /*    try {*/
-    /*        $report = Laporan::findOrFail($id);*/
-    /**/
-    /*        if (request()->ajax()) {*/
-    /*            return view('partials.reportDetail', compact('laporan'));*/
-    /*        }*/
-    /**/
-    /*        return view('reports.show', compact('laporan'));*/
-    /*    } catch (\Exception $e) {*/
-    /*        // Log the error*/
-    /*        \Log::error('Error fetching report: ' . $e->getMessage());*/
-    /**/
-    /*        if (request()->ajax()) {*/
-    /*            return response($e->getMessage(), 500);*/
-    /*        }*/
-    /**/
-    /*        return back()->with('error', 'Failed to retrieve report: ' . $e->getMessage());*/
-    /*    }*/
-    /*}*/
-
 
     /**
      * Show the form for editing the specified resource.
@@ -122,7 +74,7 @@ class ReportController extends Controller
     public function edit(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        return view('partials.reportEdit', compact('laporan'));
+        return view('report.edit', compact('laporan'));
     }
 
     /**
@@ -162,26 +114,6 @@ class ReportController extends Controller
         return redirect()->route('report')->with('success', 'Laporan berhasil diperbarui.');
     }
 
-
-    // public function update(Request $request, string $id)
-    // {
-    //     $request->validate([
-    //         'nama_teknisi' => 'required',
-    //         'keterangan_kerusakan' => 'required',
-    //         'penyebab_kerusakan' => 'nullable',
-    //         'tanggal_kerusakan' => 'required',
-    //         'shift' => 'required',
-    //         'lokasi_mesin' => 'required',
-    //         'kategori_mesin' => 'required',
-    //         'catatan' => 'required',
-    //         'foto' => 'nullable',
-    //         'status' => 'required'
-    //     ]);
-    //     $laporan = Laporan::findOrFail($id);
-    //     $laporan->update($request->all());
-    //     return redirect()->route('report')->with('success', 'Laporan berhasil diperbarui.');
-    // }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -210,20 +142,40 @@ class ReportController extends Controller
 
     public function export()
     {
-
         return Excel::download(new LaporanExport, 'laporan.xlsx');
     }
 
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('search');
-    //     $laporan = Laporan::where(function ($q) use ($query) {
-    //         foreach (Schema::getColumnListing('laporan') as $column)
-    //             $q->orWhere($column, 'LIKE', "%($query)");
-    //     })->paginate(10);
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $shift = $request->input('shift');
+        $location = $request->input('location');
+        $machine = $request->input('machine');
 
-    //     return view('dashboad', [
-    //         'laporan' => $laporan
-    //     ]);
-    // }
+        $laporan = Laporan::query();
+
+        if (!empty($query)) {
+            foreach (Schema::getColumnListing('laporan') as $column) {
+                $laporan->orWhere($column, 'LIKE', "%$query%");
+            }
+        }
+
+        if (!empty($shift)) {
+            $laporan->where('shift', $shift);
+        }
+
+        if (!empty($location)) {
+            $laporan->where('lokasi_mesin', $location);
+        }
+
+        if (!empty($machine)) {
+            $laporan->where('kategori_mesin', $machine);
+        }
+
+        $laporan = $laporan->paginate(10);
+
+        $html = view('report.table', compact('laporan'))->render();
+
+        return response()->json(['html' => $html]);
+    }
 }

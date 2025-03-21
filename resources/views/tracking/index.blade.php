@@ -53,24 +53,24 @@
                             <table id="datatable" class="table align-items-center mb-0" data-type="tracking">
                                 <thead class="table-light">
                                     <tr>
-                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                        <th class="whitespace-nowrap text-center"><input type="checkbox"
                                                 name="select_all" id="select_all_id"></th>
-                                        <th style="white-space: nowrap;" class="text-center">No</th>
-                                        <th style="white-space: nowrap;" class="text-center">Tanggal Update</th>
-                                        <th style="white-space: nowrap;" class="text-center">Nama Sparepart</th>
-                                        <th style="white-space: nowrap;" class="text-center">status</th>
-                                        <th style="white-space: nowrap;" class="text-center">Jumlah Barang</th>
-                                        <th style="white-space: nowrap;" class="text-center">Satuan</th>
-                                        <th style="white-space: nowrap;" class="text-center">Kategori Barang</th>
-                                        <th style="white-space: nowrap;" class="text-center">Vendor Teknisi</th>
-                                        <th style="white-space: nowrap;" class="text-center">PIC</th>
-                                        <th style="white-space: nowrap;" class="text-center">Catatan</th>
-                                        <th style="white-space: nowrap;" class="text-center">Action</th>
+                                        <th class="whitespace-nowrap text-center">No</th>
+                                        <th class="whitespace-nowrap text-center">Tanggal Update</th>
+                                        <th class="whitespace-nowrap text-center">Nama Sparepart</th>
+                                        <th class="whitespace-nowrap text-center">status</th>
+                                        <th class="whitespace-nowrap text-center">Jumlah Barang</th>
+                                        <th class="whitespace-nowrap text-center">Satuan</th>
+                                        <th class="whitespace-nowrap text-center">Kategori Barang</th>
+                                        <th class="whitespace-nowrap text-center">Vendor Teknisi</th>
+                                        <th class="whitespace-nowrap text-center">PIC</th>
+                                        <th class="whitespace-nowrap text-center">Catatan</th>
+                                        <th class="whitespace-nowrap text-center">Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    @include('partials.trackingTable', [
+                                    @include('tracking.table', [
                                         'data' => $trackings,
                                         'routePrefix' => 'tracking',
                                     ])

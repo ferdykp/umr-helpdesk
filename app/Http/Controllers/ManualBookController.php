@@ -15,7 +15,7 @@ class ManualBookController extends Controller
     public function index()
     {
         $data = ManualBook::paginate(10);
-        return view('dashboard.manualbook', compact('data'));
+        return view('manual_book.index', compact('data'));
     }
     public function import(Request $request)
     {
@@ -56,7 +56,7 @@ class ManualBookController extends Controller
     public function edit($id)
     {
         $data = ManualBook::findOrFail($id);
-        return view('manualbook.edit', compact('data'));
+        return view('manual_book.edit', compact('data'));
     }
     public function update(Request $request, $id)
     {
@@ -101,7 +101,7 @@ class ManualBookController extends Controller
         $searchPrefix = 'search-' . time() . '-';
 
         // Render the partial view with the search results and prefix
-        $html = view('partials.manualbookList', compact('data', 'searchPrefix'))->render();
+        $html = view('manual_book.manualbookList', compact('data', 'searchPrefix'))->render();
 
         return response()->json(['html' => $html]);
     }

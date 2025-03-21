@@ -61,30 +61,46 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item">
-                <a class="nav-link {{ request()->is('sparepart') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="sparepart">
+            
+
+
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Master</h6>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('machine') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('machine') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-gear text-dark text-sm"></i>
+                        <i class="fa-solid fa-warehouse text-dark text-sm"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Inventory Sparepart</span>
+                    <span class="nav-link-text ms-1">Mesin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('location') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('location') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-map-marker-alt text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Lokasi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('shift') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('shift') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-clock text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Shift</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('sparepart') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="sparepart">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-gear text-dark text-sm"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Tracking Sparepart</span>
-                </a>
-            </li> --}}
-
-            <li class="nav-item">
-                <a class="nav-link d-flex align-items-center {{ request()->is('sparepart*') ? 'bg-primary text-white rounded-lg' : '' }}"
+                <a class="nav-link d-flex align-items-center {{ request()->is('sparepart') || request()->is('tracking') ? 'bg-primary text-white rounded-lg' : '' }}"
                     href="#" id="sparepartDropdown" role="button" data-bs-toggle="collapse"
                     data-bs-target="#sparepartMenu" aria-expanded="false">
                     <div
@@ -111,22 +127,6 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-
-
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Master</h6>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('machine') ? 'bg-primary text-white rounded-lg' : '' }}"
-                    href="{{ route('machine') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-warehouse text-dark text-sm"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Mesin</span>
-                </a>
             </li>
 
         </ul>

@@ -16,7 +16,7 @@ class SparePartController extends Controller
     public function index()
     {
         $sparepart = Sparepart::paginate(10);
-        return view('dashboard.sparepart', compact('sparepart'));
+        return view('sparepart.index', compact('sparepart'));
     }
 
     /**
@@ -24,7 +24,7 @@ class SparePartController extends Controller
      */
     public function create()
     {
-        return view('createsparepart');
+        return view('sparepart.create');
     }
 
     /**
@@ -48,11 +48,11 @@ class SparePartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $sparepart = SparePart::findOrFail($id);
-        return view('show-sparepart', compact('sparepart'));
-    }
+    // public function show(string $id)
+    // {
+    //     $sparepart = SparePart::findOrFail($id);
+    //     return view('show-sparepart', compact('sparepart'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -94,7 +94,6 @@ class SparePartController extends Controller
 
     public function export()
     {
-
-        return Excel::download(new SparePartExport, 'sparepart.xlsx');
+        // return Excel::download(new SparePartExport, 'sparepart.xlsx');
     }
 }

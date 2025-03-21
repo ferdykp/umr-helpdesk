@@ -53,22 +53,22 @@
                             <table id="datatable" class="table align-items-center mb-0" data-type="report">
                                 <thead class="table-light">
                                     <tr>
-                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                        <th class="whitespace-nowrap text-center"><input type="checkbox"
                                                 name="select_all" id="select_all_id"></th>
-                                        <th style="white-space: nowrap;" class="text-center">No</th>
-                                        <th style="white-space: nowrap;" class="text-center">Nama Sparepart</th>
-                                        <th style="white-space: nowrap;" class="text-center">Kategori</th>
-                                        <th style="white-space: nowrap;" class="text-center">Stock</th>
-                                        <th style="white-space: nowrap;" class="text-center">Update Stock</th>
-                                        <th style="white-space: nowrap;" class="text-center">Lokasi Penyimpanan</th>
-                                        <th style="white-space: nowrap;" class="text-center">Status</th>
-                                        <th style="white-space: nowrap;" class="text-center">Catatan</th>
-                                        <th style="white-space: nowrap;" class="text-center">Action</th>
+                                        <th class="whitespace-nowrap text-center">No</th>
+                                        <th class="whitespace-nowrap text-center">Nama Sparepart</th>
+                                        <th class="whitespace-nowrap text-center">Kategori</th>
+                                        <th class="whitespace-nowrap text-center">Stock</th>
+                                        <th class="whitespace-nowrap text-center">Update Stock</th>
+                                        <th class="whitespace-nowrap text-center">Lokasi Penyimpanan</th>
+                                        <th class="whitespace-nowrap text-center">Status</th>
+                                        <th class="whitespace-nowrap text-center">Catatan</th>
+                                        <th class="whitespace-nowrap text-center">Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
-                                    @include('partials.sparepartTable', [
+                                    @include('sparepart.table', [
                                         'data' => $sparepart,
                                         'routePrefix' => 'report',
                                     ])

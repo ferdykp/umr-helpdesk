@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="space-y-4" id="manualbookList">
-                            @include('partials.manualbookList', ['data' => $data])
+                            @include('manual_book.manualbookList', ['data' => $data])
                         </div>
                         <div id="search-results" class="space-y-4">
                             <!-- Initial content or empty -->
