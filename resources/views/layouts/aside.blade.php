@@ -94,7 +94,8 @@
                     <span class="nav-link-text ms-1">Sparepart</span>
                     {{-- <i class="fa-solid fa-chevron-down ms-auto"></i> --}}
                 </a>
-                <div class="collapse {{ request()->is('sparepart*') ? 'show' : '' }}" id="sparepartMenu">
+                <div class="collapse  {{ request()->is('sparepart*') || request()->is('tracking') ? 'show' : '' }}"
+                    id="sparepartMenu">
                     <ul class="nav flex-column ms-3 my-2">
                         <li class="nav-item">
                             <a class="nav-link p-2 {{ request()->is('sparepart') ? 'active bg-light rounded' : '' }}"
@@ -103,8 +104,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link p-2 {{ request()->is('sparepart/tracking') ? 'active bg-light rounded' : '' }}"
-                                href="sparepart">
+                            <a class="nav-link p-2 {{ request()->is('tracking') ? 'active bg-light rounded' : '' }}"
+                                href="tracking">
                                 Tracking Sparepart
                             </a>
                         </li>
