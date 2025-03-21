@@ -73,7 +73,7 @@
 
     }
 
-    .selesai-servis {
+    .selesai_servis {
         background-color: lightgreen;
     }
 
