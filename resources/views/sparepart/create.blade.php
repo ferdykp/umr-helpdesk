@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header mt-2">
                         <div class="w-100 w-md-auto ">
-                            <h4 class="">Buat Laporan Spareport</h4>
+                            <h4 class="">Buat Laporan Sparepart</h4>
                             <hr class="bg-danger border-2 border-top border-danger" />
                         </div>
 
@@ -79,18 +79,23 @@
                                 </div>
                             </div>
 
-
-
-
-
                             <div class="form-group row">
                                 <label for="lokasi_penyimpanan" class="col-md-4 col-form-label text-md-right">
                                     Lokasi Penyimpanan</label>
                                 <div class="col-md-6">
-                                    <input type="text"
-                                        class="form-control @error('lokasi_penyimpanan') is-invalid @enderror"
-                                        name="lokasi_penyimpanan" value="{{ old('lokasi_penyimpanan') }}" required
-                                        autocomplete="lokasi_penyimpanan" autofocus>
+
+                                    <select name="lokasi_penyimpanan"
+                                        class="form-control @error('lokasi_penyimpanan') is-invalid @enderror">
+                                        <option value="" disabled {{ old('lokasi_penyimpanan') ? '' : 'selected' }}>
+                                            --- Pilih Lokasi Penyimpanan ---</option>
+                                        @foreach ($location as $item)
+                                            <option value="{{ $item->location_name }}"
+                                                {{ old('lokasi_penyimpanan') == $item->location_name ? 'selected' : '' }}>
+                                                {{ $item->location_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
                                     @error('lokasi_penyimpanan')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -105,7 +110,8 @@
                                     <div class="status-container">
                                         <select class="form-control @error('status') is-invalid @enderror status-dropdown"
                                             name="status" required autocomplete="status" autofocus id="status">
-                                            <option value="" disabled selected hidden>--- Pilih Status ---</option>
+                                            <option value="" disabled {{ old('status') ? '' : 'selected' }}>
+                                                --- Pilih Status ---</option>
                                             <option value="Tidak Tersedia" data-color="red">Tidak Tersedia</option>
                                             <option value="Tersedia" data-color="green">Tersedia</option>
                                         </select>

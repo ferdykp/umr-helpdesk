@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SparePart;
+use App\Models\Location;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SparePartExport;
 
@@ -24,7 +25,9 @@ class SparePartController extends Controller
      */
     public function create()
     {
-        return view('sparepart.create');
+        $location =Location::all();
+        /*dd($location);*/
+        return view('sparepart.create', compact('location'));
     }
 
     /**
