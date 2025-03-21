@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="table-responsive p-0 rounded-lg my-3">
-                            <table id="datatable" class="table align-items-center mb-0" data-type="report">
+                            <table id="datatable" class="table align-items-center mb-0" data-type="tracking">
                                 <thead class="table-light">
                                     <tr>
                                         <th style="white-space: nowrap;" class="text-center"><input type="checkbox"

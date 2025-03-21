@@ -9,7 +9,7 @@
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script src="{{ asset('assets/js/argon-dashboard.min.js') }}"></script>
  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
- 
+
  <script>
      var win = navigator.platform.indexOf('Win') > -1;
      if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -65,6 +65,7 @@
 
              let deleteRoutes = {
                  "report": "{{ route('report.bulk-delete') }}",
+                 "tracking": "{{ route('tracking.bulk-delete') }}",
 
              };
 
