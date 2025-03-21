@@ -13,10 +13,9 @@ class MaintenanceController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    { {
-            $notes = Maintenance::all();
-            return view('components.maintenance', compact('notes'));
-        }
+    {
+        $notes = Maintenance::all();
+        return view('maintenance.index', compact('notes'));
     }
 
     public function dashboard()
