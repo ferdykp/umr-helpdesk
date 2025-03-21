@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header mt-2">
                         <div class="w-100 w-md-auto ">
-                            <h4 class="">Buat Trakcing Spareport</h4>
+                            <h4 class="">Buat Trakcing Sparepart</h4>
                             <hr class="bg-danger border-2 border-top border-danger" />
                         </div>
 
