@@ -17,7 +17,7 @@
       });
   </script>
 
-  <script>
+  {{-- <script>
       document.getElementById('search').addEventListener('keyup', function() {
           let query = this.value;
           let currentRoute = document.getElementById('search').dataset.route; // Ambil route dari data attribute
@@ -29,7 +29,33 @@
                   document.getElementById('table-body').innerHTML = data;
               });
       });
-  </script>
+  </script> --}}
+
+  {{-- <script>
+      $(document).on('keyup change', '#search, #shift, #location, #machine', function() {
+          let search = $('#search').val();
+          let shift = $('#shift').val();
+          let location = $('#location').val();
+          let machine = $('#machine').val();
+
+          $.ajax({
+              url: "{{ route('report.search') }}",
+              type: "GET",
+              data: {
+                  search: search,
+                  shift: shift,
+                  location: location,
+                  machine: machine
+              },
+              success: function(response) {
+                  $('#table-body').html(response.html);
+              },
+              error: function() {
+                  alert('Gagal mengambil data.');
+              }
+          });
+      });
+  </script> --}}
 
   <script>
       document.addEventListener("DOMContentLoaded", function() {

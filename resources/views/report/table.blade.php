@@ -16,8 +16,8 @@
             {{ $item->tanggal_kerusakan }}
         </td> --}}
         <td class="whitespace-nowrap text-center">
-            {{ \Carbon\Carbon::parse($item->tanggal_kerusakan)->format('d/m/Y') }}
-
+            {{-- {{ \Carbon\Carbon::parse($item->tanggal_kerusakan)->format('d/m/Y') }} --}}
+            {{ $item->tanggal_kerusakan }}
         </td>
         <td class="whitespace-nowrap text-center">
             {{ $item->shift }}
@@ -32,7 +32,9 @@
             {{ $item->kategori_mesin }}
         </td>
         <td class="whitespace-nowrap text-center">
-            {{ \Carbon\Carbon::parse($item->tanggal_perbaikan)->format('d/m/Y') }}
+            {{-- {{ \Carbon\Carbon::parse($item->tanggal_perbaikan)->format('d/m/Y') }} --}}
+            {{ $item->tanggal_perbaikan }}
+
         </td>
 
         <!-- Bagian Status dengan warna -->

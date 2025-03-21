@@ -13,6 +13,6 @@ class Machine extends Model
     protected $table = 'machine';
     protected $fillable = [
         'machine_name',
-        'machine_location'
+        // 'machine_location'
     ];
 }

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -17,8 +16,10 @@ return new class extends Migration
             $table->string('keterangan_kerusakan')->nullable();
             $table->string('penyebab_kerusakan')->nullable();
             $table->date('tanggal_kerusakan');
-            $table->enum('shift', ['SHIFT 1', 'SHIFT 2', 'SHIFT BU', 'Long Shift'])->charset('utf8mb4');
-            $table->enum('lokasi_mesin', ['410', '280', 'INDIGO']);
+            // $table->enum('shift', ['SHIFT 1', 'SHIFT 2', 'SHIFT BU', 'Long Shift'])->charset('utf8mb4');
+            $table->string('shift'); // Engkok atek master
+            $table->string('lokasi_mesin'); // Engkok atek master
+            // $table->enum('lokasi_mesin', ['410', '280', 'INDIGO']);
             $table->string('kategori_mesin'); // Engkok atek master
             $table->date('tanggal_perbaikan')->nullable();
             $table->string('metode_perbaikan')->nullable();

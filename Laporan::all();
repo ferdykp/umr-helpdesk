@@ -1,0 +1,22 @@
+[90m= [39m[34;4mApp\Models\Laporan[39;24m {#6456
+    [34mnama_teknisi[39m: "[32mBudi[39m",
+    [34mketerangan_kerusakan[39m: "[32mMotor rusak[39m",
+    [34mpenyebab_kerusakan[39m: "[32mOverload[39m",
+    [34mtanggal_kerusakan[39m: [34;4mIlluminate\Support\Carbon @1742583545[39;24m {#6472
+      [34mdate[39m: [36m2025-03-21 18:59:05.410105 UTC (+00:00)[39m,
+    },
+    [34mshift[39m: "[32mSHIFT 1[39m",
+    [34mlokasi_mesin[39m: "[32m410[39m",
+    [34mkategori_mesin[39m: "[32mMesin A[39m",
+    [34mmetode_perbaikan[39m: "[32mGanti sparepart[39m",
+    [34mtanggal_perbaikan[39m: [34;4mIlluminate\Support\Carbon @1742583545[39;24m {#6485
+      [34mdate[39m: [36m2025-03-21 18:59:05.410132 UTC (+00:00)[39m,
+    },
+    [34mfoto[39m: "[32mfoto.jpg[39m",
+    [34mcatatan[39m: "[32mButuh pengecekan ulang[39m",
+    [34mstatus[39m: "[32mDalam Proses[39m",
+    [34mupdated_at[39m: "[32m2025-03-21 18:59:05[39m",
+    [34mcreated_at[39m: "[32m2025-03-21 18:59:05[39m",
+    [34mid[39m: [35m4[39m,
+  }
+

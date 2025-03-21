@@ -34,7 +34,7 @@ Route::get('/data/shift', [DataController::class, 'getShifts'])->name('data.shif
 Route::resource('report', ReportController::class);
 Route::get('/report', [ReportController::class, 'index'])->name('report');
 /*Route::get('/report', [ReportController::class, 'index'])->name('report');*/
-Route::get('/report/create', [ReportController::class, 'create'])->name('report.create');
+// Route::get('/report/create', [ReportController::class, 'create'])->name('report.create');
 Route::get('/report-export', [ReportController::class, 'export'])->name('report.export');
 Route::post('/report/bulk-delete', [ReportController::class, 'bulkDelete'])->name('report.bulk-delete');
 Route::get('/report/search', [ReportController::class, 'search'])->name('report.search');
@@ -102,5 +102,7 @@ Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
 
 Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance');
 Route::post('/maintenance/add-note', [MaintenanceController::class, 'store']);
+Route::get('/dashboard', [MaintenanceController::class, 'dashboard'])->name('dashboard');
+
 
 Route::get('/testing', [TestingController::class, 'index'])->name('testing');

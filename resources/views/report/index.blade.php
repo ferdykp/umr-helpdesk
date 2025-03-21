@@ -41,8 +41,9 @@
                                 <div class="row items-center">
 
                                     <div class="col-md-3">
-                                        <input type="text" id="search" data-route="" name="search"
-                                            placeholder="Search Report" autocomplete="off" class="form-control">
+                                        <input type="text" id="search" data-route="{{ route('report.search') }}"
+                                            name="search" placeholder="Search Report" autocomplete="off"
+                                            class="form-control">
                                     </div>
 
                                     <div class="col-md-3">
