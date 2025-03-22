@@ -62,14 +62,14 @@ class ManualBookController extends Controller
     {
         $data = ManualBook::findOrFail($id);
         $data->update($request->all());
-        return redirect()->route('manualbook.index')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('manualbook')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $data = ManualBook::findOrFail($id);
         $data->delete();
-        return redirect()->route('dashboard.manualbook')->with('success', 'Manual Book berhasil dihapus.');
+        return redirect()->route('manualbook')->with('success', 'Manual Book berhasil dihapus.');
     }
 
     public function download($filename)
