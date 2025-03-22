@@ -147,35 +147,51 @@ class ReportController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('search');
-        $shift = $request->input('shift');
-        $location = $request->input('location');
-        $machine = $request->input('machine');
+        try {
+            $query = $request->input('search');
+            $shift = $request->input('shift');
+            $location = $request->input('location');
+            $machine = $request->input('machine');
 
-        $laporan = Laporan::query();
+            $laporan = Laporan::query();
 
-        if (!empty($query)) {
-            foreach (Schema::getColumnListing('laporan') as $column) {
-                $laporan->orWhere($column, 'LIKE', "%$query%");
+            if (!empty($query)) {
+                $laporan->where(function($q) use ($query) {
+                    foreach (Schema::getColumnListing('laporan') as $column) {
+                        $q->orWhere($column, 'LIKE', "%$query%");
+                    }
+                });
             }
+
+            if (!empty($shift)) {
+                $laporan->where('shift', $shift);
+            }
+
+            if (!empty($location)) {
+                $laporan->where('lokasi_mesin', $location);
+            }
+
+            if (!empty($machine)) {
+                $laporan->where('kategori_mesin', $machine);
+            }
+
+            $laporan = $laporan->paginate(10);
+
+            // Make sure we're using the correct variable name to match your view
+            $data = $laporan;
+            $html = view('report.table', compact('data'))->render();
+
+            return response()->json(['html' => $html]);
+
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Search error: ' . $e->getMessage());
+
+            // Return empty results instead of an error
+            $data = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+            $html = view('report.table', compact('data'))->render();
+
+            return response()->json(['html' => $html]);
         }
-
-        if (!empty($shift)) {
-            $laporan->where('shift', $shift);
-        }
-
-        if (!empty($location)) {
-            $laporan->where('lokasi_mesin', $location);
-        }
-
-        if (!empty($machine)) {
-            $laporan->where('kategori_mesin', $machine);
-        }
-
-        $laporan = $laporan->paginate(10);
-
-        $html = view('report.table', compact('laporan'))->render();
-
-        return response()->json(['html' => $html]);
     }
 }

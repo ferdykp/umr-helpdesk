@@ -262,8 +262,9 @@
         function performSearch(query, shift, location, machine) {
             $.ajax({
                 url: "{{ route('report.search') }}",
-                type: "GET",
+                type: "POST",
                 data: {
+                    _token: "{{ csrf_token() }}",
                     search: encodeURIComponent(query),
                     shift: encodeURIComponent(shift),
                     machine: encodeURIComponent(machine),

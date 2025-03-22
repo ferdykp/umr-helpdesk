@@ -13,7 +13,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class MachineController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->controllerId = 'machine';
     }
 
@@ -21,7 +22,7 @@ class MachineController extends Controller
     {
         // $laporan = Laporan::all()->paginate(10);
         // return view('dashboard.machine');
-        
+
         $crud = new DKAppCRUD();
         $crud->TableId($this->controllerId);
         $crud->UrlGet(route('machine.data'));
@@ -31,7 +32,8 @@ class MachineController extends Controller
         return view('dashboard.machine2', compact('data'));
     }
 
-    public function data(){
+    public function data()
+    {
         $machines = machine::select(['idmachine', 'machine_name', 'machine_location']);
         return response()->json($machines->get());
     }
