@@ -14,14 +14,8 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        $notes = Maintenance::all();
+        $notes = Maintenance::latest()->take(5)->get();
         return view('maintenance.index', compact('notes'));
-    }
-
-    public function dashboard()
-    {
-        $notes = Maintenance::latest()->take(5)->get(); // Ambil 5 catatan terbaru
-        return view('dashboard.index', compact('notes'));
     }
 
 

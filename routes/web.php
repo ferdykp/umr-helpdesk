@@ -102,7 +102,6 @@ Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
 
 Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance');
 Route::post('/maintenance/add-note', [MaintenanceController::class, 'store']);
-Route::get('/dashboard', [MaintenanceController::class, 'dashboard'])->name('dashboard');
 
 
 Route::get('/testing', [TestingController::class, 'index'])->name('testing');
