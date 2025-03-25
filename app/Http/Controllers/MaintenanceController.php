@@ -71,6 +71,9 @@ class MaintenanceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $notes = Maintenance::findOrFail($id);
+        $notes->delete();
+
+        return redirect('dashboard')->with('success', 'Jadwal Selesai.');
     }
 }

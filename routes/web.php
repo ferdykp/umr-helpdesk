@@ -100,6 +100,7 @@ Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
     // Route::get('userlist', [UserController::class, 'index'])->name('users.list');
 });
 
+Route::resource('maintenance', MaintenanceController::class);
 Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance');
 Route::post('/maintenance/add-note', [MaintenanceController::class, 'store']);
 

@@ -132,16 +132,28 @@
             </div>
 
             <div class="col-12">
-                <h3 class="mt-4">Catatan Maintenance Terbaru</h3>
-                <ul class="list-group ">
-                    @forelse ($notes as $note)
-                        <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
-                            <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
-                        </li>
-                    @empty
-                        <li class="list-group-item">Belum ada catatan maintenance.</li>
-                    @endforelse
-                </ul>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="ml-5 mr-12 d-flex">Catatan Maintenance Terbaru</h3>
+                    </div>
+                    <ul class="list-group mb-5">
+                        @forelse ($notes as $note)
+                            <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
+                                <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
+                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                    action="{{ route('maintenance.destroy', $note->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="px-3 py-1 text-white text-bold bg-green-500 rounded-lg hover:bg-green-600">Selesai</button>
+                                </form>
+                            </li>
+                        @empty
+                            <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">Belum
+                                ada catatan maintenance.</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
 
 
