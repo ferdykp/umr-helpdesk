@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-0 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm">
-                        <a class="opacity-15 text-white" href="{{ url('/') }}">Home</a>
+                        <a class="opacity-15 text-white" href="{{ url('/dashboard') }}">Home</a>
                     </li>
                     @foreach ($segments as $index => $segment)
                         @php
