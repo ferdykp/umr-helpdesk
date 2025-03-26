@@ -8,15 +8,16 @@
         <button onclick="openModal('{{ $modalId }}')" class="text-left font-semibold flex-1">
             {{ $item->document_name }}
         </button>
-
-        <form action="{{ route('manualbook.destroy', $item->id) }}" method="POST"
-            onsubmit="return confirm('Yakin ingin menghapus PDF ini?')">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                Delete
-            </button>
-        </form>
+        @if (Auth::user()->role == 'admin')
+            <form action="{{ route('manualbook.destroy', $item->id) }}" method="POST"
+                onsubmit="return confirm('Yakin ingin menghapus PDF ini?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                    Delete
+                </button>
+            </form>
+        @endif
     </div>
 
     <!-- Modal Pdf Preview -->

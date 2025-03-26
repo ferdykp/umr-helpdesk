@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SparePart;
 use App\Models\Location;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SparePartExport;
 
@@ -25,6 +26,10 @@ class SparePartController extends Controller
      */
     public function create()
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
+        };
+
         $location =Location::all();
         /*dd($location);*/
         return view('sparepart.create', compact('location'));
@@ -35,6 +40,9 @@ class SparePartController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
             'nama_sparepart' => 'required',
             'kategori' => 'required',
@@ -62,6 +70,9 @@ class SparePartController extends Controller
      */
     public function edit(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
+        };
         $sparepart = SparePart::findOrFail($id);
         // return view('edit-sparepart', compact('sparepart'));
     }
@@ -71,6 +82,9 @@ class SparePartController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
             'nama_sparepart' => 'required',
             'kategori' => 'required',
@@ -90,6 +104,9 @@ class SparePartController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
+        };
         $sparepart = SparePart::findOrFail($id);
         $sparepart->delete();
         return redirect()->route('sparepart')->with('success', 'Sparepart berhasil dihapus.');

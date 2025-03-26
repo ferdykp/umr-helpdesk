@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Location;
+use Illuminate\Support\Facades\Auth;
 
 class LocationController extends Controller
 {
 
     public function index()
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $location = location::paginate(10);
         return view('location.index', compact('location'));
     }
 
     public function store(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
             'location_name' => 'required',
         ]);
@@ -27,6 +34,9 @@ class LocationController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $location = location::findOrFail($id);
 
         $request->validate([
@@ -40,6 +50,9 @@ class LocationController extends Controller
 
     public function destroy(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $location = location::findOrFail($id);
         $location->delete();
 
@@ -48,6 +61,9 @@ class LocationController extends Controller
 
     public function bulkDelete(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         try {
             $ids = $request->input('ids', []);
             if (empty($ids)) {

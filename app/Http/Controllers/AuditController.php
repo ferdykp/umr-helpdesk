@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Audit;
 
 class AuditController extends Controller
@@ -62,6 +63,9 @@ class AuditController extends Controller
 
     public function destroy($id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('audit')->with('error', 'Anda tidak memiliki akses untuk menghapus dokumen.');
+        };
         $data =Audit::findOrFail($id);
         $data->delete();
         return redirect()->route('audit')->with('success', 'Audit Dokumen berhasil dihapus.');

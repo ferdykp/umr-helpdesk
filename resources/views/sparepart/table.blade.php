@@ -1,8 +1,10 @@
 @forelse ($data as $index => $item)
     <tr>
-        <td class="text-center">
-            <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
-        </td>
+        @if (Auth::user()->role == 'Admin')
+            <td class="text-center">
+                <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
+            </td>
+        @endif
         <td class="text-center">
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
@@ -31,16 +33,17 @@
         <td style="white-space: nowrap;" class="text-center">
             {{ $item->catatan }}
         </td>
-        <td class="d-flex justify-content-center">
-        <td class="d-flex justify-content-center">
-            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('report.destroy', $item->id) }}"
-                method="POST" class="d-flex gap-2">
-                <a href="{{ route('sparepart.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-            </form>
-        </td>
+        @if (Auth::user()->role == 'Admin')
+            <td class="d-flex justify-content-center">
+                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                    action="{{ route('report.destroy', $item->id) }}" method="POST" class="d-flex gap-2">
+                    <a href="{{ route('sparepart.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        @endif
     </tr>
 @empty
     <tr>

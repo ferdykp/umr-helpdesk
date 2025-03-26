@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shift;
+use Illuminate\Support\Facades\Auth;
 
 class ShiftController extends Controller
 {
 
     public function index()
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $shift = shift::paginate(10);
         return view('shift.index', compact('shift'));
     }
 
     public function store(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
             'shift_name' => 'required',
         ]);
@@ -27,6 +34,9 @@ class ShiftController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $shift = shift::findOrFail($id);
 
         $request->validate([
@@ -40,6 +50,9 @@ class ShiftController extends Controller
 
     public function destroy(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $shift = shift::findOrFail($id);
         $shift->delete();
 
@@ -48,6 +61,9 @@ class ShiftController extends Controller
 
     public function bulkDelete(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         try {
             $ids = $request->input('ids', []);
             if (empty($ids)) {

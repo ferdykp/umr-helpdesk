@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Machine;
+use Illuminate\Support\Facades\Auth;
 
 class MachineController extends Controller
 {
 
     public function index()
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $machine = Machine::paginate(10);
         return view('machine.index', compact('machine'));
     }
 
     public function store(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
             'machine_name' => 'required',
         ]);
@@ -27,6 +34,9 @@ class MachineController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $machine = Machine::findOrFail($id);
 
         $request->validate([
@@ -40,6 +50,9 @@ class MachineController extends Controller
 
     public function destroy(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         $machine = Machine::findOrFail($id);
         $machine->delete();
 
@@ -48,6 +61,9 @@ class MachineController extends Controller
 
     public function bulkDelete(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses.');
+        };
         try {
             $ids = $request->input('ids', []);
             if (empty($ids)) {

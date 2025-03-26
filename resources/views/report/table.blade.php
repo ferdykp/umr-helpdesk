@@ -63,11 +63,10 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                @else
-                    <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
-                        Detail
-                    </button>
             @endif
+            <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
+                Detail
+            </button>
             </form>
         </td>
     </tr>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Laporan;
-use Illuminate\Support\Facades\Auth; // Make sure to use this import
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanExport;
 use Illuminate\Support\Facades\Schema;

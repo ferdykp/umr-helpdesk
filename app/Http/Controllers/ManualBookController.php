@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ManualBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
@@ -67,6 +68,10 @@ class ManualBookController extends Controller
 
     public function destroy($id)
     {
+
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('manualbook')->with('error', 'Anda tidak memiliki akses untuk menghapus manualbook.');
+        };
         $data = ManualBook::findOrFail($id);
         $data->delete();
         return redirect()->route('manualbook')->with('success', 'Manual Book berhasil dihapus.');

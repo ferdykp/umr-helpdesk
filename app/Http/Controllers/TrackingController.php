@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tracking;
+use Illuminate\Support\Facades\Auth;
 
 class TrackingController extends Controller
 {
@@ -14,10 +15,16 @@ class TrackingController extends Controller
     }
     public function create()
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
+        };
         return view('tracking.create');
     }
     public function store(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
         'nama_sparepart' => 'required|string|max:255',
         'tanggal_update' => 'nullable|date',
@@ -34,11 +41,17 @@ class TrackingController extends Controller
     }
     public function edit(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
+        };
         $trackings = Tracking::findOrFail($id);
         return view('tracking.edit', compact('trackings'));
     }
     public function update(Request $request, string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
+        };
         $request->validate([
         'nama_sparepart' => 'required|string|max:255',
         'tanggal_update' => 'nullable|date',
@@ -57,6 +70,9 @@ class TrackingController extends Controller
 
     public function destroy(string $id)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
+        };
         $tracking = Tracking::findOrFail($id);
         $tracking->delete();
         return redirect()->route('tracking')->with('success', 'Sparepart Tracking berhasil dihapus.');
@@ -64,6 +80,9 @@ class TrackingController extends Controller
 
     public function bulkDelete(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
+        };
         try {
             $ids = $request->input('ids', []);
             if (empty($ids)) {
