@@ -1,8 +1,10 @@
 @forelse ($data as $index => $item)
     <tr>
-        <td class="text-center">
-            <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
-        </td>
+        @if (Auth::user()->role == 'admin')
+            <td class="text-center">
+                <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
+            </td>
+        @endif
         <td class="text-center">
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
@@ -51,16 +53,21 @@
         </td>
 
         <td class="d-flex justify-content-center gap-2">
-            <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
-                Detail
-            </button>
-            <a href="{{ route('report.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
-
-            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('report.destroy', $item->id) }}"
-                method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            @if (Auth::user()->role == 'admin')
+                <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
+                    Detail
+                </button>
+                <a href="{{ route('report.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                    action="{{ route('report.destroy', $item->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                @else
+                    <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
+                        Detail
+                    </button>
+            @endif
             </form>
         </td>
     </tr>

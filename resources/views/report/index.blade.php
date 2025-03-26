@@ -22,9 +22,10 @@
                                     <a href="{{ route('report.export') }}" class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
                                         <i class="fa fa-download"></i> Export Data in Excel
                                     </a>
-                                    <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
-                                        Selected</button>
-
+                                    @if (Auth::user()->role == 'admin')
+                                        <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
+                                            Selected</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -126,8 +127,10 @@
                             <table id="datatable" class="table align-items-center mb-0" data-type="report">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="whitespace-nowrap text-center"><input type="checkbox" name="select_all"
-                                                id="select_all_id"></th>
+                                        @if (Auth::user()->role == 'admin')
+                                            <th class="whitespace-nowrap text-center"><input type="checkbox"
+                                                    name="select_all" id="select_all_id"></th>
+                                        @endif
                                         <th class="whitespace-nowrap text-center">No</th>
                                         <th class="whitespace-nowrap text-center">Keterangan Kerusakan
                                         </th>

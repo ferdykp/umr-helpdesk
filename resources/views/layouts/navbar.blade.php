@@ -48,9 +48,11 @@
                         <ul class="dropdown-menu dropdown-menu-end" style="top:.5rem !important;"
                             aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
-                                    <i class="ni ni-circle-08 text-dark text-sm opacity-10 me-2"></i> Profile
-                                </a>
+                                @if (Auth::user()->role == 'admin')
+                                    <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
+                                        <i class="ni ni-circle-08 text-dark text-sm opacity-10 me-2"></i> Profile
+                                    </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('auth.logout') }}">
                                     <i class="ni ni-curved-next text-dark text-sm opacity-10 me-2"></i> Logout
                                 </a>
