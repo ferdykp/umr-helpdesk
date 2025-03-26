@@ -51,17 +51,28 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link {{ request()->is('audit') ? 'bg-primary text-white rounded-lg' : '' }}"
+                    href="{{ route('audit') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-sharp fa-solid fa-folder-open text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Audit Dokumen</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link {{ request()->is('maintenance') ? 'bg-primary text-white rounded-lg' : '' }}"
                     href="{{ route('maintenance') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-sharp fa-solid fa-book text-dark text-sm"></i>
+                        <i class="fa-sharp fa-solid fa-calendar-days text-dark text-sm"></i>
                     </div>
                     <span class="nav-link-text ms-1">Jadwal Maintenance</span>
                 </a>
             </li>
 
-            
+
 
 
             <li class="nav-item mt-3">

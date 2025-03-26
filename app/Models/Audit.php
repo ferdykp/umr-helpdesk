@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Audit extends Model
+{
+    protected $table = 'audits';
+    protected $fillable = ['document_name', 'document_path'];
+}

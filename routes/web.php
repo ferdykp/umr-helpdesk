@@ -11,6 +11,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ManualBookController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrackingController;
@@ -94,6 +95,31 @@ Route::get('/manualbook/download/{filename}', function ($filename) {
 
     return response()->download($path);
 })->where('filename', '.*')->name('manualbook.download');
+
+Route::resource('audit', AuditController::class);
+Route::get('audit/{id}/preview', [AuditController::class, 'preview'])->name('audit.preview');
+Route::post('audit/import', [AuditController::class, 'import'])->name('audit.import');
+Route::get('/audit', [AuditController::class, 'index'])->name('audit');
+Route::get('/audit-search', [AuditController::class, 'search'])->name('audit.search');
+Route::get('/audit/view/{filename}', function ($filename) {
+    $path = storage_path('app/public/uploads/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('filename', '.*');
+
+Route::get('/audit/download/{filename}', function ($filename) {
+    $path = storage_path('app/public/uploads/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->download($path);
+})->where('filename', '.*')->name('audit.download');
 
 Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
     Route::resource('users', UserController::class);
