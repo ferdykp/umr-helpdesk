@@ -64,9 +64,9 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
             @endif
-            <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
+            {{-- <button class="btn btn-sm btn-warning btn-report-detail" data-id="{{ $item->id }}">
                 Detail
-            </button>
+            </button> --}}
             </form>
         </td>
     </tr>
