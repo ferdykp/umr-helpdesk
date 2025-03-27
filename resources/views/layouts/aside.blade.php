@@ -87,12 +87,14 @@
                         <li class="nav-item">
                             <a class="nav-link p-2 {{ request()->is('sparepart') ? 'active bg-light rounded' : '' }}"
                                 href="sparepart">
+                                <i class="fa-solid fa-truck-ramp-box"></i>
                                 Inventory Sparepart
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link p-2 {{ request()->is('tracking') ? 'active bg-light rounded' : '' }}"
                                 href="tracking">
+                                <i class="fa-solid fa-truck-moving"></i>
                                 Tracking Sparepart
                             </a>
                         </li>
