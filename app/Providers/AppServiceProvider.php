@@ -35,15 +35,15 @@ class AppServiceProvider extends ServiceProvider
             // $stockCodeQuery = StockCode::query(); // Tambahkan query untuk StockCode
 
             // Jika role adalah 'supplier', tambahkan filter tertentu
-            if ($role === 'user') {
-                $reportQuery->where('home_wh', 'UTVH');
-                //     $wrQuery->where('home_wh', 'UTVH');
-                //     $midlifeQuery->where('home_wh', 'UTVH');
-                //     $overhaulQuery->where('home_wh', 'UTVH');
-                //     $periodicQuery->where('home_wh', 'UTVH');
-                //     $lainnyaQuery->where('home_wh', 'UTVH');
-                //     $stockCodeQuery->where('home_wh', 'UTVH'); // Filter StockCode jika perlu
-            }
+            /*if ($role === ['user', 'admin']) {*/
+            /*    $reportQuery->where('', 'UTVH');*/
+            //     $wrQuery->where('home_wh', 'UTVH');
+            //     $midlifeQuery->where('home_wh', 'UTVH');
+            //     $overhaulQuery->where('home_wh', 'UTVH');
+            //     $periodicQuery->where('home_wh', 'UTVH');
+            //     $lainnyaQuery->where('home_wh', 'UTVH');
+            //     $stockCodeQuery->where('home_wh', 'UTVH'); // Filter StockCode jika perlu
+            /*}*/
 
             // Hitung total data untuk masing-masing kategori
             $dataCounts = [
@@ -61,3 +61,4 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 }
+
