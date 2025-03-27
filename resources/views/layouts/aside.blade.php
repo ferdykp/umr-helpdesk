@@ -104,10 +104,10 @@
 
 
 
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Component</h6>
-            </li>
             @if (Auth::user()->role == 'admin')
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Component</h6>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center {{ request()->is('machine') || request()->is('location') || request()->is('shift') ? 'bg-primary text-white rounded-lg' : '' }}"
                         href="#" id="addComponentDropdown" role="button" data-bs-toggle="collapse"
