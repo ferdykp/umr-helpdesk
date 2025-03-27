@@ -141,9 +141,9 @@
                             <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
                                 <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                    action="{{ route('maintenance.destroy', $note->id) }}" method="POST">
+                                    action="{{ route('maintenance.updateStatus', $note->id) }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('PATCH')
                                     <button type="submit"
                                         class="px-3 py-1 text-white text-bold bg-green-500 rounded-lg hover:bg-green-600">Selesai</button>
                                 </form>

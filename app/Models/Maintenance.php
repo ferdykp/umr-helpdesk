@@ -9,5 +9,5 @@ class Maintenance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'note'];
+    protected $fillable = ['date', 'note', 'status'];
 }

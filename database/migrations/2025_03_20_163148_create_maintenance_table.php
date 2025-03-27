@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->date('date');
             $table->text('note');
+            $table->enum('status', ['belum selesai', 'selesai'])->default('belum selesai');
             $table->timestamps();
         });
     }

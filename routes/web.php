@@ -127,6 +127,7 @@ Route::middleware([AdminMiddleware::class . ':admin'])->group(function () {
 });
 
 Route::resource('maintenance', MaintenanceController::class);
+Route::patch('maintenance/{id}/status', [MaintenanceController::class, 'updateStatus'])->name('maintenance.updateStatus');
 Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance');
 Route::post('/maintenance/add-note', [MaintenanceController::class, 'store']);
 

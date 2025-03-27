@@ -34,8 +34,8 @@
                             class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center my-3">
                             <!-- Left section with Delete Selected button -->
                             {{-- <div class="mb-3 mb-md-0">
-                                <button class="btn btn-danger" id="delete_selected">Delete Selected</button>
-                            </div> --}}
+                            <button class="btn btn-danger" id="delete_selected">Delete Selected</button>
+                        </div> --}}
 
                             <!-- Right section with search input -->
                             <div class="w-100 w-md-100" style="max-width: 100%;">
@@ -182,11 +182,11 @@
 
                 // Set loading state
                 $("#report_detail").html(`
-                    <div class="flex justify-center items-center py-6">
-                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500"></div>
-                        <span class="ml-3 text-gray-600">Loading...</span>
-                    </div>
-                `);
+<div class="flex justify-center items-center py-6">
+<div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500"></div>
+<span class="ml-3 text-gray-600">Loading...</span>
+</div>
+`);
 
                 // Fetch report data
                 $.ajax({
@@ -197,14 +197,14 @@
                     },
                     error: function() {
                         $("#report_detail").html(`
-                            <div class="text-center py-6">
-                                <svg class="mx-auto h-12 w-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <p class="mt-2 text-red-500 font-medium">Gagal mengambil data laporan!</p>
-                                <p class="mt-1 text-gray-500">Silakan coba lagi nanti.</p>
-                            </div>
-                        `);
+<div class="text-center py-6">
+<svg class="mx-auto h-12 w-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+</svg>
+<p class="mt-2 text-red-500 font-medium">Gagal mengambil data laporan!</p>
+<p class="mt-1 text-gray-500">Silakan coba lagi nanti.</p>
+</div>
+`);
                     }
                 });
             });

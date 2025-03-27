@@ -35,6 +35,7 @@ class MaintenanceController extends Controller
         $request->validate([
             'date' => 'required|date',
             'note' => 'required|string',
+            'status' => 'nullable',
         ]);
 
         Maintenance::create($request->all());
@@ -64,6 +65,14 @@ class MaintenanceController extends Controller
     public function update(Request $request, string $id)
     {
         //
+    }
+
+    public function updateStatus($id)
+    {
+        $notes = Maintenance::findOrFail($id);
+        $notes->update(['status' => 'selesai']);
+
+        return back()->with('success', 'Status maintenance telah diperbarui.');
     }
 
     /**

@@ -24,6 +24,10 @@
               @foreach ($notes as $note)
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                       <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
+                      <span class="badge
+                {{ $note->status === 'selesai' ? 'bg-success' : 'bg-danger' }}">
+                          {{ ucfirst($note->status) }}
+                      </span>
                   </li>
               @endforeach
           </ul>
@@ -41,6 +45,7 @@
                           {
                               title: '{{ $note->note }}',
                               start: '{{ $note->date }}',
+                              color: '{{ $note->status === 'selesai' ? 'green' : 'red' }}',
                           },
                       @endforeach
                   ]

@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $notes = Maintenance::latest()->take(5)->get(); // Ambil 5 catatan terbaru
+        $notes = Maintenance::where('status', 'belum selesai')->get();
         return view('dashboard.index', compact('notes'));
     }
 }
