@@ -168,7 +168,7 @@ class ReportController extends Controller
             $laporan = Laporan::query();
 
             if (!empty($query)) {
-                $laporan->where(function($q) use ($query) {
+                $laporan->where(function ($q) use ($query) {
                     foreach (Schema::getColumnListing('laporan') as $column) {
                         $q->orWhere($column, 'LIKE', "%$query%");
                     }
@@ -194,7 +194,6 @@ class ReportController extends Controller
             $html = view('report.table', compact('data'))->render();
 
             return response()->json(['html' => $html]);
-
         } catch (\Exception $e) {
             // Log the error for debugging
             \Log::error('Search error: ' . $e->getMessage());
