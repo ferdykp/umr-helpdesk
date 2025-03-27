@@ -184,7 +184,6 @@ class ReportController extends Controller
             $html = view('report.table', compact('data'))->render();
 
             return response()->json(['html' => $html]);
-
         } catch (\Exception $e) {
             // Log the error for debugging
             \Log::error('Search error: ' . $e->getMessage());
