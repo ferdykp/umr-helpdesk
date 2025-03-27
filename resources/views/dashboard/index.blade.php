@@ -10,7 +10,7 @@
                                 <div class="numbers">
                                     <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Laporan Kerusakan</h4>
                                     <h5 class="font-weight-bolder">
-                                        {{-- {{ $wrCount }} --}}
+                                        {{ $reportCount }}
                                     </h5>
                                 </div>
                             </div>

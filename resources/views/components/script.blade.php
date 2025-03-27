@@ -57,7 +57,7 @@
       });
   </script> --}}
 
-  <script>
+  {{-- <script>
       document.addEventListener("DOMContentLoaded", function() {
           const selectAllCheckbox = document.getElementById("select_all_id");
           const checkboxes = document.querySelectorAll(".checkbox_id");
@@ -139,7 +139,7 @@
                   .catch(error => console.error("❌ Gagal menghapus data:", error));
           });
       });
-  </script>
+  </script> --}}
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>

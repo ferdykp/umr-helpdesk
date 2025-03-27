@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Laporan;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Container\Attributes\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanExport;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -73,9 +75,6 @@ class ReportController extends Controller
      */
     public function edit(string $id)
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            return redirect()->route('report')->with('error', 'Anda tidak memiliki akses untuk mengedit laporan.');
-        };
         $laporan = Laporan::findOrFail($id);
         return view('report.edit', compact('laporan'));
     }
@@ -85,9 +84,6 @@ class ReportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            return redirect()->route('report')->with('error', 'Anda tidak memiliki akses untuk mengubah laporan.');
-        };
         $request->validate([
             'nama_teknisi' => 'required',
             'keterangan_kerusakan' => 'required',
@@ -125,9 +121,6 @@ class ReportController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            return redirect()->route('report')->with('error', 'Anda tidak memiliki akses untuk menghapus laporan.');
-        };
         $laporan = Laporan::findOrFail($id);
         $laporan->delete();
 
@@ -136,9 +129,6 @@ class ReportController extends Controller
 
     public function bulkDelete(Request $request)
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            return redirect()->route('report')->with('error', 'Anda tidak memiliki akses untuk menghapus laporan.');
-        };
         try {
             $ids = $request->input('ids', []);
             if (empty($ids)) {
@@ -168,7 +158,7 @@ class ReportController extends Controller
             $laporan = Laporan::query();
 
             if (!empty($query)) {
-                $laporan->where(function($q) use ($query) {
+                $laporan->where(function ($q) use ($query) {
                     foreach (Schema::getColumnListing('laporan') as $column) {
                         $q->orWhere($column, 'LIKE', "%$query%");
                     }
