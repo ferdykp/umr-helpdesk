@@ -136,46 +136,48 @@
                     <div class="card-header">
                         <h3 class="ml-5 mr-12 d-flex">Catatan Maintenance Terbaru</h3>
                     </div>
+                    <div class="card-body">
+                        <!-- List Belum Selesai -->
+                        <h4 class="mt-3 ml-4">Belum Selesai</h4>
+                        <ul class="list-group mb-5">
+                            @forelse ($notes->where('status', 'belum selesai') as $note)
+                                <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
+                                    <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ingin menyelesaikan ini?');"
+                                        action="{{ route('maintenance.updateStatus', $note->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="px-3 py-1 text-white text-bold bg-yellow-500 rounded-lg hover:bg-yellow-600">
+                                            Tandai Selesai
+                                        </button>
+                                    </form>
+                                </li>
+                            @empty
+                                <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
+                                    Tidak ada catatan maintenance yang belum selesai.
+                                </li>
+                            @endforelse
+                        </ul>
 
-                    <!-- List Belum Selesai -->
-                    <h4 class="mt-3 ml-4">Belum Selesai</h4>
-                    <ul class="list-group mb-5">
-                        @forelse ($notes->where('status', 'belum selesai') as $note)
-                            <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
-                                <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
-                                <form onsubmit="return confirm('Apakah Anda Yakin ingin menyelesaikan ini?');"
-                                    action="{{ route('maintenance.updateStatus', $note->id) }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit"
-                                        class="px-3 py-1 text-white text-bold bg-yellow-500 rounded-lg hover:bg-yellow-600">
-                                        Tandai Selesai
-                                    </button>
-                                </form>
-                            </li>
-                        @empty
-                            <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
-                                Tidak ada catatan maintenance yang belum selesai.
-                            </li>
-                        @endforelse
-                    </ul>
-
-                    <!-- List Sudah Selesai -->
-                    <h4 class="mt-3 ml-4">Sudah Selesai</h4>
-                    <ul class="list-group mb-5">
-                        @forelse ($notes->where('status', 'selesai') as $note)
-                            <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
-                                <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
-                                <span class="badge bg-green-500 text-white px-3 py-1 rounded-lg">Selesai</span>
-                            </li>
-                        @empty
-                            <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
-                                Tidak ada catatan maintenance yang sudah selesai.
-                            </li>
-                        @endforelse
-                    </ul>
+                        <!-- List Sudah Selesai -->
+                        <h4 class="mt-3 ml-4">Sudah Selesai</h4>
+                        <ul class="list-group mb-5">
+                            @forelse ($notes->where('status', 'selesai') as $note)
+                                <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
+                                    <span><strong>{{ $note->date }}</strong>: {{ $note->note }}</span>
+                                    <span class="badge bg-green-500 text-white px-3 py-1 rounded-lg">Selesai</span>
+                                </li>
+                            @empty
+                                <li class="list-group-item ml-12 mr-12 d-flex justify-content-between align-items-center">
+                                    Tidak ada catatan maintenance yang sudah selesai.
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
             </div>
+
 
 
             {{-- <div class="col-xl-3 col-sm-6 mt-6">
