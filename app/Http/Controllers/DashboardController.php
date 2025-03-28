@@ -9,7 +9,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $notes = Maintenance::where('status', 'belum selesai')->get();
+        /*$notes = Maintenance::where('status', 'belum selesai')->get();*/
+        $notes = Maintenance::all();
         return view('dashboard.index', compact('notes'));
     }
 }
