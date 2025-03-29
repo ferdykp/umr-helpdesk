@@ -10,7 +10,7 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main" style="overflow: visible !important">
         <ul class="navbar-nav">
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Choose Menu</h6>
@@ -87,15 +87,16 @@
                         <li class="nav-item">
                             <a class="nav-link p-2 {{ request()->is('sparepart') ? 'active bg-light rounded' : '' }}"
                                 href="sparepart">
-                                Inventory Sparepart
+                                <i class="fa-solid fa-box me-2"></i> Inventory Sparepart
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link p-2 {{ request()->is('tracking') ? 'active bg-light rounded' : '' }}"
                                 href="tracking">
-                                Tracking Sparepart
+                                <i class="fa-solid fa-map-location-dot me-2"></i> Tracking Sparepart
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </li>
@@ -118,7 +119,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Add Component</span>
                     </a>
-                    <div class="collapse {{ request()->is('machine') || request()->is('location') || request()->is('shift') ? 'show' : '' }}"
+                    <div class="col lapse {{ request()->is('machine') || request()->is('location') || request()->is('shift') ? 'show' : '' }}"
                         id="addComponentMenu">
                         <ul class="nav flex-column ms-3 my-2">
                             <li class="nav-item">
