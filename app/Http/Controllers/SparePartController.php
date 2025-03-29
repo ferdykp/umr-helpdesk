@@ -75,7 +75,8 @@ class SparePartController extends Controller
             return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
         };
         $sparepart = SparePart::findOrFail($id);
-        // return view('edit-sparepart', compact('sparepart'));
+        $location = Location::all();
+        return view('sparepart.edit', compact('sparepart', 'location'));
     }
 
     /**
