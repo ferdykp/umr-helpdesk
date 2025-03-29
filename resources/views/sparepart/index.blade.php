@@ -101,26 +101,66 @@
     </div>
     <script>
         $(document).ready(function() {
+            // Basic search
             $('#search').on('keyup', function() {
-                let query = $(this).val();
+                performSearch();
+            });
 
+            // Function to perform the search
+            function performSearch() {
+                let query = $('#search').val();
+
+                // Only search if query is more than 2 chars or empty, or if filters are set
                 if (query.length > 2 || query.length === 0) {
                     $.ajax({
                         url: "{{ route('sparepart.search') }}",
-                        type: "GET",
+                        type: "POST",
                         data: {
-                            query: query
+                            _token: "{{ csrf_token() }}",
+                            query: query,
+
+                        },
+                        beforeSend: function() {
+                            // Show loading indicator if you have one
+                            $('#loading-indicator').removeClass('d-none');
                         },
                         success: function(response) {
-                            $('#table-body').html(response.html); // Gunakan response.html
+                            $('#table-body').html(response.html);
                         },
                         error: function(xhr, status, error) {
                             console.error("AJAX Error:", status, error);
-                            console.log(xhr.responseText); // Debug error response
+                            console.log(xhr.responseText);
+                        },
+                        complete: function() {
+                            // Hide loading indicator if you have one
+                            $('#loading-indicator').addClass('d-none');
                         }
                     });
                 }
+            }
+
+            // Handle pagination clicks
+            $(document).on('click', '.pagination a', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: "GET",
+                    success: function(response) {
+                        $('#table-body').html(response.html);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Pagination Error:", status, error);
+                    }
+                });
             });
+
+            // Select all checkboxes
+            $('#select_all_id').on('click', function() {
+                $('.checkbox_id').prop('checked', $(this).prop('checked'));
+            });
+
+
         });
     </script>
 @endsection

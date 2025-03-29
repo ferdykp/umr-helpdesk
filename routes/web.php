@@ -45,13 +45,14 @@ Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart
 Route::get('/sparepart/create', [SparePartController::class, 'create'])->name('sparepart.create');
 Route::get('/sparepart-export', [SparePartController::class, 'export'])->name('sparepart.export');
 Route::post('/sparepart/bulk-delete', [SparePartController::class, 'bulkDelete'])->name('sparepart.bulk-delete');
-Route::get('/sparepart/search', [SparepartController::class, 'search'])->name('sparepart.search');
+Route::post('/sparepart/search', [SparepartController::class, 'search'])->name('sparepart.search');
 
 Route::resource('tracking', TrackingController::class);
 Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
 Route::get('/tracking/create', [TrackingController::class, 'create'])->name('tracking.create');
 Route::post('/tracking/bulk-delete', [TrackingController::class, 'bulkDelete'])->name('tracking.bulk-delete');
 Route::get('/tracking-export', [TrackingController::class, 'export'])->name('tracking.export');
+Route::post('/tracking/search', [TrackingController::class, 'search'])->name('tracking.search');
 
 Route::resource('machine', machineController::class)->except(['show']);
 Route::get('/machine', [MachineController::class, 'index'])->name('machine');
