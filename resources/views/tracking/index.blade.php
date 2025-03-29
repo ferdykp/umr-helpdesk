@@ -23,7 +23,7 @@
                             class="pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                             <div class="w-100 w-md-auto mb-2 mb-md-0">
                                 <div class="d-flex flex-column flex-sm-row">
-                                    @if (Auth::user()->role == 'Admin')
+                                    @if (Auth::user()->role == 'admin')
                                         <a href="{{ route('tracking.create') }}"
                                             class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah Tracking
                                             Sparepart</a>
@@ -55,7 +55,7 @@
                             <table id="datatable" class="table align-items-center mb-0" data-type="tracking">
                                 <thead class="table-light">
                                     <tr>
-                                        @if (Auth::user()->role == 'Admin')
+                                        @if (Auth::user()->role == 'admin')
                                             <th class="whitespace-nowrap text-center"><input type="checkbox"
                                                     name="select_all" id="select_all_id"></th>
                                             <th class="whitespace-nowrap text-center">No</th>

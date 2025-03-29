@@ -30,7 +30,7 @@ class SparePartController extends Controller
             return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
         };
 
-        $location =Location::all();
+        $location = Location::all();
         /*dd($location);*/
         return view('sparepart.create', compact('location'));
     }

@@ -1,6 +1,6 @@
 @forelse ($data as $index => $item)
     <tr>
-        @if (Auth::user()->role == 'Admin')
+        @if (Auth::user()->role == 'admin')
             <td class="text-center">
                 <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
             </td>
@@ -40,7 +40,7 @@
         <td style="white-space: nowrap;" class="text-center">
             {{ $item->catatan }}
         </td>
-        @if (Auth::user()->role == 'Admin')
+        @if (Auth::user()->role == 'admin')
             <td class="d-flex justify-content-center">
                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                     action="{{ route('tracking.destroy', $item->id) }}" method="POST" class="d-flex gap-2">

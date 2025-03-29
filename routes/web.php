@@ -42,10 +42,10 @@ Route::post('/report/search', [ReportController::class, 'search'])->name('report
 
 Route::resource('sparepart', SparePartController::class);
 Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart');
-/*Route::get('/sparepart', [SparePartController::class, 'index'])->name('sparepart');*/
 Route::get('/sparepart/create', [SparePartController::class, 'create'])->name('sparepart.create');
 Route::get('/sparepart-export', [SparePartController::class, 'export'])->name('sparepart.export');
 Route::post('/sparepart/bulk-delete', [SparePartController::class, 'bulkDelete'])->name('sparepart.bulk-delete');
+Route::get('/sparepart/search', [SparepartController::class, 'search'])->name('sparepart.search');
 
 Route::resource('tracking', TrackingController::class);
 Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
