@@ -164,4 +164,19 @@ class SparePartController extends Controller
             return view('sparepart.index', compact('sparepart'))->with('error', 'An error occurred during search.');
         }
     }
+
+    public function bulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->input('ids', []);
+            if (empty($ids)) {
+                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+            }
+
+            SparePart::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 }

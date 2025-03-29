@@ -155,12 +155,6 @@
                 });
             });
 
-            // Select all checkboxes
-            $('#select_all_id').on('click', function() {
-                $('.checkbox_id').prop('checked', $(this).prop('checked'));
-            });
-
-
         });
     </script>
 @endsection
