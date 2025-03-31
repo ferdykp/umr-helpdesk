@@ -50,7 +50,7 @@
                                 <tbody id="table-body">
                                     @include('machine.table', [
                                         'data' => $machine,
-                                        'routePrefix' => 'report',
+                                        'routePrefix' => 'machine',
                                     ])
                                 </tbody>
                             </table>

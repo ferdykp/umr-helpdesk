@@ -66,6 +66,7 @@
              let deleteRoutes = {
                  "report": "{{ route('report.bulk-delete') }}",
                  "tracking": "{{ route('tracking.bulk-delete') }}",
+                 "sparepart": "{{ route('sparepart.bulk-delete') }}",
 
              };
 

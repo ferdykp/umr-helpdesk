@@ -8,6 +8,7 @@ use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SparePartExport;
+use illuminate\Support\Facades\Schema;
 
 
 class SparePartController extends Controller
@@ -30,7 +31,7 @@ class SparePartController extends Controller
             return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
         };
 
-        $location =Location::all();
+        $location = Location::all();
         /*dd($location);*/
         return view('sparepart.create', compact('location'));
     }
@@ -74,7 +75,8 @@ class SparePartController extends Controller
             return redirect()->route('sparepart')->with('error', 'Anda tidak memiliki akses.');
         };
         $sparepart = SparePart::findOrFail($id);
-        // return view('edit-sparepart', compact('sparepart'));
+        $location = Location::all();
+        return view('sparepart.edit', compact('sparepart', 'location'));
     }
 
     /**
@@ -115,5 +117,67 @@ class SparePartController extends Controller
     public function export()
     {
         // return Excel::download(new SparePartExport, 'sparepart.xlsx');
+    }
+    public function search(Request $request)
+    {
+        try {
+            $query = $request->input('query');
+
+            $sparepart = SparePart::query();
+
+            if (!empty($query)) {
+                $sparepart->where(function ($q) use ($query) {
+                    foreach (\Schema::getColumnListing('sparepart') as $column) {
+                        $q->orWhere($column, 'LIKE', "%$query%");
+                    }
+                });
+            }
+
+            $sparepart = $sparepart->paginate(10);
+
+            if ($request->ajax()) {
+                $data = $sparepart;
+                $html = view('sparepart.table', [
+                    'data' => $data,
+                    'routePrefix' => 'sparepart',
+                ])->render();
+
+                return response()->json(['html' => $html]);
+            }
+
+            return view('sparepart.index', compact('sparepart'));
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Spare part search error: ' . $e->getMessage());
+
+            if ($request->ajax()) {
+                $data = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+                $html = view('sparepart.table', [
+                    'data' => $data,
+                    'routePrefix' => 'sparepart',
+                ])->render();
+
+                return response()->json(['html' => $html]);
+            }
+
+            // Return empty results instead of an error
+            $sparepart = SparePart::where('id', 0)->paginate(10); // Empty result set
+            return view('sparepart.index', compact('sparepart'))->with('error', 'An error occurred during search.');
+        }
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->input('ids', []);
+            if (empty($ids)) {
+                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+            }
+
+            SparePart::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
     }
 }

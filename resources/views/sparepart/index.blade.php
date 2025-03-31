@@ -14,7 +14,7 @@
                         </form> --}}
                         <div class="w-100 w-md-auto ">
                             <h4 class="">List Sparepart</h4>
-                            {{-- <hr class="bg-danger border-2 border-top border-danger" /> --}}
+                            <hr class="bg-danger border-2 border-top border-danger" />
                         </div>
 
                     </div>
@@ -23,16 +23,15 @@
                             class="pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                             <div class="w-100 w-md-auto mb-2 mb-md-0">
                                 <div class="d-flex flex-column flex-sm-row">
-                                    <a href="{{ route('sparepart.create') }}"
-                                        class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
-                                        Laporan</a>
-                                    <a href="{{ route('sparepart.export') }}"
-                                        class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
-                                        <i class="fa fa-download"></i> Export Data in Excel
-                                    </a>
-                                    @if (Auth::user()->role == 'admin')
-                                        <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
-                                            Selected</button>
+                                    @if (Auth::user()->role == 'Admin')
+                                        <a href="{{ route('sparepart.create') }}"
+                                            class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
+                                            Sparepart</a>
+                                        <a href="{{ route('sparepart.export') }}"
+                                            class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
+                                            <i class="fa fa-download"></i> Export Data in Excel
+                                            <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
+                                                Selected</button>
                                     @endif
                                 </div>
                             </div>
@@ -48,18 +47,18 @@
                             <!-- Right section with search input -->
                             <div class="w-100 w-md-auto" style="max-width: 300px;">
                                 <input type="text" id="search" data-route="" name="search"
-                                    placeholder="Search sparepart" autocomplete="off" class="form-control">
+                                    placeholder="Search Report" autocomplete="off" class="form-control">
                             </div>
                         </div>
                         <div class="table-responsive p-0 rounded-lg my-3">
                             <table id="datatable" class="table align-items-center mb-0" data-type="sparepart">
                                 <thead class="table-light">
                                     <tr>
-                                        @if (Auth::user()->role == 'Admin')
+                                        @if (Auth::user()->role == 'admin')
                                             <th class="whitespace-nowrap text-center"><input type="checkbox"
                                                     name="select_all" id="select_all_id"></th>
                                             <th class="whitespace-nowrap text-center">No</th>
-                                            <th class="whitespace-nowrap text-center">Nama Sparepart</th>
+                                            <th class="whitespace-nowrap text-center">Nama sparepart</th>
                                             <th class="whitespace-nowrap text-center">Kategori</th>
                                             <th class="whitespace-nowrap text-center">Stock</th>
                                             <th class="whitespace-nowrap text-center">Update Stock</th>
@@ -69,7 +68,7 @@
                                             <th class="whitespace-nowrap text-center">Action</th>
                                         @else
                                             <th class="whitespace-nowrap text-center">No</th>
-                                            <th class="whitespace-nowrap text-center">Nama Sparepart</th>
+                                            <th class="whitespace-nowrap text-center">Nama sparepart</th>
                                             <th class="whitespace-nowrap text-center">Kategori</th>
                                             <th class="whitespace-nowrap text-center">Stock</th>
                                             <th class="whitespace-nowrap text-center">Update Stock</th>
@@ -99,4 +98,62 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Basic search
+            $('#search').on('keyup', function() {
+                performSearch();
+            });
+
+            // Function to perform the search
+            function performSearch() {
+                let query = $('#search').val();
+
+                // Only search if query is more than 2 chars or empty, or if filters are set
+                if (query.length > 2 || query.length === 0) {
+                    $.ajax({
+                        url: "{{ route('sparepart.search') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            query: query,
+
+                        },
+                        beforeSend: function() {
+                            // Show loading indicator if you have one
+                            $('#loading-indicator').removeClass('d-none');
+                        },
+                        success: function(response) {
+                            $('#table-body').html(response.html);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("AJAX Error:", status, error);
+                            console.log(xhr.responseText);
+                        },
+                        complete: function() {
+                            // Hide loading indicator if you have one
+                            $('#loading-indicator').addClass('d-none');
+                        }
+                    });
+                }
+            }
+
+            // Handle pagination clicks
+            $(document).on('click', '.pagination a', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: "GET",
+                    success: function(response) {
+                        $('#table-body').html(response.html);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Pagination Error:", status, error);
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection

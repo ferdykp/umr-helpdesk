@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tracking;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 
 class TrackingController extends Controller
 {
@@ -26,18 +27,18 @@ class TrackingController extends Controller
             return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
         };
         $request->validate([
-        'nama_sparepart' => 'required|string|max:255',
-        'tanggal_update' => 'nullable|date',
-        'jumlah_barang' => 'nullable|integer',
-        'kategori_barang' => 'nullable|string',
-        'status' => 'required|string',
-        'satuan' => 'required|string', // Tambahkan ini
-        'vendor_teknisi' => 'nullable|string',
-        'pic' => 'nullable|string',
-        'catatan' => 'nullable|string',
+            'nama_sparepart' => 'required|string|max:255',
+            'tanggal_update' => 'nullable|date',
+            'jumlah_barang' => 'nullable|integer',
+            'kategori_barang' => 'nullable|string',
+            'status' => 'required|string',
+            'satuan' => 'required|string', // Tambahkan ini
+            'vendor_teknisi' => 'nullable|string',
+            'pic' => 'nullable|string',
+            'catatan' => 'nullable|string',
         ]);
         Tracking::create($request->all());
-        return redirect()->route('tracking')->with('success', 'Sparepart berhasil ditambahkan.');
+        return redirect()->route('tracking')->with('success', 'tracking berhasil ditambahkan.');
     }
     public function edit(string $id)
     {
@@ -53,19 +54,19 @@ class TrackingController extends Controller
             return redirect()->route('tracking')->with('error', 'Anda tidak memiliki akses.');
         };
         $request->validate([
-        'nama_sparepart' => 'required|string|max:255',
-        'tanggal_update' => 'nullable|date',
-        'jumlah_barang' => 'nullable|integer',
-        'kategori_barang' => 'nullable|string',
-        'status' => 'required|string',
-        'satuan' => 'required|string', // Tambahkan ini
-        'vendor_teknisi' => 'nullable|string',
-        'pic' => 'nullable|string',
-        'catatan' => 'nullable|string',
+            'nama_sparepart' => 'required|string|max:255',
+            'tanggal_update' => 'nullable|date',
+            'jumlah_barang' => 'nullable|integer',
+            'kategori_barang' => 'nullable|string',
+            'status' => 'required|string',
+            'satuan' => 'required|string', // Tambahkan ini
+            'vendor_teknisi' => 'nullable|string',
+            'pic' => 'nullable|string',
+            'catatan' => 'nullable|string',
         ]);
         $tracking = Tracking::findOrFail($id);
         $tracking->update($request->all());
-        return redirect()->route('tracking')->with('success', 'Sparepart berhasil diperbarui.');
+        return redirect()->route('tracking')->with('success', 'tracking berhasil diperbarui.');
     }
 
     public function destroy(string $id)
@@ -75,7 +76,7 @@ class TrackingController extends Controller
         };
         $tracking = Tracking::findOrFail($id);
         $tracking->delete();
-        return redirect()->route('tracking')->with('success', 'Sparepart Tracking berhasil dihapus.');
+        return redirect()->route('tracking')->with('success', 'tracking Tracking berhasil dihapus.');
     }
 
     public function bulkDelete(Request $request)
@@ -99,7 +100,53 @@ class TrackingController extends Controller
     public function export()
     {
 
-        /*return Excel::download(new SparePartExport, 'sparepart.xlsx');*/
+        /*return Excel::download(new trackingExport, 'sparepart.xlsx');*/
+    }
+    public function search(Request $request)
+    {
+        try {
+            $query = $request->input('query');
+
+            $tracking = Tracking::query();
+
+            if (!empty($query)) {
+                $tracking->where(function ($q) use ($query) {
+                    foreach (Schema::getColumnListing('trackings') as $column) {
+                        $q->orWhere($column, 'LIKE', "%$query%");
+                    }
+                });
+            }
+
+            $tracking = $tracking->paginate(10);
+
+            if ($request->ajax()) {
+                $data = $tracking;
+                $html = view('tracking.table', [
+                    'data' => $data,
+                    'routePrefix' => 'tracking',
+                ])->render();
+
+                return response()->json(['html' => $html]);
+            }
+
+            return view('tracking.index', compact('tracking'));
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Tracking search error: ' . $e->getMessage());
+
+            if ($request->ajax()) {
+                $data = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+                $html = view('tracking.table', [
+                    'data' => $data,
+                    'routePrefix' => 'tracking',
+                ])->render();
+
+                return response()->json(['html' => $html]);
+            }
+
+            // Return empty results instead of an error
+            $tracking = Tracking::where('id', 0)->paginate(10); // Empty result set
+            return view('tracking.index', compact('tracking'))->with('error', 'An error occurred during search.');
+        }
     }
 }
-

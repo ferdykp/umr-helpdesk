@@ -83,10 +83,11 @@
                     <span class="nav-link-text ms-1">Sparepart</span>
                     {{-- <i class="fa-solid fa-chevron-down ms-auto"></i> --}}
                 </a>
-                <div class="collapse  {{ request()->is('sparepart*') || request()->is('tracking') ? 'show' : '' }}"
+                <div class="collapse  {{ request()->is('sparepart*') || request()->is('tracking*') ? 'show' : '' }}"
                     id="sparepartMenu">
                     <ul class="nav flex-column ms-3 my-2">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link p-2 {{ request()->is('sparepart') ? 'active bg-light rounded' : '' }}"
                                 href="sparepart">
                                 {{-- <i class="fa-solid fa-box me-2"></i> Inventory Sparepart --}}
@@ -98,6 +99,19 @@
                                 href="tracking">
                                 {{-- <i class="fa-solid fa-map-location-dot me-2"></i> Tracking Sparepart --}}
                                 <i class="fa-solid fa-truck-moving"></i> Tracking Sparepart
+=======
+                            <a class="nav-link p-2 {{ request()->is('sparepart*') ? 'active bg-light rounded' : '' }}"
+                                href="{{ route('sparepart') }}">
+                                <i class="fa-solid fa-truck-ramp-box"></i>
+                                Inventory Sparepart
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2 {{ request()->is('tracking*') ? 'active bg-light rounded' : '' }}"
+                                href="{{ route('tracking') }}">
+                                <i class="fa-solid fa-truck-moving"></i>
+                                Tracking Sparepart
+>>>>>>> 2b5f1cd091fd2d19db677524abbac4616da254f0
                             </a>
                         </li>
 
