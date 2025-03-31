@@ -59,30 +59,24 @@
                                             <th class="whitespace-nowrap text-center"><input type="checkbox"
                                                     name="select_all" id="select_all_id"></th>
                                             <th class="whitespace-nowrap text-center">No</th>
-                                            <th class="whitespace-nowrap text-center">Tanggal Update</th>
                                             <th class="whitespace-nowrap text-center">Nama Sparepart</th>
-                                            <th class="whitespace-nowrap text-center">status</th>
-                                            <th class="whitespace-nowrap text-center">Jumlah Barang</th>
-                                            <th class="whitespace-nowrap text-center">Satuan</th>
-                                            <th class="whitespace-nowrap text-center">Kategori Barang</th>
-                                            <th class="whitespace-nowrap text-center">Vendor Teknisi</th>
-                                            <th class="whitespace-nowrap text-center">PIC</th>
+                                            <th class="whitespace-nowrap text-center">Kategori</th>
+                                            <th class="whitespace-nowrap text-center">Stock</th>
+                                            <th class="whitespace-nowrap text-center">Update Stock</th>
+                                            <th class="whitespace-nowrap text-center">Lokasi Penyimpanan</th>
+                                            <th class="whitespace-nowrap text-center">Status</th>
                                             <th class="whitespace-nowrap text-center">Catatan</th>
                                             <th class="whitespace-nowrap text-center">Action</th>
                                         @else
                                             <th class="whitespace-nowrap text-center">No</th>
-                                            <th class="whitespace-nowrap text-center">Tanggal Update</th>
                                             <th class="whitespace-nowrap text-center">Nama Sparepart</th>
-                                            <th class="whitespace-nowrap text-center">status</th>
-                                            <th class="whitespace-nowrap text-center">Jumlah Barang</th>
-                                            <th class="whitespace-nowrap text-center">Satuan</th>
-                                            <th class="whitespace-nowrap text-center">Kategori Barang</th>
-                                            <th class="whitespace-nowrap text-center">Vendor Teknisi</th>
-                                            <th class="whitespace-nowrap text-center">PIC</th>
+                                            <th class="whitespace-nowrap text-center">Kategori</th>
+                                            <th class="whitespace-nowrap text-center">Stock</th>
+                                            <th class="whitespace-nowrap text-center">Update Stock</th>
+                                            <th class="whitespace-nowrap text-center">Lokasi Penyimpanan</th>
+                                            <th class="whitespace-nowrap text-center">Status</th>
                                             <th class="whitespace-nowrap text-center">Catatan</th>
                                         @endif
-
-
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">

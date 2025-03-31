@@ -64,22 +64,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="shift" class="form-control-label">Shift:</label>
-                                <select id="shift" class="form-control mb-3" name="shift" required>
-                                    <option value="" disabled hidden>--- Select shift ---</option>
-                                    <option value="SHIFT 1" {{ $laporan->shift == 'SHIFT 1' ? 'selected' : '' }}>Shift 1
-                                    </option>
-                                    <option value="SHIFT 2" {{ $laporan->shift == 'SHIFT 2' ? 'selected' : '' }}>Shift 2
-                                    </option>
-                                    <option value="SHIFT BU" {{ $laporan->shift == 'SHIFT BU' ? 'selected' : '' }}>Shift BU
-                                    </option>
-                                    <option value="Long Shift" {{ $laporan->shift == 'Long shift' ? 'selected' : '' }}>Long
-                                        Shift
-                                    </option>
-                                </select>
-                                @error('shift')
-                                    <span style="color: red;">{{ $message }}</span>
-                                @enderror
+                                <label for="shift" class="col-md-4 col-form-label text-md-right">Shift</label>
+                                <div class="col-md-12">
+                                    <select class="form-control @error('shift') is-invalid @enderror" name="shift"
+                                        value="{{ old('shift') }}" id="shift-select" required autocomplete="shift"
+                                        autofocus>
+                                    </select>
+                                    @error('shift')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -92,21 +88,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="lokasi_mesin" class="form-control-label">Lokasi Mesin:</label>
-                                <select id="lokasi_mesin" class="form-control mb-3" name="lokasi_mesin" required>
-                                    <option value="" disabled hidden>--- Pilih Lokasi Mesin ---</option>
-                                    <option value="280" {{ $laporan->shift == '280' ? 'selected' : '' }}>280</option>
-                                    <option value="410" {{ $laporan->shift == '410' ? 'selected' : '' }}>410</option>
-                                    <option value="INDIGO" {{ $laporan->shift == 'INDIGO' ? 'selected' : '' }}>INDIGO
-                                    </option>
-
-                                </select>
-                                @error('lokasi_mesin')
-                                    <span style="color: red;">{{ $message }}</span>
-                                @enderror
+                                <label for="lokasi_mesin" class="col-md-4 col-form-label text-md-right">Lokasi Mesin</label>
+                                <div class="col-md-12">
+                                    <select class="form-control @error('lokasi_mesin') is-invalid @enderror"
+                                        name="lokasi_mesin" id="location-select" value="{{ old('lokasi_mesin') }}" required
+                                        autocomplete="lokasi_mesin" autofocus>
+                                    </select>
+                                    @error('lokasi_mesin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="kategori_mesin" class="form-control-label">Kategori Mesin:</label>
                                 <select id="kategori_mesin" class="form-control mb-3" name="kategori_mesin" required>
                                     <option value="" disabled selected hidden>--- Pilih Kategori Mesin ---</option>
@@ -153,6 +149,28 @@
                                 @error('lokasi_mesin')
                                     <span style="color: red;">{{ $message }}</span>
                                 @enderror
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="kategori_mesin" class="form-control-label">Kategori Mesin:</label>
+                                <div class="col-md-12">
+                                    <select class="form-control @error('kategori_mesin') is-invalid @enderror"
+                                        name="kategori_mesin" id="machine-select"
+                                        value="{{ old('kategori_mesin', $laporan->kategori_mesin) }}" required
+                                        autocomplete="kategori_mesin" autofocus>
+                                    </select>
+                                    @error('kategori_mesin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                {{-- <input type="text" class="form-control" id="kategori_mesin" name="kategori_mesin"
+                                    value="{{ old('kategori_mesin', $laporan->kategori_mesin) }}" required>
+                                @error('kategori_mesin')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror --}}
                             </div>
 
                             <div class="form-group">
@@ -217,3 +235,71 @@
         }
     </script>
 @endsection
+
+@push('customScript')
+    <script>
+        $('#machine-select').select2({
+            theme: "bootstrap-5",
+            placeholder: '~~~ Pilih Mesin ~~~',
+            ajax: {
+                url: '{{ route('data.machines') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term // Meneruskan term pencarian
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data // Mengembalikan hasil
+                    };
+                }
+            }
+        });
+
+        $('#location-select').select2({
+            theme: "bootstrap-5",
+            placeholder: '~~~ Pilih Lokasi ~~~',
+            ajax: {
+                url: '{{ route('data.locations') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term // Meneruskan term pencarian
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data // Mengembalikan hasil
+                    };
+                }
+            }
+        });
+
+        $('#shift-select').select2({
+            theme: "bootstrap-5",
+            placeholder: '~~~ Pilih Shift ~~~',
+            ajax: {
+                url: '{{ route('data.shifts') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term // Meneruskan term pencarian
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data // Mengembalikan hasil
+                    };
+                }
+            }
+        });
+
+        $('#machine-select').data('url', '{{ route('data.machines') }}');
+        $('#location-select').data('url', '{{ route('data.locations') }}');
+        $('#shift-select').data('url', '{{ route('data.shifts') }}');
+    </script>
+@endpush
