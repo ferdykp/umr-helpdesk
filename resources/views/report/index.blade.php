@@ -73,6 +73,14 @@
 
 
                                 </div>
+                                <!-- Clear Filter button added below the filter row -->
+                                <div class="row mt-2">
+                                    <div class="col-12 d-flex justify-content-start">
+                                        <button id="clear-filter" class="btn btn-secondary">
+                                            <i class="fa fa-times"></i> Clear Filter
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -249,6 +257,45 @@
 
         $('#shift-select, #machine-select, #location-select').on('change', function() {
             triggerFilter();
+        });
+
+        // Clear filter functionality
+        $('#clear-filter').on('click', function() {
+            // Clear search input
+            $('#search').val('');
+
+            // Clear all select2 dropdowns
+            $('#shift-select').val(null).trigger('change');
+            $('#location-select').val(null).trigger('change');
+            $('#machine-select').val(null).trigger('change');
+
+            // Reset the table to original state
+            $.ajax({
+                url: "{{ route('report') }}",
+                type: "GET",
+                dataType: "html",
+                success: function(response) {
+                    // Extract the table body content from the response
+                    let tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = response;
+                    let newTableBody = tempDiv.querySelector('#table-body').innerHTML;
+
+                    // Update the table body
+                    $('#table-body').html(newTableBody);
+
+                    // Reset pagination if needed
+                    let pagination = tempDiv.querySelector('.d-flex.justify-content-center.mt-3').innerHTML;
+                    $('.d-flex.justify-content-center.mt-3').html(pagination);
+
+                    // Reset footer information
+                    let footerInfo = tempDiv.querySelector('.card-footer').innerHTML;
+                    $('.card-footer').html(footerInfo);
+                },
+                error: function(xhr) {
+                    console.error('Error clearing filters:', xhr.responseText);
+                    alert('Gagal mengatur ulang filter. Silakan coba lagi.');
+                }
+            });
         });
 
         function triggerFilter() {
