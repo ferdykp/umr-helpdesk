@@ -1,4 +1,5 @@
-<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+<aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl fixed-start ms-4 vh-100 h-100 pb-5 overflow-hidden"
     id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
@@ -10,8 +11,7 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main" style="overflow: visible !important">
-        {{-- <div class="collapse navbar-collapse w-auto h-100 overflow-auto" id="sidenav-collapse-main"> --}}
+    <div class="collapse navbar-collapse w-auto h-100 overflow-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Choose Menu</h6>
@@ -86,15 +86,18 @@
                     id="sparepartMenu">
                     <ul class="nav flex-column ms-3 my-2">
                         <li class="nav-item">
-                            <a class="nav-link p-2 {{ request()->is('tracking') ? 'active bg-light rounded' : '' }}"
-                                href="tracking">
-                                {{-- <i class="fa-solid fa-map-location-dot me-2"></i> Tracking Sparepart --}}
-                                <i class="fa-solid fa-truck-moving"></i> Tracking Sparepart
-                                <a class="nav-link p-2 {{ request()->is('sparepart*') ? 'active bg-light rounded' : '' }}"
-                                    href="{{ route('sparepart') }}">
-                                    <i class="fa-solid fa-truck-ramp-box"></i>
-                                    Inventory Sparepart
-                                </a>
+                            <a class="nav-link p-2 {{ request()->is('sparepart*') ? 'active bg-light rounded' : '' }}"
+                                href="{{ route('sparepart') }}">
+                                <i class="fa-solid fa-truck-ramp-box"></i>
+                                Inventory Sparepart
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2 {{ request()->is('tracking*') ? 'active bg-light rounded' : '' }}"
+                                href="{{ route('tracking') }}">
+                                <i class="fa-solid fa-truck-moving"></i>
+                                Tracking Sparepart
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -118,7 +121,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Add Component</span>
                     </a>
-                    <div class="col lapse {{ request()->is('machine') || request()->is('location') || request()->is('shift') ? 'show' : '' }}"
+                    <div class="collapse {{ request()->is('machine') || request()->is('location') || request()->is('shift') ? 'show' : '' }}"
                         id="addComponentMenu">
                         <ul class="nav flex-column ms-3 my-2">
                             <li class="nav-item">
