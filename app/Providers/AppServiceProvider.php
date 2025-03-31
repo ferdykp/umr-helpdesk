@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Laporan;
+use App\Models\SparePart;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
 
             // Query untuk masing-masing tabel
             $reportQuery = Laporan::query();
+            $sparepartQuery = SparePart::query();
+
             // $wrQuery = Wr::query();
             // $midlifeQuery = Midlife::query();
             // $overhaulQuery = Overhaul::query();
@@ -48,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
             // Hitung total data untuk masing-masing kategori
             $dataCounts = [
                 'reportCount' => $reportQuery->count(),
+                'sparepartCount' => $sparepartQuery->count(),
                 // 'wrCount' => $wrQuery->count(),
                 // 'midlifeCount' => $midlifeQuery->count(),
                 // 'overhaulCount' => $overhaulQuery->count(),
@@ -61,4 +65,3 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 }
-

@@ -14,7 +14,7 @@
                         </form> --}}
                         <div class="w-100 w-md-auto ">
                             <h4 class="">List Sparepart</h4>
-                            <hr class="bg-danger border-2 border-top border-danger" />
+                            {{-- <hr class="bg-danger border-2 border-top border-danger" /> --}}
                         </div>
 
                     </div>
@@ -23,15 +23,16 @@
                             class="pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                             <div class="w-100 w-md-auto mb-2 mb-md-0">
                                 <div class="d-flex flex-column flex-sm-row">
-                                    @if (Auth::user()->role == 'Admin')
-                                        <a href="{{ route('sparepart.create') }}"
-                                            class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
-                                            Sparepart</a>
-                                        <a href="{{ route('sparepart.export') }}"
-                                            class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
-                                            <i class="fa fa-download"></i> Export Data in Excel
-                                            <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
-                                                Selected</button>
+                                    <a href="{{ route('sparepart.create') }}"
+                                        class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Tambah
+                                        Laporan</a>
+                                    <a href="{{ route('sparepart.export') }}"
+                                        class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
+                                        <i class="fa fa-download"></i> Export Data in Excel
+                                    </a>
+                                    @if (Auth::user()->role == 'admin')
+                                        <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
+                                            Selected</button>
                                     @endif
                                 </div>
                             </div>
@@ -47,11 +48,11 @@
                             <!-- Right section with search input -->
                             <div class="w-100 w-md-auto" style="max-width: 300px;">
                                 <input type="text" id="search" data-route="" name="search"
-                                    placeholder="Search Report" autocomplete="off" class="form-control">
+                                    placeholder="Search sparepart" autocomplete="off" class="form-control">
                             </div>
                         </div>
                         <div class="table-responsive p-0 rounded-lg my-3">
-                            <table id="datatable" class="table align-items-center mb-0" data-type="report">
+                            <table id="datatable" class="table align-items-center mb-0" data-type="sparepart">
                                 <thead class="table-light">
                                     <tr>
                                         @if (Auth::user()->role == 'Admin')
@@ -81,7 +82,7 @@
                                 <tbody id="table-body">
                                     @include('sparepart.table', [
                                         'data' => $sparepart,
-                                        'routePrefix' => 'report',
+                                        'routePrefix' => 'sparepart',
                                     ])
                                 </tbody>
                             </table>
