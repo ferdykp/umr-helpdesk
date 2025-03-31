@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Laporan;
+use App\Models\Shift;
 use Illuminate\Container\Attributes\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanExport;
@@ -44,7 +45,7 @@ class ReportController extends Controller
             'metode_perbaikan' => 'nullable',
             'catatan' => 'nullable',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Tambahkan validasi gambar
-            'status' => 'required'
+            'status' => 'required',
         ]);
 
         $laporan = new Laporan($request->except('foto'));
@@ -94,7 +95,7 @@ class ReportController extends Controller
             'kategori_mesin' => 'required',
             'catatan' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Tambahkan validasi gambar
-            'status' => 'required'
+            'status' => 'required',
         ]);
 
         $laporan = Laporan::findOrFail($id);
@@ -144,7 +145,7 @@ class ReportController extends Controller
 
     public function export()
     {
-        return Excel::download(new LaporanExport, 'laporan.xlsx');
+        return Excel::download(new LaporanExport(), 'laporan.xlsx');
     }
 
     public function search(Request $request)
