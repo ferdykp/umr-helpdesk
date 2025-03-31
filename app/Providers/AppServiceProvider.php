@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Laporan;
 use App\Models\SparePart;
+use App\Models\Machine;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
             // Query untuk masing-masing tabel
             $reportQuery = Laporan::query();
             $sparepartQuery = SparePart::query();
+            $machineQuery = Machine::query();
 
             // $wrQuery = Wr::query();
             // $midlifeQuery = Midlife::query();
@@ -52,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
             $dataCounts = [
                 'reportCount' => $reportQuery->count(),
                 'sparepartCount' => $sparepartQuery->count(),
+                'machineCount' => $machineQuery->count(),
                 // 'wrCount' => $wrQuery->count(),
                 // 'midlifeCount' => $midlifeQuery->count(),
                 // 'overhaulCount' => $overhaulQuery->count(),

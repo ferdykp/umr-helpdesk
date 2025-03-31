@@ -50,9 +50,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Data Midlife</h4>
+                                    <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Jumlah Mesin</h4>
                                     <h5 class="font-weight-bolder">
-                                        {{-- {{ $midlifeCount }} --}}
+                                        {{ $machineCount }}
                                     </h5>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-sm-6 mb-4">
+            {{-- <div class="col-xl-4 col-sm-6 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -73,7 +73,7 @@
                                 <div class="numbers">
                                     <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Data Overhaul</h4>
                                     <h5 class="font-weight-bolder">
-                                        {{-- {{ $overhaulCount }} --}}
+                                        {{ $overhaulCount }}
                                     </h5>
                                 </div>
                             </div>
@@ -85,9 +85,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-xl-4 col-sm-6 mb-4">
+            {{-- <div class="col-xl-4 col-sm-6 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -95,7 +95,7 @@
                                 <div class="numbers">
                                     <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Data periodic</h4>
                                     <h5 class="font-weight-bolder">
-                                        {{-- {{ $periodicCount }} --}}
+                                        {{ $periodicCount }}
                                     </h5>
                                 </div>
                             </div>
@@ -107,9 +107,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-xl-4 col-sm-6 mb-4">
+            {{-- <div class="col-xl-4 col-sm-6 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -117,7 +117,7 @@
                                 <div class="numbers">
                                     <h4 class="text-sm mb-4 text-uppercase font-weight-bold">Total Data Lainnya</h4>
                                     <h5 class="font-weight-bolder">
-                                        {{-- {{ $lainnyaCount }} --}}
+                                        {{ $lainnyaCount }}
                                     </h5>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-12">
                 <div class="card">
