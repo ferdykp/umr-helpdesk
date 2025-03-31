@@ -91,7 +91,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- Script Modal -->
     <script>
         function openModal(id) {
