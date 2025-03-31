@@ -31,6 +31,9 @@
                   </li>
               @endforeach
           </ul>
+          <div class="d-flex justify-content-center mt-4">
+              {{ $notes->links('pagination::bootstrap-4') }}
+          </div>
       </div>
 
       <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>

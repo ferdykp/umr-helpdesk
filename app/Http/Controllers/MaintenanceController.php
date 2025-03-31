@@ -14,7 +14,7 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        $notes = Maintenance::latest()->take(5)->get();
+        $notes = Maintenance::orderBy('date', 'desc')->paginate(5);
         return view('maintenance.index', compact('notes'));
     }
 
