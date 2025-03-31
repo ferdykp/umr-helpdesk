@@ -138,22 +138,35 @@
                                         @if (Auth::user()->role == 'admin')
                                             <th class="whitespace-nowrap text-center"><input type="checkbox"
                                                     name="select_all" id="select_all_id"></th>
+                                            <th class="whitespace-nowrap text-center">No</th>
+                                            <th class="whitespace-nowrap text-center">Keterangan Kerusakan
+                                            </th>
+                                            <th class="whitespace-nowrap text-center">Penyebab Kerusakan</th>
+                                            <th class="whitespace-nowrap text-center">Tanggal Kerusakan</th>
+                                            <th class="whitespace-nowrap text-center">Shift</th>
+                                            <th class="whitespace-nowrap text-center">Nama Teknisi</th>
+                                            <th class="whitespace-nowrap text-center">Lokasi Mesin</th>
+                                            <th class="whitespace-nowrap text-center">Kategori Mesin</th>
+                                            <th class="whitespace-nowrap text-center">Tanggal Perbaikan</th>
+                                            <th class="whitespace-nowrap text-center">Status</th>
+                                            <th class="whitespace-nowrap text-center">Metode Perbaikan</th>
+                                            <th class="whitespace-nowrap text-center">Catatan</th>
+                                            <th class="whitespace-nowrap text-center">Action</th>
+                                        @else
+                                            <th class="whitespace-nowrap text-center">No</th>
+                                            <th class="whitespace-nowrap text-center">Keterangan Kerusakan
+                                            </th>
+                                            <th class="whitespace-nowrap text-center">Penyebab Kerusakan</th>
+                                            <th class="whitespace-nowrap text-center">Tanggal Kerusakan</th>
+                                            <th class="whitespace-nowrap text-center">Shift</th>
+                                            <th class="whitespace-nowrap text-center">Nama Teknisi</th>
+                                            <th class="whitespace-nowrap text-center">Lokasi Mesin</th>
+                                            <th class="whitespace-nowrap text-center">Kategori Mesin</th>
+                                            <th class="whitespace-nowrap text-center">Tanggal Perbaikan</th>
+                                            <th class="whitespace-nowrap text-center">Status</th>
+                                            <th class="whitespace-nowrap text-center">Metode Perbaikan</th>
+                                            <th class="whitespace-nowrap text-center">Catatan</th>
                                         @endif
-                                        <th class="whitespace-nowrap text-center">No</th>
-                                        <th class="whitespace-nowrap text-center">Keterangan Kerusakan
-                                        </th>
-                                        <th class="whitespace-nowrap text-center">Penyebab Kerusakan</th>
-                                        <th class="whitespace-nowrap text-center">Tanggal Kerusakan</th>
-                                        <th class="whitespace-nowrap text-center">Shift</th>
-                                        <th class="whitespace-nowrap text-center">Nama Teknisi</th>
-                                        <th class="whitespace-nowrap text-center">Lokasi Mesin</th>
-                                        <th class="whitespace-nowrap text-center">Kategori Mesin</th>
-                                        <th class="whitespace-nowrap text-center">Tanggal Perbaikan</th>
-                                        <th class="whitespace-nowrap text-center">Status</th>
-                                        <th class="whitespace-nowrap text-center">Metode Perbaikan</th>
-                                        <th class="whitespace-nowrap text-center">Catatan</th>
-                                        <th class="whitespace-nowrap text-center">Action</th>
-
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
@@ -284,7 +297,8 @@
                     $('#table-body').html(newTableBody);
 
                     // Reset pagination if needed
-                    let pagination = tempDiv.querySelector('.d-flex.justify-content-center.mt-3').innerHTML;
+                    let pagination = tempDiv.querySelector('.d-flex.justify-content-center.mt-3')
+                        .innerHTML;
                     $('.d-flex.justify-content-center.mt-3').html(pagination);
 
                     // Reset footer information
