@@ -48,7 +48,8 @@
                             <!-- Right section with search input -->
                             <div class="w-100 w-md-auto" style="max-width: 300px;">
                                 <input type="text" id="search" data-route="{{ route('tracking.search') }}"
-                                    name="search" placeholder="Search Report" autocomplete="off" class="form-control">
+                                    name="search" placeholder="Search Sparepart Tracking" autocomplete="off"
+                                    class="form-control">
                             </div>
                         </div>
                         <div class="table-responsive p-0 rounded-lg my-3">
