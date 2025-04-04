@@ -44,7 +44,7 @@
               var calendar = new FullCalendar.Calendar(calendarEl, {
                   initialView: 'dayGridMonth',
                   events: [
-                      @foreach ($notes as $note)
+                      @foreach ($allnotes as $note)
                           {
                               title: '{{ $note->note }}',
                               start: '{{ $note->date }}',
