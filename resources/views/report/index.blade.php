@@ -26,6 +26,9 @@
                                         <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
                                             Selected</button>
                                     @endif
+                                    <button id="clear-filter" class="btn btn-secondary me-2 mb-2 mb-sm-0">
+                                        <i class="fa fa-times"></i> Clear Filter
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -74,13 +77,13 @@
 
                                 </div>
                                 <!-- Clear Filter button added below the filter row -->
-                                <div class="row mt-2">
+                                {{-- <div class="row mt-2">
                                     <div class="col-12 d-flex justify-content-start">
                                         <button id="clear-filter" class="btn btn-secondary">
                                             <i class="fa fa-times"></i> Clear Filter
                                         </button>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
